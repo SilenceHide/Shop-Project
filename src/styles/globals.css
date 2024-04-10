@@ -1,3 +1,216 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .header_menu-button {
+    position: relative;
+    top: 15px;
+  }
+
+  .header_logo-svg {
+    width: 160px;
+  }
+
+  .search-box_svg path {
+    fill: #253d4e;
+  }
+
+  .header_menu-button,
+  .header_menu-button::before,
+  .header_menu-button::after {
+    content: "";
+    width: 32px;
+    height: 2px;
+    background-color: #000000;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+
+  .header_menu-button::before {
+    top: 10px;
+    position: absolute;
+  }
+
+  .header_menu-button::after {
+    bottom: 10px;
+    position: absolute;
+  }
+
+  .header_mobile-line {
+    top: 75px;
+  }
+
+  .category_browser {
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+  }
+
+  .category_browser-wrapper:hover .category_browser {
+    display: flex;
+  }
+
+  .category_browser-arrow {
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+  }
+
+  .category_browser-wrapper:hover .category_browser-arrow {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+  }
+
+  .hero_bg {
+    background-image: url(../../images/hero/3389452\ 1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .featured-category:hover,
+  .popular-product:hover,
+  .popular-fruit:hover,
+  .our-offer:hover {
+    box-shadow: 20px 20px 40px 0px rgba(24, 24, 24, 0.07);
+  }
+
+  .product_price-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .deal_add-btn:hover .deal_add-icon path {
+    fill: #fdc040;
+  }
+
+  .bottom-banner_img {
+    background-image: url(../../images/section7/background.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .deal_number-input {
+    position: relative;
+    background-image: url("../../images/section3/input-arrows.png");
+    background-position: center right;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .deal_number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    opacity: 1;
+    background: transparent;
+    border-width: 0px;
+    margin: 0;
+    height: 20px;
+    width: 23px;
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .product_price-input {
+      position: relative;
+      background-image: url("../../images/section3/input-arrows.png");
+      background-position: center right;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .product_price-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      opacity: 1;
+      background: transparent;
+      border-width: 0px;
+      margin: 0;
+      height: 20px;
+      width: 23px;
+      cursor: pointer;
+    }
+
+    .fruit_price-input {
+      position: relative;
+      background-image: url("../../images/section3/input-arrows.png");
+      background-position: center right;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .fruit_price-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      opacity: 1;
+      background: transparent;
+      border-width: 0px;
+      margin: 0;
+      height: 20px;
+      width: 23px;
+      cursor: pointer;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .header_menu-button {
+      display: none;
+    }
+
+    .hero_bg {
+      overflow: hidden;
+    }
+
+    .header_search-box {
+      width: 500px;
+    }
+
+    .header_logo-svg {
+      width: 232px;
+    }
+
+    .search-box_svg path {
+      fill: #7e7e7e;
+    }
+
+    .header_mobile-line {
+      top: 111px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .header_search-box {
+      width: 700px;
+    }
+  }
+}
+
+.cover-show {
+  opacity: 1 !important;
+  z-index: 5 !important;
+  background-color: #000000a3 !important;
+}
+
+.popular-product:hover .product_icons-wrapper {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.popular-fruit:hover .fruit_icons-wrapper {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+code {
+  color: #3bb77e33;
+}
