@@ -11,6 +11,8 @@ export default function Document() {
       <body className="font-quicksand text-text-heading selection:text-white selection:bg-brand-color-one caret-brand-color-one">
         <Main />
         <NextScript />
+        {/* <!--*******--------**** Menu Cover Background ****--------*******--> */}
+        <div className="cover lg:hidden fixed top-0 right-0 w-full h-full -z-[1] opacity-0 transition-all"></div>
       </body>
     </Html>
   );
