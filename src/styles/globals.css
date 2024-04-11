@@ -85,7 +85,7 @@
   }
 
   .hero_bg {
-    background-image: url(../../images/hero/3389452\ 1.png);
+    background-image: url("../../public/images/hero/3389452\ 1.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -107,7 +107,7 @@
   }
 
   .bottom-banner_img {
-    background-image: url(../../images/section7/background.png);
+    background-image: url("../../public/images/section7/background.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -115,7 +115,7 @@
 
   .deal_number-input {
     position: relative;
-    background-image: url("../../images/section3/input-arrows.png");
+    background-image: url("../../public/images/section3/input-arrows.png");
     background-position: center right;
     background-size: contain;
     background-repeat: no-repeat;
@@ -135,7 +135,7 @@
   @media (min-width: 768px) {
     .product_price-input {
       position: relative;
-      background-image: url("../../images/section3/input-arrows.png");
+      background-image: url("../../public/images/section3/input-arrows.png");
       background-position: center right;
       background-size: contain;
       background-repeat: no-repeat;
@@ -154,7 +154,7 @@
 
     .fruit_price-input {
       position: relative;
-      background-image: url("../../images/section3/input-arrows.png");
+      background-image: url("../../public/images/section3/input-arrows.png");
       background-position: center right;
       background-size: contain;
       background-repeat: no-repeat;

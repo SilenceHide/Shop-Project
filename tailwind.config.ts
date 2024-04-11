@@ -41,6 +41,9 @@ const config: Config = {
         "info-color": "#008891",
         "hero-bg": "rgba(253, 192, 64, 0.20);",
       },
+      boxShadow: {
+        "main-shadow": "5px 5px 15px 0px rgba(24, 24, 24, 0.05)",
+      },
     },
     fontFamily: {
       lato: ["Lato", "Arial", "sans-serif"],
