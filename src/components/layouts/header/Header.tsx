@@ -1,4 +1,4 @@
-import { ImageView, Logo } from "@/components/common";
+import { ImageView, Logo } from "@/components";
 import Link from "next/link";
 import React from "react";
 import { SearchForm } from "./searchForm";

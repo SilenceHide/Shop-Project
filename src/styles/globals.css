@@ -226,3 +226,7 @@
 code {
   color: #3bb77e33;
 }
+
+.featured-categories_swiper .swiper-slide {
+  display: flex !important;
+}
