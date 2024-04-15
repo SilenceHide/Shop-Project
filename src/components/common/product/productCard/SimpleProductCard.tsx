@@ -1,12 +1,25 @@
 import React from "react";
-import { ImageView } from "@/components";
+import { Badge, ImageView, Rating } from "@/components";
+import Link from "next/link";
+
+interface Props {
+  data: {
+    title: string;
+    image: string;
+    category: string;
+    rate: number;
+    weight: number;
+    unit: string;
+    price: number;
+    sale_price: number;
+    label: string;
+  };
+}
 
 export function SimpleProductCard() {
   return (
     <>
-      <div className="product_label-wrapper absolute z-10 bg-brand-color-one text-white font-lato text-xs py-[10px] px-4 left-0 md:top-5 top-0 rounded-r-full min-w-[64px] flex justify-center items-center">
-        <p className="product_label">-17%</p>
-      </div>
+      <Badge />
       <div className="product_img-wrapper relative flex items-center justify-center md:mt-3 md:max-w-[245px] max-w-[150px] md:min-h-[146px] min-h-[120px] max-h-[146px]">
         <ImageView
           className={"product_img bg-cover bg-center bg-no-repeat"}
@@ -49,46 +62,13 @@ export function SimpleProductCard() {
       </div>
       <div className="product_content">
         <p className="hodo_foods font-lato text-xs text-text-body md:mt-5">Hodo Foods</p>
-        <h3 className="product_title font-bold md:text-sm text-xs my-1 h-[48px] text-ellipsis overflow-hidden">
-          Seeds of Change Organic Quinoa, Brown, & Red Rice
-        </h3>
+        <Link href={"#"}>
+          <h3 className="product_title font-bold md:text-sm text-xs my-1 h-[48px] text-ellipsis overflow-hidden">
+            Seeds of Change Organic Quinoa, Brown, & Red Rice
+          </h3>
+        </Link>
         <div className="product_rate-wrapper flex">
-          <ImageView
-            className={"product_rate-img"}
-            src={"/images/section3/002-fill star.svg"}
-            alt={"star"}
-            width={12}
-            height={16}
-          />
-          <ImageView
-            className={"product_rate-img"}
-            src={"/images/section3/002-fill star.svg"}
-            alt={"star"}
-            width={12}
-            height={16}
-          />
-          <ImageView
-            className={"product_rate-img"}
-            src={"/images/section3/002-fill star.svg"}
-            alt={"star"}
-            width={12}
-            height={16}
-          />
-          <ImageView
-            className={"product_rate-img"}
-            src={"/images/section3/002-fill star.svg"}
-            alt={"star"}
-            width={12}
-            height={16}
-          />
-          <ImageView
-            className={"product_rate-img"}
-            src={"/images/section3/001-empty star.svg"}
-            alt={"star"}
-            width={12}
-            height={16}
-          />
-          <p className="product_rate-number font-lato text-xs text-text-body ml-2">(4.0)</p>
+          <Rating />
         </div>
         <h5 className="product_weight font-lato text-xs text-text-body mt-1 mb-3">500 gram</h5>
         <div className="product_price-wrapper flex items-center justify-between">
