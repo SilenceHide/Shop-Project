@@ -1,4 +1,11 @@
-import { Banner, FeaturedCategories, Section, SimpleProductSlider } from "@/components";
+import {
+  Banner,
+  BestSellerSlider,
+  DealsSlider,
+  FeaturedCategories,
+  Section,
+  SimpleProductSlider,
+} from "@/components";
 import { ImageView } from "@/components";
 
 export default function Home() {
@@ -84,6 +91,14 @@ export default function Home() {
           prevSlide={".popular-fruits_section-left_arrow"}
           nextSlide={".popular-fruits_section-right_arrow"}
         />
+      </Section>
+
+      <Section className={"our-offers_section md:mt-16 mt-10"}>
+        <BestSellerSlider />
+      </Section>
+
+      <Section className={"deals_section md:mt-16 mt-8"}>
+        <DealsSlider />
       </Section>
     </>
   );
