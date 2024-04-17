@@ -1,6 +1,7 @@
 import {
   Banner,
   BestSellerSlider,
+  CategorySlider,
   DealsSlider,
   FeaturedCategories,
   Section,
@@ -99,6 +100,10 @@ export default function Home() {
 
       <Section className={"deals_section md:mt-16 mt-8"}>
         <DealsSlider />
+      </Section>
+
+      <Section className={"category_section md:mt-[68px] mt-9"}>
+        <CategorySlider />
       </Section>
     </>
   );

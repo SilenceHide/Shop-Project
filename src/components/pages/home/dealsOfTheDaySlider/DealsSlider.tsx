@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { timerHelper } from "@/utils/timer";
 
 export function DealsSlider() {
   const [remainTime, setRemainTime] = useState({
@@ -11,10 +12,15 @@ export function DealsSlider() {
   });
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       //   const timerObj = timerHelper();
+      // setRemainTime(timerObj)
     }, 1000);
-  });
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <>
