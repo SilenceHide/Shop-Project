@@ -5,7 +5,7 @@ import { SearchForm } from "./searchForm";
 import { Menu } from "./menu";
 
 export function Header() {
-  const [navOpen, isNAvOpen] = useState(false);
+  const [navOpen, isNavOpen] = useState(false);
 
   return (
     <>
@@ -16,7 +16,7 @@ export function Header() {
               <div className="header_logo flex flex-shrink-0 flex-grow basis-full lg:basis-0 justify-between items-center">
                 <Logo />
                 <div className="header_menu-button-wrapper h-8">
-                  <div className="header_menu-button"></div>
+                  <div className="header_menu-button" onClick={() => isNavOpen(!navOpen)}></div>
                 </div>
               </div>
 
@@ -53,7 +53,11 @@ export function Header() {
           </div>
 
           {/* <!--*******--------**** Menu ****--------*******--> */}
-          <div className="menu_wrapper flex flex-col lg:flex-row lg:items-center lg:justify-between lg:mb-[14px] lg:mt-11 font-bold fixed lg:static -left-full top-0 bg-white bottom-0 px-6 py-4 lg:p-0 gap-2 rounded-r-3xl lg:rounded-none transition-all z-10 overflow-scroll lg:overflow-visible">
+          <div
+            className={`menu_wrapper flex flex-col lg:flex-row lg:items-center lg:justify-between lg:mb-[14px] lg:mt-11 font-bold fixed lg:static  top-0 bg-white bottom-0 px-6 py-4 lg:p-0 gap-2 rounded-r-3xl lg:rounded-none transition-all z-10 overflow-y-scroll lg:overflow-visible overflow-x-hidden ${
+              navOpen ? "left-0" : "-left-full"
+            }`}
+          >
             <Menu />
           </div>
         </div>

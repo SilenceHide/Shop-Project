@@ -1,4 +1,4 @@
-import { ImageView } from "@/components/common";
+import { IconBox, ImageView, Logo } from "@/components/common";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -59,28 +59,17 @@ export function Footer() {
             </div>
           </div>
         </div>
+
         <div className="footer_inner-wrapper md:mt-[68px] mt-[62px] font-lato">
           <div className="footer_wrapper flex items-start justify-between flex-wrap lg:flex-nowrap flex-col sm:flex-row lg:gap-0 gap-12">
             <div className="footer_company-info-wrapper max-w-[346px] flex flex-col items-start gap-3">
-              <Link href={"#"} className="footer_company-info_logo-wrapper">
-                <ImageView
-                  src={"/images/footer/Logo.png"}
-                  alt={"logo"}
-                  width={235}
-                  height={66}
-                  className={"footer_company-info_logo"}
-                />
-              </Link>
-              <h5 className="footer_company-text my-3">Pellentesque posuere orci lobortis</h5>
+              <Logo />
+              <h5 className="footer_company-text lg:my-3 mb-3">
+                Pellentesque posuere orci lobortis
+              </h5>
               <div className="company_info flex items-start justify-start gap-2">
                 <div className="company_info-icon_wrapper w-4 h-4 flex items-center justify-center mt-1">
-                  <ImageView
-                    src={"/images/footer/img01-marker.png"}
-                    alt={"marker"}
-                    width={17}
-                    height={17}
-                    className={"company_info-icon object-cover min-w-[17px] min-h-[17px]"}
-                  />
+                  <IconBox icon={"icon-marker-brand"} />
                 </div>
                 <p className="company_info-title font-bold">
                   Address:
@@ -91,13 +80,7 @@ export function Footer() {
               </div>
               <div className="company_info flex items-start justify-start gap-2">
                 <div className="company_info-icon_wrapper w-4 h-4 flex items-center justify-center mt-1">
-                  <ImageView
-                    src={"/images/footer/img02-headset 1.png"}
-                    alt={"headset"}
-                    width={17}
-                    height={17}
-                    className={"company_info-icon object-cover min-w-[17px] min-h-[17px]"}
-                  />
+                  <IconBox icon={"icon-headset"} className={"text-brand-color-one"} />
                 </div>
                 <p className="company_info-title font-bold">
                   Call Us:
@@ -106,12 +89,10 @@ export function Footer() {
               </div>
               <div className="company_info flex items-start justify-start gap-2">
                 <div className="company_info-icon_wrapper w-4 h-4 flex items-center justify-center mt-1">
-                  <ImageView
-                    src={"/images/footer/img03-paper-plane.png"}
-                    alt={"paper-plane"}
-                    width={17}
-                    height={17}
-                    className={"company_info-icon object-cover min-w-[17px] min-h-[17px]"}
+                  <IconBox
+                    icon={"icon-paper-plane"}
+                    className={"text-brand-color-one before:text-brand-color-one "}
+                    size={"text-[26px]"}
                   />
                 </div>
                 <p className="company_info-title font-bold">
@@ -121,12 +102,10 @@ export function Footer() {
               </div>
               <div className="company_info flex items-start justify-start gap-2">
                 <div className="company_info-icon_wrapper w-4 h-4 flex items-center justify-center mt-1">
-                  <ImageView
-                    src={"/images/footer/img04-time-fast.png"}
-                    alt={"time-fast"}
-                    width={17}
-                    height={17}
-                    className={"company_info-icon object-cover min-w-[17px] min-h-[17px]"}
+                  <IconBox
+                    icon={"icon-time-fast"}
+                    className={"text-brand-color-one "}
+                    size={"text-[20px]"}
                   />
                 </div>
                 <p className="company_info-title font-bold">
@@ -138,7 +117,7 @@ export function Footer() {
             <div className="footer_company-wrapper flex flex-col gap-7 items-start sm:w-auto w-full transition-all">
               <div
                 onClick={() => isFooterCompanyOpen(!footerCompanyOpen)}
-                className="company-title_wrapper flex items-center gap-2"
+                className="company-title_wrapper flex items-center gap-3"
               >
                 <h3 className="company-title font-quicksand font-bold sm:text-2xl text-xl">
                   Company
@@ -181,11 +160,11 @@ export function Footer() {
                 </Link>
               </div>
             </div>
-            <div
-              onClick={() => isFooterInfoOpen(!footerInfoOpen)}
-              className="footer_info-wrapper flex flex-col gap-7 items-start sm:w-auto w-full transition-all"
-            >
-              <div className="info-title_wrapper flex items-center gap-2">
+            <div className="footer_info-wrapper flex flex-col gap-7 items-start sm:w-auto w-full transition-all">
+              <div
+                onClick={() => isFooterInfoOpen(!footerInfoOpen)}
+                className="info-title_wrapper flex items-center gap-3"
+              >
                 <h3 className="info-title font-quicksand font-bold sm:text-2xl text-xl">
                   Information
                 </h3>

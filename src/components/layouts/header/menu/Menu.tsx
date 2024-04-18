@@ -5,6 +5,7 @@ import { browsCategoriesMock } from "@/mock/browsCategory";
 import { menuMock } from "@/mock/menu";
 
 export function Menu() {
+  // TODO load menu data from api
   return (
     <>
       <div className="category_browser-wrapper flex lg:flex-row flex-col text-white lg:relative">
@@ -17,14 +18,14 @@ export function Menu() {
             className={"category_browser-arrow"}
           />
         </div>
-        <div className="category_browser-inner-wrapper bg-transparent hidden lg:absolute lg:top-12 lg:left-0">
-          <div className="category_browser bg-white flex text-text-heading font-bold text-sm lg:border-border-light-green lg:border-[1px] items-center justify-between max-w-60 lg:max-w-[500px] lg:min-w-[500px] rounded-md lg:px-8 lg:pt-8 pt-5 lg:pb-6 pb-2 lg:gap-4 gap-5 flex-wrap mt-[26px]">
+        <div className="category_browser-inner-wrapper bg-transparent opacity-0 invisible transition-all duration-200 lg:absolute lg:top-12 lg:left-0 h-0 lg:w-[266px]">
+          <div className="category_browser bg-white flex text-text-heading font-bold text-sm lg:border-border-light-green lg:border-[1px] items-center justify-between max-w-60 lg:max-w-[500px] lg:min-w-[500px] rounded-md lg:px-8 lg:pt-8 pt-5 lg:pb-6 pb-2 lg:gap-4 gap-5 flex-wrap lg:mt-[26px]">
             {browsCategoriesMock.map((item, index) => {
               return (
                 <>
                   <div
                     key={index}
-                    className="category rounded-md hover:border-border-light-green transition-all duration-200 lg:px-4 lg:py-[7px] lg:border-border-light lg:border-2 lg:basis-[48%] basis-full flex-shrink-0 hover:shadow-main-shadow"
+                    className="category rounded-md hover:border-border-light-green transition-all duration-200 lg:px-4 lg:py-[7px] lg:border-border-light lg:border-2 lg:basis-[48%] basis-full flex-shrink-0 lg:hover:shadow-main-shadow"
                   >
                     <Link className="category_link flex items-center gap-3" href="#">
                       <IconBox
@@ -52,7 +53,7 @@ export function Menu() {
           </div>
         </div>
       </div>
-      <div className="category_browser-wrapper-border w-full h-px bg-gray-300 lg:hidden"></div>
+      {/* <div className="category_browser-wrapper-border w-full h-px bg-gray-300 lg:hidden"></div> */}
 
       <div className="nav_wrapper flex flex-col lg:flex-row lg:items-center lg:gap-9 gap-6 pt-7 lg:p-0 lg:m-0 border-gray-300 border-t lg:border-none">
         {menuMock.map((item, index) => {
@@ -80,7 +81,7 @@ export function Menu() {
           );
         })}
       </div>
-      <div className="category_browser-wrapper-border w-full h-px bg-gray-300 lg:hidden"></div>
+      {/* <div className="category_browser-wrapper-border w-full h-px bg-gray-300 lg:hidden"></div> */}
 
       <div className="nav_contact lg:flex items-center gap-3 mt-7 lg:m-0 hidden">
         <ImageView

@@ -15,6 +15,10 @@
     background: #3bb77e;
   }
 
+  .menu_wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
   .header_menu-button {
     position: relative;
     top: 15px;
@@ -65,7 +69,9 @@
   }
 
   .category_browser-wrapper:hover .category_browser-inner-wrapper {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    height: 508px;
   }
 
   .category_browser-arrow {
@@ -195,6 +201,10 @@
 
     .header_mobile-line {
       top: 111px;
+    }
+
+    .category_browser-wrapper:hover .category_browser-inner-wrapper {
+      height: 407px;
     }
   }
 
