@@ -24,12 +24,6 @@ export function SearchForm() {
             searchOpen ? "absolute" : "lg:absolute static"
           }`}
         >
-          {/* <ImageView
-            src={"/images/header/fi-rs-search.svg"}
-            alt={"search-box_svg"}
-            width={20}
-            height={20}
-          /> */}
           <IconBox icon={"icon-search"} />
         </button>
       </form>

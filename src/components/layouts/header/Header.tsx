@@ -1,4 +1,4 @@
-import { ImageView, Logo } from "@/components";
+import { IconBox, ImageView, Logo } from "@/components";
 import Link from "next/link";
 import React, { useState } from "react";
 import { SearchForm } from "./searchForm";
@@ -26,24 +26,20 @@ export function Header() {
                 <div className="header_account-wrapper flex font-lato">
                   <div className="header_account flex mr-7">
                     <Link className="header_account-link flex items-center" href="#">
-                      <ImageView
-                        className={"header_account-svg"}
-                        src={"/images/header/fi-rs-user.svg"}
-                        alt={"header_account-svg"}
-                        width={24}
-                        height={25}
+                      <IconBox
+                        icon={"icon-user"}
+                        size={"text-[26px]"}
+                        className={"text-text-heading"}
                       />
                       <span className="account_title ml-1 lg:inline-block hidden">Account</span>
                     </Link>
                   </div>
                   <div className="header_cart flex">
                     <Link className="header_account-link flex items-center relative" href="#">
-                      <ImageView
-                        className={"header_cart-svg"}
-                        src={"/images/header/fi-rs-shopping-cart.svg"}
-                        alt={"header_cart-svg"}
-                        width={25}
-                        height={25}
+                      <IconBox
+                        icon={"icon-shopping-cart"}
+                        size={"text-[26px]"}
+                        className={"text-text-heading"}
                       />
                       <div className="header_cart-number_wrapper absolute top-[-10px] lg:right-[28px] right-[-9px] bg-brand-color-one text-white rounded-full w-5 h-5 flex items-center justify-center">
                         <p className="header_cart-number text-xs">4</p>

@@ -64,7 +64,7 @@
     -o-transition: all 0.2s ease-in-out;
   }
 
-  .category_browser-wrapper:hover .category_browser {
+  .category_browser-wrapper:hover .category_browser-inner-wrapper {
     display: flex;
   }
 

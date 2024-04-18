@@ -1,19 +1,22 @@
-export const menuMockData = [
+export const menuMock = [
   {
     title: "Hot Deals",
+    icon: "icon-flame",
     link: "#",
-    hotDeals: true,
   },
   {
     title: "Home",
+    icon: "",
+    link: "#",
+  },
+  {
+    title: "Food",
+    icon: "",
     link: "#",
   },
   {
     title: "Vegetables",
-    link: "#",
-  },
-  {
-    title: "Drink",
+    icon: "",
     link: "#",
   },
 ];
