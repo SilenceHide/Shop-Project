@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import { timerHelper } from "@/utils/timer";
 
 export function DealsSlider() {
