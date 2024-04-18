@@ -405,6 +405,10 @@
   content: "\e919";
   color: #3bb77e;
 }
+.icon-paper-plane-dark:before {
+  content: "\e919";
+  color: #7e7e7e;
+}
 .icon-play:before {
   content: "\e91a";
 }

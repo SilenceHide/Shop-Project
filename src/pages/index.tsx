@@ -13,7 +13,12 @@ export default function Home() {
   return (
     <>
       <Section className={"hero_section"}>
-        <Banner />
+        <Banner
+          title={"Don’t miss amazing grocery deals"}
+          subtitle={"Sign up for the daily newsletter"}
+          bgImage={"/images/hero/3389452.png"}
+          image={"/images/hero/fresh-apples-shopping-mesh-bag-with-branch-apples-removebg 1.png"}
+        />
       </Section>
 
       <Section className={"featured-categories_section lg:mt-16 mt-32"}>
