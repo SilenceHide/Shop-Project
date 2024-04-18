@@ -1,10 +1,12 @@
 import { ImageView, Logo } from "@/components";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { SearchForm } from "./searchForm";
 import { Menu } from "./menu";
 
 export function Header() {
+  const [navOpen, isNAvOpen] = useState(false);
+
   return (
     <>
       <header className="header border-b-gray-300 border-b">
@@ -55,7 +57,9 @@ export function Header() {
           </div>
 
           {/* <!--*******--------**** Menu ****--------*******--> */}
-          <Menu />
+          <div className="menu_wrapper flex flex-col lg:flex-row lg:items-center lg:justify-between lg:mb-[14px] lg:mt-11 font-bold fixed lg:static -left-full top-0 bg-white bottom-0 px-6 py-4 lg:p-0 gap-2 rounded-r-3xl lg:rounded-none transition-all z-10 overflow-scroll lg:overflow-visible">
+            <Menu />
+          </div>
         </div>
       </header>
       <div className="header_mobile-line w-full h-px bg-gray-300 mt-4 absolute -z-10"></div>

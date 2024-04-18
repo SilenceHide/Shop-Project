@@ -5,7 +5,7 @@ import { menuMockData } from "@/mockData/menu";
 
 export function Menu() {
   return (
-    <div className="menu_wrapper flex flex-col lg:flex-row lg:items-center lg:justify-between lg:mb-[14px] lg:mt-11 font-bold fixed lg:static -left-full top-0 bg-white bottom-0 px-6 py-4 lg:p-0 gap-2 rounded-r-3xl lg:rounded-none transition-all z-10 overflow-scroll lg:overflow-visible">
+    <>
       <div className="category_browser-wrapper flex lg:flex-row flex-col text-white lg:relative">
         <div className="category_content bg-brand-color-one flex items-center px-5 py-[12px] gap-2 rounded-md">
           <ImageView
@@ -206,6 +206,6 @@ export function Menu() {
           <h5 className="contact_desc text-text-body text-xs font-normal">24/7 Support Center</h5>
         </div>
       </div>
-    </div>
+    </>
   );
 }
