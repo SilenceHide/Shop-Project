@@ -4,7 +4,6 @@ import {
   CategorySlider,
   DealsSlider,
   FeaturedCategories,
-  IconBox,
   Section,
   SimpleProductSlider,
 } from "@/components";
