@@ -4,10 +4,13 @@ import {
   CategorySlider,
   DealsSlider,
   FeaturedCategories,
+  IconBox,
   Section,
   SimpleProductSlider,
 } from "@/components";
 import { ImageView } from "@/components";
+import { popularFruits } from "@/mock/PopularFruits";
+import { popularProducts } from "@/mock/PopularProducts";
 
 export default function Home() {
   return (
@@ -57,6 +60,7 @@ export default function Home() {
           </div>
         </div>
         <SimpleProductSlider
+          sliderData={popularProducts}
           prevSlide={".popular-products_section-left_arrow"}
           nextSlide={".popular-products_section-right_arrow"}
         />
@@ -94,6 +98,7 @@ export default function Home() {
           </div>
         </div>
         <SimpleProductSlider
+          sliderData={popularFruits}
           prevSlide={".popular-fruits_section-left_arrow"}
           nextSlide={".popular-fruits_section-right_arrow"}
         />

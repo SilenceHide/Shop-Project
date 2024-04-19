@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge, ImageView, Rating } from "@/components";
+import { Badge, IconBox, ImageView, Rating } from "@/components";
 import Link from "next/link";
 
 interface Props {
@@ -16,66 +16,54 @@ interface Props {
   };
 }
 
-export function SimpleProductCard() {
+export function SimpleProductCard({ data }: Props) {
   return (
     <>
       <Badge />
       <div className="product_img-wrapper relative flex items-center justify-center md:mt-3 md:max-w-[245px] max-w-[150px] md:min-h-[146px] min-h-[120px] max-h-[146px]">
         <ImageView
           className={"product_img bg-cover bg-center bg-no-repeat"}
-          src={"/images/section3/fruit01.png"}
+          src={data.image}
           alt={"fruit"}
           width={202}
           height={146}
         />
         <div className="product_icons-wrapper flex opacity-0 invisible pointer-events-none absolute bg-white rounded-md h-8 w-[108px] items-center justify-center gap-[10px] transition-all border border-brand-color-one">
-          <div className="product_icon-wrapper cursor-pointer">
-            <ImageView
-              className={"product_icon"}
-              src={"/images/section3/fi-rs-heart 1.svg"}
-              alt={"heart"}
-              width={15}
-              height={15}
+          <div className="product_icon-wrapper cursor-pointer flex justify-center items-center">
+            <IconBox
+              icon={"icon-heart"}
+              size={"text-[15px]"}
+              className={"product_icon text-brand-color-one"}
             />
           </div>
           <div className="product_icon-divider h-full w-[1px] bg-brand-color-one"></div>
-          <div className="product_icon-wrapper cursor-pointer">
-            <ImageView
-              className={"product_icon"}
-              src={"/images/section3/fi-rs-shuffle 1.svg"}
-              alt={"shuffle"}
-              width={15}
-              height={15}
-            />
+          <div className="product_icon-wrapper cursor-pointer flex justify-center items-center">
+            <IconBox icon={"icon-shuffle"} size={"text-[15px]"} className={"product_icon"} />
           </div>
           <div className="product_icon-divider h-full w-[1px] bg-brand-color-one"></div>
-          <div className="product_icon-wrapper cursor-pointer">
-            <ImageView
-              className={"product_icon"}
-              src={"/images/section3/fi-rs-eye 1.svg"}
-              alt={"eye"}
-              width={15}
-              height={15}
-            />
+          <div className="product_icon-wrapper cursor-pointer flex justify-center items-center">
+            <IconBox icon={"icon-eye"} size={"text-[15px]"} className={"product_icon "} />
           </div>
         </div>
       </div>
       <div className="product_content">
-        <p className="hodo_foods font-lato text-xs text-text-body md:mt-5">Hodo Foods</p>
+        <p className="hodo_foods font-lato text-xs text-text-body md:mt-5">{data.category}</p>
         <Link href={"#"}>
           <h3 className="product_title font-bold md:text-sm text-xs my-1 h-[48px] text-ellipsis overflow-hidden">
-            Seeds of Change Organic Quinoa, Brown, & Red Rice
+            {data.title}
           </h3>
         </Link>
         <div className="product_rate-wrapper flex">
-          <Rating />
+          <Rating rate={data.rate} />
         </div>
-        <h5 className="product_weight font-lato text-xs text-text-body mt-1 mb-3">500 gram</h5>
+        <h5 className="product_weight font-lato text-xs text-text-body mt-1 mb-3">
+          {data.weight} {data.unit}
+        </h5>
         <div className="product_price-wrapper flex items-center justify-between">
-          <p className="product_price flex items-center justify-between md:gap-2 gap-1 font-bold md:text-xl text-sm text-brand-color-one">
-            $2.51
+          <p className="product_price flex items-center justify-between gap-1 font-bold md:text-xl text-sm text-brand-color-one">
+            ${data.sale_price}
             <span className="product_price-discount line-through text-xs text-text-body">
-              $2.80
+              ${data.price}
             </span>
           </p>
           <div className="product_add-btn_wrapper">
