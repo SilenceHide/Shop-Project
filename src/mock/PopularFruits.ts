@@ -17,9 +17,9 @@ export const popularFruits = [
     rate: 4.0,
     weight: 500,
     unit: "gram",
-    price: 3000,
-    sale_price: 200,
-    label: "sale",
+    price: 660,
+    sale_price: 220,
+    label: "Sale",
   },
 
   {
@@ -29,8 +29,8 @@ export const popularFruits = [
     rate: 4.0,
     weight: 500,
     unit: "gram",
-    price: 3000,
-    sale_price: "",
+    price: 2000,
+    sale_price: 900,
   },
   {
     title: "Blue Diamond Almonds Lightly Salted Vegetables",
@@ -39,9 +39,8 @@ export const popularFruits = [
     rate: 4.0,
     weight: 500,
     unit: "gram",
-    price: 3000,
-    sale_price: 200,
-    label: "Hot",
+    price: 1000,
+    sale_price: "",
   },
   {
     title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
@@ -50,8 +49,8 @@ export const popularFruits = [
     rate: 4.0,
     weight: 500,
     unit: "gram",
-    price: 3000,
-    sale_price: 200,
+    price: 1200,
+    sale_price: 800,
     label: "Hot",
   },
   // {

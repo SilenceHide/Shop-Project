@@ -6,10 +6,28 @@ interface Props {
   sale_price?: number;
 }
 
-export function Badge() {
+export function Badge({ badge = "", price, sale_price }: Props) {
   return (
-    <div className="product_label-wrapper absolute z-10 bg-brand-color-one text-white font-lato text-xs py-[10px] px-4 left-0 md:top-5 top-0 rounded-r-full min-w-[64px] flex justify-center items-center">
-      <p className="product_label">-17%</p>
-    </div>
+    <>
+      {badge.length > 0 ? (
+        <div
+          className={`product_label-wrapper absolute z-10 ${
+            badge.toLowerCase() == "hot" ? "bg-danger-color" : "bg-warning-color"
+          }  text-white font-lato text-xs py-[10px] px-4 left-0 md:top-5 top-0 rounded-r-full min-w-[64px] flex justify-center items-center`}
+        >
+          <p className="product_label">{badge}</p>
+        </div>
+      ) : sale_price ? (
+        <div
+          className={`product_label-wrapper absolute z-10 ${
+            badge.toLowerCase() == "hot" ? "bg-danger-color" : "bg-brand-color-one"
+          }  text-white font-lato text-xs py-[10px] px-4 left-0 md:top-5 top-0 rounded-r-full min-w-[64px] flex justify-center items-center`}
+        >
+          <p className="product_label">{Math.round((sale_price / price) * 100)}%</p>
+        </div>
+      ) : (
+        <></>
+      )}
+    </>
   );
 }

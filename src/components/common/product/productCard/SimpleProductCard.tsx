@@ -19,7 +19,7 @@ interface Props {
 export function SimpleProductCard({ data }: Props) {
   return (
     <>
-      <Badge />
+      <Badge badge={data.label} price={data.price} sale_price={data.sale_price} />
       <div className="product_img-wrapper relative flex items-center justify-center md:mt-3 md:max-w-[245px] max-w-[150px] md:min-h-[146px] min-h-[120px] max-h-[146px]">
         <ImageView
           className={"product_img bg-cover bg-center bg-no-repeat"}

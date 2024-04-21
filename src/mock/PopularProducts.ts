@@ -6,7 +6,7 @@ export const popularProducts = [
     rate: 4.0,
     weight: 700,
     unit: "gram",
-    price: 5000,
+    price: 1200,
     sale_price: 800,
     label: "Hot",
   },
@@ -17,9 +17,9 @@ export const popularProducts = [
     rate: 3.0,
     weight: 800,
     unit: "gram",
-    price: 6600,
-    sale_price: 2200,
-    label: "Hot",
+    price: 660,
+    sale_price: 220,
+    label: "Sale",
   },
   {
     title: "Angie’s Boomchickapop Sweet & Salty Kettle Corn",
@@ -29,7 +29,7 @@ export const popularProducts = [
     weight: 500,
     unit: "gram",
     price: 3000,
-    sale_price: 600,
+    sale_price: 200,
     label: "Hot",
   },
   {
@@ -41,7 +41,6 @@ export const popularProducts = [
     unit: "gram",
     price: 2000,
     sale_price: 900,
-    label: "Hot",
   },
   {
     title: "Blue Diamond Almonds Lightly Salted Vegetables",
@@ -51,7 +50,6 @@ export const popularProducts = [
     weight: 500,
     unit: "gram",
     price: 1000,
-    sale_price: 100,
-    label: "Hot",
+    sale_price: "",
   },
 ];

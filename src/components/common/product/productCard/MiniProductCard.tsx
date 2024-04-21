@@ -29,7 +29,7 @@ export function MiniProductCard({ data }: Props) {
           Nestle Original Coffee-Mate Coffee Creamer
         </p>
         <div className="top-selling-wrapper flex">
-          <Rating />
+          <Rating rate={data.rate} />
         </div>
         <div className="top-selling_price-wrapper flex items-center justify-between">
           <p className="top-selling_price flex items-center justify-between md:gap-2 gap-1 font-bold text-xl text-brand-color-one">

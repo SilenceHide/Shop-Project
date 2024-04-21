@@ -37,7 +37,8 @@ export function FeaturedCategoriesSlider() {
           return (
             <SwiperSlide
               key={index}
-              className={`featured-categories_slider flex flex-col justify-between bg-[${item.color}] relative rounded-xl lg:pl-12 pl-9 lg:max-w-[512px] max-w-[342px] lg:min-h-[300px] min-h-[200px] lg:max-h-[300px] max-h-[200px]  overflow-hidden`}
+              style={{ backgroundColor: `${item.color}` }}
+              className={`featured-categories_slider flex flex-col justify-between relative rounded-xl lg:pl-12 pl-9 lg:max-w-[512px] max-w-[342px] lg:min-h-[300px] min-h-[200px] lg:max-h-[300px] max-h-[200px] overflow-hidden`}
             >
               <p className="category-item_title font-bold lg:text-2xl lg:max-w-60 max-w-44 xl:mt-16 mt-12">
                 {item.title}

@@ -4,6 +4,19 @@ import React from "react";
 import { featuredCategoriesMock } from "@/mock/featuredCategories";
 
 export function FeaturedCategories() {
+  const borderColors = [
+    "#81B13D",
+    "#fdea7e",
+    "#95ff95",
+    "#ffa081",
+    "#ffbf94",
+    "#ffb6ff",
+    "#bdff61",
+    "#ffe869",
+    "#bbff5d",
+    "#ffa0ff",
+  ];
+
   return (
     <>
       <h2 className="featured-categories_section-title text-3xl font-bold hidden lg:block">
@@ -15,7 +28,8 @@ export function FeaturedCategories() {
             <Link
               key={index}
               href={item.link}
-              className={`featured-category flex flex-col items-center justify-center rounded-[10px] bg-[${item.color}] hover:border-[${item.border}] border-transparent border-2 pb-2 px-1 transition-all`}
+              style={{ backgroundColor: `${item.color}` }}
+              className={`featured-category flex flex-col items-center justify-center rounded-[10px] border-transparent border-2 pb-2 px-1 transition-all`}
             >
               <div className="featured-categories_img-wrapper sm:w-[120px] w-[90px]">
                 <ImageView
