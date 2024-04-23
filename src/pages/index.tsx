@@ -8,6 +8,7 @@ import {
   SimpleProductSlider,
 } from "@/components";
 import { ImageView } from "@/components";
+import { BestSellers } from "@/mock/BestSellers";
 import { popularFruits } from "@/mock/PopularFruits";
 import { popularProducts } from "@/mock/PopularProducts";
 
@@ -104,7 +105,7 @@ export default function Home() {
       </Section>
 
       <Section className={"our-offers_section md:mt-16 mt-10"}>
-        <BestSellerSlider />
+        <BestSellerSlider sliderData={BestSellers} />
       </Section>
 
       <Section className={"deals_section md:mt-16 mt-8"}>

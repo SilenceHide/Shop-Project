@@ -60,12 +60,18 @@ export function SimpleProductCard({ data }: Props) {
           {data.weight} {data.unit}
         </h5>
         <div className="product_price-wrapper flex items-center justify-between">
-          <p className="product_price flex items-center justify-between gap-1 font-bold md:text-xl text-sm text-brand-color-one">
-            ${data.sale_price}
-            <span className="product_price-discount line-through text-xs text-text-body">
+          {data.sale_price ? (
+            <p className="offer_price flex items-center justify-between md:gap-2 gap-1 font-bold md:text-xl text-sm text-brand-color-one">
+              ${data.sale_price}
+              <span className="offer_price-discount line-through text-xs text-text-body">
+                ${data.price}
+              </span>
+            </p>
+          ) : (
+            <p className="offer_price flex items-center justify-between md:gap-2 gap-1 font-bold md:text-xl text-sm text-brand-color-one">
               ${data.price}
-            </span>
-          </p>
+            </p>
+          )}
           <div className="product_add-btn_wrapper">
             <button
               className="product_add-btn flex items-center justify-center gap-2 md:w-16 w-9 min-h-[32px] bg-[#DEF9EC] py-1 rounded text-brand-color-one"
