@@ -18,7 +18,7 @@ export function MiniProductCard({ data }: Props) {
       <div className="top-selling_img-wrapper min-w-[120px] min-h-[120px]">
         <ImageView
           className={"top-selling_img rounded-xl"}
-          src={"/images/section6/col01-img01.png"}
+          src={data.image}
           alt={"img"}
           width={120}
           height={120}
@@ -26,18 +26,24 @@ export function MiniProductCard({ data }: Props) {
       </div>
       <div className="top-selling_content-wrapper">
         <p className="top-selling_content-title font-bold h-[72px] overflow-hidden text-ellipsis">
-          Nestle Original Coffee-Mate Coffee Creamer
+          {data.title}
         </p>
         <div className="top-selling-wrapper flex">
           <Rating rate={data.rate} />
         </div>
         <div className="top-selling_price-wrapper flex items-center justify-between">
-          <p className="top-selling_price flex items-center justify-between md:gap-2 gap-1 font-bold text-xl text-brand-color-one">
-            $2.51
-            <span className="top-selling_price-discount line-through text-xs text-text-body">
-              $2.80
-            </span>
-          </p>
+          {data.sale_price ? (
+            <p className="top-selling_price flex items-center justify-between md:gap-2 gap-1 font-bold text-xl text-brand-color-one">
+              ${data.sale_price}
+              <span className="top-selling_price-discount line-through text-xs text-text-body">
+                ${data.price}
+              </span>
+            </p>
+          ) : (
+            <p className="top-selling_price flex items-center justify-between md:gap-2 gap-1 font-bold text-xl text-brand-color-one">
+              ${data.price}
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -1,21 +1,21 @@
 export const TopRatedMock = [
-    {
-        title : "Nestle Original Coffee-Mate Coffee Creamer",
-        image: "/assets/images/products/avocado.png",
-        rate: 5,
-        price: 5000,
-        sale_price: 923,
-    },
-    {
-        title : "Nestle Original Coffee-Mate Coffee Creamer",
-        image: "/assets/images/products/banana.png",
-        rate: 5,
-        price: 9999,
-    },
-    {
-        title : "Nestle Original Coffee-Mate Coffee Creamer",
-        image: "/assets/images/products/orange-fruit.png",
-        rate: 5,
-        price: 5424,
-    }
-]
+  {
+    title: "Foster Farms Takeout Crispy Classic Buffalo Wings",
+    image: "/images/section6/col04-img01.png",
+    rate: 5,
+    price: 50,
+    sale_price: 23,
+  },
+  {
+    title: "Angie’s Boomchickapop Sweet & Salty Kettle Corn",
+    image: "/images/section6/col04-img02.png",
+    rate: 5,
+    price: 99,
+  },
+  {
+    title: "All Natural Italian-Style Chicken Meatballs",
+    image: "/images/section6/col04-img03.png",
+    rate: 5,
+    price: 54,
+  },
+];
