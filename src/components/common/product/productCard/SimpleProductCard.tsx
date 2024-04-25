@@ -74,16 +74,12 @@ export function SimpleProductCard({ data }: Props) {
           )}
           <div className="product_add-btn_wrapper">
             <button
-              className="product_add-btn flex items-center justify-center gap-2 md:w-16 w-9 min-h-[32px] bg-[#DEF9EC] py-1 rounded text-brand-color-one"
+              className="product_add-btn flex items-center justify-center gap-2 md:w-16 w-9 min-h-[32px] bg-[#DEF9EC] py-1 rounded text-brand-color-one hover:bg-brand-color-two transition-all hover:bg-opacity-40 "
               type="button"
             >
-              <span className="product_add-span hidden md:inline-block">Add</span>
-              <ImageView
-                src={"/images/section3/fi-rs-plus-small 1.svg"}
-                alt={"plus"}
-                width={8}
-                height={9}
-              />
+              <span className="product_add-span">
+                <span className="hidden md:inline-block">Add</span>+
+              </span>
             </button>
             <input
               type="number"

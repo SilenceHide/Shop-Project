@@ -1,40 +1,40 @@
 export const DealsOfTheDaysMock = [
-    {
-        title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
-        image: '/assets/images/deals/lettuce.png',
-        rate: 4.0,
-        weight: 700,
-        unit: 'gram',
-        price: 22222,
-        sale_price: 111,
-        dead_line: '2024-02-20 12:10:02'
-    },
-    {
-        title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
-        image: '/assets/images/deals/orange.png',
-        rate: 4.0,
-        weight: 500,
-        unit: 'gram',
-        price: 3000,
-        sale_price: 70,
-        dead_line: '2024-02-19 12:02:18'
-    },
-    {
-        title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
-        image: '/assets/images/deals/blood-orange.png',
-        rate: 4.0,
-        weight: 500,
-        unit: 'gram',
-        price: 1000,
-        dead_line: '2024-02-18 23:10:33'
-    },
-    {
-        title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
-        image: '/assets/images/deals/beans.png',
-        rate: 4.0,
-        weight: 500,
-        unit: 'gram',
-        price: 2000,
-        dead_line: '2024-02-10 10:10:54'
-    }
-]
+  {
+    title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
+    image: "/images/section5/img01.png",
+    rate: 4.0,
+    weight: 700,
+    unit: "gram",
+    price: 230,
+    sale_price: 110,
+    dead_line: "2025-01-05 12:10:02",
+  },
+  {
+    title: "Perdue Simply Smart Organics Gluten Free Breaded",
+    image: "/images/section5/img02.png",
+    rate: 5.0,
+    weight: 500,
+    unit: "gram",
+    price: 300,
+    sale_price: 70,
+    dead_line: "2025-01-06 12:02:18",
+  },
+  {
+    title: "Signature Wood-Fired Mushroom and Caramelized Red Onion",
+    image: "/images/section5/img03.png",
+    rate: 4.0,
+    weight: 1000,
+    unit: "gram",
+    price: 400,
+    dead_line: "2025-01-07 23:10:33",
+  },
+  {
+    title: "Simply Lemonade with Raspberry Juice",
+    image: "/images/section5/img04.png",
+    rate: 5.0,
+    weight: 500,
+    unit: "gram",
+    price: 330,
+    dead_line: "2025-01-08 10:10:54",
+  },
+];

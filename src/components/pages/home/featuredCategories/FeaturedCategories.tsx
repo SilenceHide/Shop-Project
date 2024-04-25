@@ -29,7 +29,7 @@ export function FeaturedCategories() {
               key={index}
               href={item.link}
               style={{ backgroundColor: `${item.color}` }}
-              className={`featured-category flex flex-col items-center justify-center rounded-[10px] border-transparent border-2 pb-2 px-1 transition-all`}
+              className={`featured-category flex flex-col items-center justify-center rounded-[10px] border-transparent border-2 pb-2 px-1 transition-all hover:border-[#81B13D]`}
             >
               <div className="featured-categories_img-wrapper sm:w-[120px] w-[90px]">
                 <ImageView

@@ -9,6 +9,7 @@ import {
 } from "@/components";
 import { ImageView } from "@/components";
 import { BestSellers } from "@/mock/BestSellers";
+import { DealsOfTheDaysMock } from "@/mock/DealsOfTheDays";
 import { popularFruits } from "@/mock/PopularFruits";
 import { popularProducts } from "@/mock/PopularProducts";
 
@@ -109,7 +110,7 @@ export default function Home() {
       </Section>
 
       <Section className={"deals_section md:mt-16 mt-8"}>
-        <DealsSlider />
+        <DealsSlider sliderData={DealsOfTheDaysMock} />
       </Section>
 
       <Section className={"category_section md:mt-[68px] mt-9"}>
