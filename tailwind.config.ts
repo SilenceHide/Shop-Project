@@ -25,6 +25,7 @@ const config: Config = {
         "text-heading": "#253D4E",
         "text-body": "#7E7E7E",
         "text-body-2": "#b6b6b6",
+        "border-gray": "#e5e5e5",
         "border-light": "#F2F3F4",
         "border-light-green": "#BCE3C9",
         "brand-color-one": "#3BB77E",

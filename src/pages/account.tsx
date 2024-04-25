@@ -1,0 +1,83 @@
+import { ImageView } from "@/components";
+import React from "react";
+
+export default function Account() {
+  return (
+    <section className="container lg:mt-[100px] mt-10 mb-[220px]">
+      <div className="flex flex-wrap xl:justify-center items-center">
+        <div className="flex xl:flex-col flex-wrap gap-2.5 font-quickSand text-heading6 lg:mr-[73px] sm:mr-0 mb-10">
+          <div className="dashboard-tab flex cursor-pointer gap-3.5 px-7 py-3 rounded-[10px] items-center border border-border-gray hover:border-brand-color-one hover:shadow-main-shadow transition-all w-[330px] h-[64px]">
+            <ImageView src={"/icons/fi-rs-settings.svg"} alt={"image"} width={26} height={24} />
+            <div className="font-black text-text-body">Dashboard</div>
+          </div>
+
+          <div className="dashboard-tab flex cursor-pointer gap-3.5 px-7 py-3 rounded-[10px] items-center border border-border-gray hover:border-brand-color-one hover:shadow-main-shadow transition-all w-[330px] h-[64px] dashboard-tab-active">
+            <ImageView src={"/icons/fi-rs-truck white.svg"} alt={"image"} width={26} height={24} />
+            <div className="font-black text-text-body dashboard-tab-activate">Orders list</div>
+          </div>
+
+          <div className="dashboard-tab flex cursor-pointer gap-3.5 px-7 py-3 rounded-[10px] items-center border border-border-gray hover:border-brand-color-one hover:shadow-main-shadow transition-all w-[330px] h-[64px]">
+            <ImageView src={"/icons/fi-rs-shopping-bag.svg"} alt={"image"} width={26} height={24} />
+            <div className="font-black text-text-body">Track your orders</div>
+          </div>
+
+          <div className="dashboard-tab flex cursor-pointer gap-3.5 px-7 py-3 rounded-[10px] items-center border border-border-gray hover:border-brand-color-one hover:shadow-main-shadow transition-all w-[330px] h-[64px]">
+            <ImageView src={"/icons/fi-rs-marker.svg"} alt={"image"} width={26} height={24} />
+            <div className="font-black text-text-body">My address</div>
+          </div>
+
+          <div className="dashboard-tab flex cursor-pointer gap-3.5 px-7 py-3 rounded-[10px] items-center border border-border-gray hover:border-brand-color-one hover:shadow-main-shadow transition-all w-[330px] h-[64px]">
+            <ImageView src={"/icons/fi-rs-user.svg"} alt={"image"} width={26} height={24} />
+            <div className="font-black text-text-body">Account details</div>
+          </div>
+
+          <div className="dashboard-tab flex cursor-pointer gap-3.5 px-7 py-3 rounded-[10px] items-center border border-border-gray hover:border-brand-color-one hover:shadow-main-shadow transition-all w-[330px] h-[64px]">
+            <ImageView src={"/icons/fi-rs-sign-out.svg"} alt={"image"} width={26} height={24} />
+            <div className="font-black text-text-body">Log out</div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-start max-w-[820px] w-full">
+          <div className="text-4xl font-black mb-[22px]">Your Orders</div>
+          <div className="flex flex-col w-full">
+            <div className="w-full bg-gray-100 justify-between items-start rounded-2xl mb-[24px] py-[16px] px-[30px] sm:flex hidden">
+              <div className="font-black max-w-[160px] w-full">Order ID</div>
+              <div className="font-black max-w-[160px] w-full">Date</div>
+              <div className="font-black max-w-[160px] w-full">Status</div>
+              <div className="font-black max-w-[160px] w-full">Total</div>
+              <div className="font-black max-w-[160px] w-full">Actions</div>
+            </div>
+            <div className="flex max-w-[820px] w-full justify-between items-start sm:mb-[30px] px-[30px] font-lato sm:flex-nowrap flex-wrap sm:border-none border-b border-text-body sm:py-0 py-5 sm:gap-0 gap-5">
+              <div className="text-text-body max-w-[160px] w-full">#1357</div>
+              <div className="text-text-body max-w-[160px] w-full">March 15, 2021</div>
+              <div className="text-brand-color-two max-w-[160px] w-full">Processing</div>
+              <div className="text-text-body max-w-[160px] w-full mr-3">$125.00 for 2 item</div>
+              <button className="text-brand-color-one max-w-[160px] w-full text-start">View</button>
+            </div>
+            <div className="flex max-w-[820px] w-full justify-between items-start sm:mb-[30px] px-[30px] font-lato sm:flex-nowrap flex-wrap sm:border-none border-b border-text-body sm:py-0 py-5 sm:gap-0 gap-5">
+              <div className="text-text-body max-w-[160px] w-full ">#1357</div>
+              <div className="text-text-body max-w-[160px] w-full ">March 15, 2021</div>
+              <div className=" text-scale-one max-w-[160px] w-full">Completed</div>
+              <div className="text-text-body max-w-[160px] w-full mr-3">$125.00 for 2 item</div>
+              <button className="text-brand-color-one max-w-[160px] w-full text-start">View</button>
+            </div>
+            <div className="flex max-w-[820px] w-full justify-between items-start sm:mb-[30px] px-[30px] font-lato sm:flex-nowrap flex-wrap sm:border-none border-b border-text-body sm:py-0 py-5 sm:gap-0 gap-5">
+              <div className="text-text-body max-w-[160px] w-full">#1357</div>
+              <div className="text-text-body max-w-[160px] w-full">March 15, 2021</div>
+              <div className="text-scale-one max-w-[160px] w-full">Completed</div>
+              <div className="text-text-body max-w-[160px] w-full mr-3">$125.00 for 2 item</div>
+              <button className="text-brand-color-one max-w-[160px] w-full text-start">View</button>
+            </div>
+            <div className="flex max-w-[820px] w-full justify-between items-start sm:mb-[30px] px-[30px] font-lato sm:flex-nowrap flex-wrap sm:border-none border-b border-text-body sm:py-0 py-5 sm:gap-0 gap-5">
+              <div className="text-text-body  max-w-[160px] w-full">#1357</div>
+              <div className="text-text-body  max-w-[160px] w-full">March 15, 2021</div>
+              <div className="text-scale-one max-w-[160px] w-full">Completed</div>
+              <div className="text-text-body  max-w-[160px] w-full mr-3">$125.00 for 2 item</div>
+              <button className="text-brand-color-one text-start max-w-[160px] w-full">View</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

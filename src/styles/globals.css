@@ -108,7 +108,7 @@
     -webkit-appearance: none;
   }
 
-  .bottom-banner_img {
+  .footer-banner_img {
     background-image: url("../../public/images/section7/background.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -132,6 +132,17 @@
     height: 20px;
     width: 23px;
     cursor: pointer;
+  }
+
+  .dashboard-tab-active {
+    background-color: #3bb77e;
+    color: #fff;
+    border: none;
+    box-shadow: none !important;
+  }
+
+  .dashboard-tab-activate {
+    color: #fff !important;
   }
 
   @media (min-width: 768px) {

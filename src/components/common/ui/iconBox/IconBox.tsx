@@ -12,7 +12,7 @@ interface Props {
 export function IconBox({
   icon,
   size = "text-[22px]",
-  className,
+  className = "",
   title,
   titleClassName,
   path = 0,

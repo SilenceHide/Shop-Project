@@ -10,9 +10,9 @@ export function Footer() {
     <footer className="footer md:mt-[74px] mt-7 flex flex-col">
       <div className="container">
         <div className="footer-banner_section">
-          <div className="footer-banner_img bg-[#3bb77e33] rounded-2xl overflow-hidden flex xs:max-h-[382px] max-h-[160px] lg:pr-12 lg:pt-7 lg:pl-16 sm:pl-6 pl-3 pt-3 xs:items-center justify-between">
+          <div className="footer-banner_img bg-[#3bb77e33] rounded-2xl overflow-hidden flex xs:max-h-[382px] max-h-[160px] lg:pr-12 lg:pt-7 lg:pl-16 sm:pl-6 pl-3 pt-3 justify-between">
             <div className="footer-banner_content-wrapper flex flex-col flex-shrink-0 flex-grow xs:basis-1/2 basis-[40%] gap-10 relative">
-              <h2 className="footer-banner_title font-bold lg:text-5xl sm:text-3xl xs:text-2xl text-xl absolute xs:w-fit w-[210px] xs:static">
+              <h2 className="footer-banner_title font-bold lg:text-5xl sm:text-3xl xs:text-2xl text-xl absolute xs:w-fit w-[210px] xs:static md:mt-[30px] xs:mt-3">
                 Stay home & get your daily needs from our shop
               </h2>
               <p className="footer-banner_subtitle font-lato text-xl lg:block hidden">
