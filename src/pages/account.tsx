@@ -1,4 +1,6 @@
 import { ImageView } from "@/components";
+import { Order } from "@/components/pages/account";
+import { orderMock } from "@/mock/Order";
 import React from "react";
 
 export default function Account() {
@@ -47,34 +49,18 @@ export default function Account() {
               <div className="font-black max-w-[160px] w-full">Total</div>
               <div className="font-black max-w-[160px] w-full">Actions</div>
             </div>
-            <div className="flex max-w-[820px] w-full justify-between items-start sm:mb-[30px] px-[30px] font-lato sm:flex-nowrap flex-wrap sm:border-none border-b border-text-body sm:py-0 py-5 sm:gap-0 gap-5">
-              <div className="text-text-body max-w-[160px] w-full">#1357</div>
-              <div className="text-text-body max-w-[160px] w-full">March 15, 2021</div>
-              <div className="text-brand-color-two max-w-[160px] w-full">Processing</div>
-              <div className="text-text-body max-w-[160px] w-full mr-3">$125.00 for 2 item</div>
-              <button className="text-brand-color-one max-w-[160px] w-full text-start">View</button>
-            </div>
-            <div className="flex max-w-[820px] w-full justify-between items-start sm:mb-[30px] px-[30px] font-lato sm:flex-nowrap flex-wrap sm:border-none border-b border-text-body sm:py-0 py-5 sm:gap-0 gap-5">
-              <div className="text-text-body max-w-[160px] w-full ">#1357</div>
-              <div className="text-text-body max-w-[160px] w-full ">March 15, 2021</div>
-              <div className=" text-scale-one max-w-[160px] w-full">Completed</div>
-              <div className="text-text-body max-w-[160px] w-full mr-3">$125.00 for 2 item</div>
-              <button className="text-brand-color-one max-w-[160px] w-full text-start">View</button>
-            </div>
-            <div className="flex max-w-[820px] w-full justify-between items-start sm:mb-[30px] px-[30px] font-lato sm:flex-nowrap flex-wrap sm:border-none border-b border-text-body sm:py-0 py-5 sm:gap-0 gap-5">
-              <div className="text-text-body max-w-[160px] w-full">#1357</div>
-              <div className="text-text-body max-w-[160px] w-full">March 15, 2021</div>
-              <div className="text-scale-one max-w-[160px] w-full">Completed</div>
-              <div className="text-text-body max-w-[160px] w-full mr-3">$125.00 for 2 item</div>
-              <button className="text-brand-color-one max-w-[160px] w-full text-start">View</button>
-            </div>
-            <div className="flex max-w-[820px] w-full justify-between items-start sm:mb-[30px] px-[30px] font-lato sm:flex-nowrap flex-wrap sm:border-none border-b border-text-body sm:py-0 py-5 sm:gap-0 gap-5">
-              <div className="text-text-body  max-w-[160px] w-full">#1357</div>
-              <div className="text-text-body  max-w-[160px] w-full">March 15, 2021</div>
-              <div className="text-scale-one max-w-[160px] w-full">Completed</div>
-              <div className="text-text-body  max-w-[160px] w-full mr-3">$125.00 for 2 item</div>
-              <button className="text-brand-color-one text-start max-w-[160px] w-full">View</button>
-            </div>
+            {orderMock.map((order, index) => {
+              return (
+                <Order
+                  key={index}
+                  order_id={order.order_id}
+                  data={order.data}
+                  status={order.status}
+                  total_price={order.total_price}
+                  total_item={order.total_item}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

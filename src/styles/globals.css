@@ -15,6 +15,72 @@
     background: #3bb77e;
   }
 
+  input {
+    outline: none;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  input[type="checkbox"] {
+    position: relative;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 0;
+    left: 0;
+    border: 1.5px solid #3bb77e;
+    border-radius: 0;
+    background-color: #fff;
+    transition: all 150ms ease-in-out;
+    -webkit-transition: all 150ms ease-in-out;
+    -moz-transition: all 150ms ease-in-out;
+    -ms-transition: all 150ms ease-in-out;
+    -o-transition: all 150ms ease-in-out;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+  }
+
+  input[type="checkbox"]:checked:before {
+    background-color: #3bb77e;
+    border: 1.5px solid #3bb77e;
+  }
+
+  input[type="checkbox"]:checked:after {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 11px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    transition: all 150ms ease-in-out;
+    -webkit-transition: all 150ms ease-in-out;
+    -moz-transition: all 150ms ease-in-out;
+    -ms-transition: all 150ms ease-in-out;
+    -o-transition: all 150ms ease-in-out;
+  }
+
+  input[type="password"] {
+    letter-spacing: 2px;
+    vertical-align: middle;
+  }
+
   .menu_wrapper::-webkit-scrollbar {
     display: none;
   }
