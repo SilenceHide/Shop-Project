@@ -4,7 +4,7 @@ import React from "react";
 
 export default function ForgotPassword() {
   return (
-    <section className="container flex justify-center mt-[100px] mb-[150px]">
+    <section className="container flex justify-center mt-[100px] sm:mb-[150px] mb-[100px]">
       <div className="flex flex-col xs:items-start items-center">
         <ImageView
           src={"/images/forgot password.svg"}
