@@ -81,6 +81,25 @@
     vertical-align: middle;
   }
 
+  input.cart_input-number:focus {
+    position: relative;
+    background-image: url("../../public/images/section3/input-arrows.png");
+    background-position: center right;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  input.cart_input-number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    opacity: 1;
+    background: transparent;
+    border-width: 0px;
+    margin: 0;
+    height: 20px;
+    width: 23px;
+    cursor: pointer;
+  }
+
   .menu_wrapper::-webkit-scrollbar {
     display: none;
   }
