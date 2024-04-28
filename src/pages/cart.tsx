@@ -1,7 +1,7 @@
 import { ImageView } from "@/components";
 import React from "react";
 
-export default function cart() {
+export default function Cart() {
   return (
     <div className="container m-auto mt-[45px] mb-[150px]">
       <h1 className="xs:text-[40px] text-3xl font-bold">Your Cart</h1>
