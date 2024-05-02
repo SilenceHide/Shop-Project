@@ -37,7 +37,7 @@ export function Rating({ rate }: Props) {
     <>
       {fillStar}
       {emptyStar}
-      <p className="product_rate-number font-lato text-xs text-text-body ml-2">({rate})</p>
+      <p className="product_rate-number font-lato text-xs text-text-body ml-2">({rate}.0)</p>
     </>
   );
 }

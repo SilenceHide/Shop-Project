@@ -101,6 +101,25 @@
     cursor: pointer;
   }
 
+  input.product_input-number:focus {
+    position: relative;
+    background-image: url("../../public/images/section3/input-arrows-large.png");
+    background-position: center right;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  input.product_input-number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    opacity: 1;
+    background: transparent;
+    border-width: 0px;
+    margin: 0;
+    height: 40px;
+    width: 25px;
+    cursor: pointer;
+  }
+
   input[type="radio"] {
     appearance: none;
     width: 18px;

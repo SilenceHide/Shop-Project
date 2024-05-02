@@ -41,7 +41,7 @@ export default function Cart() {
                     <div className="flex justify-center items-center font-black">Subtotal</div>
                     <div className="flex justify-center items-center font-black">Remove</div>
                   </div>
-                  <div className=" md:w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
+                  <div className="md:w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
                     <div className="flex justify-center items-center">
                       <label htmlFor="checkbox1" className="hidden"></label>
                       <input
@@ -76,7 +76,7 @@ export default function Cart() {
                           max="10"
                           name="price1"
                           placeholder="1"
-                          className="cart_input-number pl-4 flex justify-center items-center focus:outline-none"
+                          className="product_input-number pl-4 flex justify-center items-center focus:outline-none font-bold focus:text-brand-color-one"
                         />
                       </div>
                     </div>
@@ -95,7 +95,7 @@ export default function Cart() {
                       />
                     </div>
                   </div>
-                  <div className="  md: w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
+                  <div className="md:w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
                     <div className="flex justify-center items-center">
                       <label htmlFor="checkbox2" className="hidden"></label>
                       <input
@@ -130,7 +130,7 @@ export default function Cart() {
                           max="10"
                           name="price2"
                           placeholder="1"
-                          className="cart_input-number pl-4 flex justify-center items-center focus:outline-none"
+                          className="product_input-number pl-4 flex justify-center items-center focus:outline-none font-bold focus:text-brand-color-one"
                         />
                       </div>
                     </div>
@@ -149,7 +149,7 @@ export default function Cart() {
                       />
                     </div>
                   </div>
-                  <div className="  md: w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
+                  <div className="md:w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
                     <div className="flex justify-center items-center">
                       <label htmlFor="checkbox3" className="hidden"></label>
                       <input
@@ -184,7 +184,7 @@ export default function Cart() {
                           max="10"
                           name="price3"
                           placeholder="2"
-                          className="cart_input-number pl-4 flex justify-center items-center focus:outline-none"
+                          className="product_input-number pl-4 flex justify-center items-center focus:outline-none font-bold focus:text-brand-color-one"
                         />
                       </div>
                     </div>
