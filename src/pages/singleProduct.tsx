@@ -8,7 +8,7 @@ export default function SingleProduct() {
   return (
     <main>
       <section className="container flex flex-col items-center mb-[100px] mt-[74px]">
-        <div className="product-info flex lg:flex-row flex-col justify-center lg:gap-10 gap-20">
+        <div className="product-info flex lg:flex-row flex-col justify-center lg:gap-10 gap-12">
           <div className="flex flex-col xl:max-w-[645px] lg:max-w-[445px] md:max-w-[645px] xs:max-w-[545px] max-w-[345px] w-full md:m-0 m-auto">
             <div className="mb-[28px] p-[40px] border-[1px] border-border-gray rounded-2xl max-h-[695px] h-full flex items-center justify-center relative xl:shrink-0">
               <div className="absolute top-[30px] right-[30px] flex justify-end cursor-pointer">
@@ -174,7 +174,106 @@ export default function SingleProduct() {
             </div>
           </div>
         </div>
-        <div className="product-detail m-auto w-full max-w-[1180px] mt-[228px] border border-border-light h-[1000px] rounded-2xl"></div>
+        <div className="product-detail m-auto flex flex-col gap-9 w-full max-w-[1180px] lg:mt-[228px] mt-[40px] border border-border-light rounded-2xl md:p-[50px] p-[20px]">
+          <div className="product_tabs-wrapper flex sm:flex-row flex-col sm:items-center gap-6">
+            <div className="product_tab px-[30px] h-[45px] border border-border-light flex items-center justify-center font-bold text-lg rounded-[30px] text-text-body-2 cursor-pointer transition-all duration-200 hover:text-brand-color-one hover:shadow-main-shadow product_tab-active">
+              Description
+            </div>
+            <div className="product_tab px-[30px] h-[45px] border border-border-light flex items-center justify-center font-bold text-lg rounded-[30px] text-text-body-2 cursor-pointer transition-all duration-200 hover:text-brand-color-one hover:shadow-main-shadow ">
+              Additional info
+            </div>
+            <div className="product_tab px-[30px] h-[45px] border border-border-light flex items-center justify-center font-bold text-lg rounded-[30px] text-text-body-2 cursor-pointer transition-all duration-200 hover:text-brand-color-one hover:shadow-main-shadow ">
+              Reviews (3)
+            </div>
+          </div>
+          <div className="product_details-wrapper flex flex-col gap-7">
+            <div className="product_detail-wrapper flex flex-col gap-7 font-lato text-text-body">
+              <p>
+                Uninhibited carnally hired played in whimpered dear gorilla koala depending and much
+                yikes off far quetzal goodness and from for grimaced goodness unaccountably and
+                meadowlark near unblushingly crucial scallop tightly neurotic hungrily some and dear
+                furiously this apart.
+              </p>
+              <p>
+                Spluttered narrowly yikes left moth in yikes bowed this that grizzly much hello on
+                spoon-fed that alas rethought much decently richly and wow against the frequent
+                fluidly at formidable acceptably flapped besides and much circa far over the
+                bucolically hey precarious goldfinch mastodon goodness gnashed a jellyfish and one
+                however because.
+              </p>
+            </div>
+            <div className="product_detail-wrapper flex flex-col gap-3">
+              <h3 className="text-xl font-bold">Packaging & Delivery</h3>
+              <p className="font-lato text-text-body">
+                Less lion goodness that euphemistically robin expeditiously bluebird smugly
+                scratched far while thus cackled sheepishly rigid after due one assenting regarding
+                censorious while occasional or this more crane went more as this less much amid
+                overhung anathematic because much held one exuberantly sheep goodness so where rat
+                wry well concomitantly.
+              </p>
+              <ul className="font-lato text-text-body my-4 text-xs flex flex-col gap-2 ml-1">
+                <li className="flex items-center gap-2">
+                  <div className="w-1 h-1 bg-text-body-2 rounded-full"></div>
+                  <p className="max-w-[120px] w-full">Type Of Packing</p>
+                  <p>Paper wrapping</p>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1 h-1 bg-text-body-2 rounded-full"></div>
+                  <p className="max-w-[120px] w-full">Color</p>
+                  <p>Green, Pink, Brown</p>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1 h-1 bg-text-body-2 rounded-full"></div>
+                  <p className="max-w-[120px] w-full">Quantity Per Case</p>
+                  <p>500g</p>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1 h-1 bg-text-body-2 rounded-full"></div>
+                  <p className="max-w-[120px] w-full">Fat percentage</p>
+                  <p>56%</p>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1 h-1 bg-text-body-2 rounded-full"></div>
+                  <p className="max-w-[120px] w-full">Piece In One</p>
+                  <p>Carton</p>
+                </li>
+              </ul>
+              <p className="font-lato text-text-body">
+                Scallop or far crud plain remarkably far by thus far iguana lewd precociously and
+                and less rattlesnake contrary caustic wow this near alas and next and pled the yikes
+                articulate about as less cackled dalmatian in much less well jeering for the thanks
+                blindly sentimental whimpered less across objectively fanciful grimaced wildly some
+                wow and rose jeepers outgrew lugubrious luridly irrationally attractively dachshund.{" "}
+              </p>
+            </div>
+            <div className="product_detail-wrapper flex flex-col gap-3">
+              <h3 className="text-xl font-bold">Suggested Use</h3>
+              <div className="flex flex-col">
+                <p className="font-lato text-text-body">Refrigeration not necessary.</p>
+                <p className="font-lato text-text-body">Stir before serving.</p>
+              </div>
+            </div>
+            <div className="product_detail-wrapper flex flex-col gap-3">
+              <h3 className="text-xl font-bold">Other Ingredients</h3>
+              <div className="flex flex-col">
+                <p className="font-lato text-text-body">Organic raw pecans, organic raw cashews.</p>
+                <p className="font-lato text-text-body">
+                  This butter was produced using a LTG (Low Temperature Grinding) process.
+                </p>
+                <p className="font-lato text-text-body">
+                  Made in machinery that processes tree nuts but does not process peanuts, gluten,
+                  dairy or soy.
+                </p>
+              </div>
+            </div>
+            <div className="product_detail-wrapper flex flex-col">
+              <h3 className="text-xl font-bold">Warnings</h3>
+              <p className="font-lato text-text-body">
+                Oil separation occurs naturally. May contain pieces of shell.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );

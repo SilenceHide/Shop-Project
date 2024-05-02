@@ -300,6 +300,11 @@
     color: #fff !important;
   }
 
+  .product_tab-active {
+    color: #3bb77e !important;
+    box-shadow: 5px 5px 15px 0px rgba(24, 24, 24, 0.05) !important;
+  }
+
   @media (min-width: 768px) {
     .product_price-input {
       position: relative;
