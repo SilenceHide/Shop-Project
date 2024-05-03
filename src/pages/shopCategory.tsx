@@ -15,10 +15,12 @@ export default function ShopCategory() {
       {/* <!--shop Start--> */}
       <section className="container md:flex md:flex-row sm:flex-col md:justify-between">
         {/* <!--sidebar Start--> */}
-        <div className="flex flex-col mr-7">
+        <div className="flex flex-col mr-7 max-w-[380px]">
           {/* <!-- 1 --> */}
-          <div className="flex flex-col border-[1px] border-border-gray rounded-[15px] px-[30px] pt-7 mb-[55px] pb-4">
-            <p className="text-2xl font-bold mb-[14px] pb-[14px] border-b-2">Filter items</p>
+          <form className="flex flex-col border-[1px] border-border-gray rounded-[15px] px-[25px] py-7 mb-[55px] shadow-main-shadow">
+            <p className="text-2xl font-bold mb-[14px] pb-[14px] border-b border-[#D7DEDB]">
+              Filter items
+            </p>
             <div className="flex items-center justify-between mt-3 mb-[30px]">
               <div className="flex items-center gap-5">
                 <p className="font-lato text-text-body-2 ">Price Range:</p>
@@ -44,12 +46,14 @@ export default function ShopCategory() {
               />
             </div>
             <p className="font-lato text-text-body-2 mb-[21px]">Used for:</p>
-            <div className="flex flex-col items-start mb-[30px]">
+            <div className="flex flex-col items-start mb-[20px]">
               <div className="flex mb-[10px] items-center w-full gap-2.5">
                 <input
                   type="checkbox"
                   id="filter_appetizer"
-                  className="w-[18px] h-[18px] focus:text-text-heading"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"appetizer"}
+                  checked
                 />
                 <label
                   htmlFor="filter_appetizer"
@@ -58,54 +62,163 @@ export default function ShopCategory() {
                   Appetizer
                 </label>
               </div>
-              <div className="flex mb-[10px] items-center justify-center">
-                <p className="text-medium text-text-body-2 hover:text-blue-300">Salad</p>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_salad"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"salad"}
+                />
+                <label
+                  htmlFor="filter_salad"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Salad
+                </label>
               </div>
-              <div className="flex mb-[10px] items-center justify-center">
-                <p className="text-medium text-text-body-2 hover:text-blue-300">Eat fresh</p>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_eat-fresh"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"eat-fresh"}
+                />
+                <label
+                  htmlFor="filter_eat-fresh"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Eat-fresh
+                </label>
               </div>
-              <div className="flex mb-[10px] items-center justify-center">
-                <p className="text-medium text-text-body-2 hover:text-blue-300">Juice</p>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_juice"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"juice"}
+                />
+                <label
+                  htmlFor="filter_juice"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Juice
+                </label>
               </div>
-              <div className="flex mb-[10px] items-center justify-center">
-                <p className="text-medium text-text-body-2 hover:text-blue-300">Smoothie</p>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_smoothie"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"smoothie"}
+                />
+                <label
+                  htmlFor="filter_smoothie"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Smoothie
+                </label>
               </div>
             </div>
 
-            <p className="font-lato  font-normal text-text-body-2 mb-[21px]">Brand:</p>
+            <p className="font-lato text-text-body-2 mb-[21px]">Used for:</p>
             <div className="flex flex-col items-start mb-[30px]">
-              <div className="flex mb-[10px] items-center justify-center">
-                <i className="icon-play mr-[10px]"></i>
-                <p className="text-medium text-text-body-2 hover:text-blue-300">Cobblestone</p>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_cobblestone"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"cobblestone"}
+                />
+                <label
+                  htmlFor="filter_cobblestone"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Cobblestone
+                </label>
               </div>
-              <div className="flex mb-[10px] items-center justify-center">
-                <i className="icon-play mr-[10px]"></i>
-                <p className="text-medium text-text-body-2 hover:text-blue-300">McVitie's</p>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_McVitie's"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"mcVitie's"}
+                  checked
+                />
+                <label
+                  htmlFor="filter_McVitie's"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  McVitie's
+                </label>
               </div>
-              <div className="flex mb-[10px] items-center justify-center">
-                <i className="icon-play mr-[10px]"></i>
-                <p className="text-medium text-text-body-2 hover:text-blue-300">Tastykake</p>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_tastykake"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"tastykake"}
+                />
+                <label
+                  htmlFor="filter_tastykake"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Tastykake
+                </label>
               </div>
-              <div className="flex mb-[10px] items-center justify-center">
-                <i className="icon-play mr-[10px]"></i>
-                <p className="text-medium text-text-body-2 hover:text-blue-300">Warburtons</p>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_warburtons"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"warburtons"}
+                />
+                <label
+                  htmlFor="filter_warburtons"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Warburtons
+                </label>
               </div>
-              <div className="flex mb-[10px] items-center justify-center">
-                <i className="icon-play mr-[10px]"></i>
-                <p className="text-medium text-text-body-2 hover:text-blue-300">Wonder Bread</p>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_wonder-bread"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"wonder-bread"}
+                />
+                <label
+                  htmlFor="filter_wonder-bread"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Wonder Bread
+                </label>
               </div>
             </div>
-            <div className="flex justify-between items-center">
-              <button className="rounded bg-green-100 px-[32px] py-[14px] text-green-200 flex justify-center items-center">
-                <i></i>Filter
+
+            <div className="flex justify-between relative ">
+              <button
+                type="submit"
+                className="rounded bg-[#def9ec] px-[30px] h-[48px] text-brand-color-one flex justify-center items-center gap-1.5"
+              >
+                <ImageView
+                  src={"/images/category/fi-rs-filter.svg"}
+                  alt={"filter"}
+                  width={16}
+                  height={16}
+                />
+                Filter
               </button>
-              <img
-                className="hidden md:block"
-                src="../assets/images/fresh-chinese-cabbage.png"
-                alt="#"
-              />
+              <div className="absolute hidden md:block right-[-10px] bottom-[-20px]">
+                <ImageView
+                  src={"/images/category/filter-img.png"}
+                  alt={"filter"}
+                  width={200}
+                  height={170}
+                  className={"max-w-[200px] hidden md:block"}
+                />
+              </div>
             </div>
-          </div>
+          </form>
           {/* <!-- 2 --> */}
           <div className="flex flex-col border-[1px] border-gray-200 rounded-[10px] px-[30px] pt-7 gap-6 pb-[36px] pr-[180px] mb-10">
             <p className=" mb-[14px] pb-[14px] border-b-2">Popular Items</p>

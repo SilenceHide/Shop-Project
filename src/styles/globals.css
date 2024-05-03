@@ -77,6 +77,15 @@
     -o-transition: all 150ms ease-in-out;
   }
 
+  input[type="checkbox"].filter-input:checked + label {
+    color: #253d4e;
+    transition: all 150ms ease-in-out;
+    -webkit-transition: all 150ms ease-in-out;
+    -moz-transition: all 150ms ease-in-out;
+    -ms-transition: all 150ms ease-in-out;
+    -o-transition: all 150ms ease-in-out;
+  }
+
   input[type="password"] {
     letter-spacing: 2px;
     vertical-align: middle;
