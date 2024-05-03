@@ -226,8 +226,8 @@ export default function Cart() {
                     <div className="text-lg font-black text-white">Update Cart</div>
                   </button>
                 </div>
-                <div className="flex lg:flex-row flex-col max-w-[600px]  gap-[45px] text-left">
-                  <div className="bg-white flex flex-col gap-[30px] md:gap-[14px] items-start justify-between shadow-c rounded-[10px] border-[1px] border-border-gray py-4 px-8 max-h-[560px] overflow-y-auto">
+                <div className="flex lg:flex-row flex-col lg:max-w-[1048px] max-w-[600px] w-full gap-[45px] text-left">
+                  <div className="bg-white flex flex-col gap-[30px] md:gap-[14px] items-start justify-between rounded-[15px] border-[1px] border-border-gray py-4 px-8 max-h-[560px] ">
                     <div className="font-black text-2xl">Calculate Shipping</div>
                     <div className="flex justify-start items-center gap-4">
                       <span className="font-lato text-text-body">

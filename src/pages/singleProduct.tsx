@@ -1,8 +1,9 @@
-import { IconBox, ImageView, Rating } from "@/components";
+import { IconBox, ImageView, Rating, SimpleProductCard } from "@/components";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Navigation } from "swiper/modules";
+import { relatedProducts } from "@/mock/RelatedProducts";
 
 export default function SingleProduct() {
   return (
@@ -272,6 +273,21 @@ export default function SingleProduct() {
                 Oil separation occurs naturally. May contain pieces of shell.
               </p>
             </div>
+          </div>
+        </div>
+        <div className="related-product flex flex-col mt-12">
+          <h2 className="text-center font-bold text-[32px]">Related products</h2>
+          <div className="flex items-center justify-center max-w-[1180px] gap-5 mt-12 flex-wrap">
+            {relatedProducts.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="popular-product relative rounded-xl border border-[#e5e5e5] hover:border-brand-color-one overflow-hidden p-5 pb-5 md:pt-14 transition-all max-w-[280px] min-h-[335px]"
+                >
+                  <SimpleProductCard data={item} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
