@@ -132,7 +132,7 @@ export default function About() {
           </div>
         </div>
         <div className="flex items-center justify-center gap-6 flex-wrap">
-          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-main-shadow text-center gap-6">
+          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-[20px_20px_40px_0px_rgba(24,24,24,0.07)] text-center gap-6">
             <div>
               <ImageView
                 src={"/images/about/provide01.svg"}
@@ -151,7 +151,7 @@ export default function About() {
               Read more
             </Link>
           </div>
-          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-main-shadow text-center gap-6">
+          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-[20px_20px_40px_0px_rgba(24,24,24,0.07)] text-center gap-6">
             <div>
               <ImageView
                 src={"/images/about/provide02.svg"}
@@ -170,7 +170,7 @@ export default function About() {
               Read more
             </Link>
           </div>
-          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-main-shadow text-center gap-6">
+          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-[20px_20px_40px_0px_rgba(24,24,24,0.07)] text-center gap-6">
             <div>
               <ImageView
                 src={"/images/about/provide03.svg"}
@@ -189,7 +189,7 @@ export default function About() {
               Read more
             </Link>
           </div>
-          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-main-shadow text-center gap-6">
+          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-[20px_20px_40px_0px_rgba(24,24,24,0.07)] text-center gap-6">
             <div>
               <ImageView
                 src={"/images/about/provide04.svg"}
@@ -208,7 +208,7 @@ export default function About() {
               Read more
             </Link>
           </div>
-          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-main-shadow text-center gap-6">
+          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-[20px_20px_40px_0px_rgba(24,24,24,0.07)] text-center gap-6">
             <div>
               <ImageView
                 src={"/images/about/provide05.svg"}
@@ -227,7 +227,7 @@ export default function About() {
               Read more
             </Link>
           </div>
-          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-main-shadow text-center gap-6">
+          <div className="max-w-[420px] max-h-[420px] w-full flex flex-col items-center rounded-2xl border border-border-gray px-8 py-11 transition-all duration-200 hover:shadow-[20px_20px_40px_0px_rgba(24,24,24,0.07)] text-center gap-6">
             <div>
               <ImageView
                 src={"/images/about/provide06.svg"}
