@@ -224,138 +224,8 @@ export default function ShopCategory() {
             </div>
           </form>
           {/* <!-- 2 --> */}
-          <div className="flex flex-col border-[1px] border-gray-200 rounded-[10px] px-[25px] py-7 gap-6 mb-10">
-            <p className=" mb-[14px] pb-[14px] border-b-2">Popular Items</p>
-            {/* <div className="flex flex-col gap-6">
-              <div className="flex gap-3 lg:gap-5">
-                <img src="../assets/images/products/avocado.png" width="120" height="120" />
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <div className=" text-blue-300 mb-1">Seeds of Change Organic</div>
-                    <div className="flex gap-4">
-                      <ul className="flex gap-1">
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-empty text-[12px]"></i>
-                        </li>
-                      </ul>
-                      <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-heading5 text-green-200">$2.51</span>
-                    <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex gap-3 lg:gap-5">
-                <img src="../assets/images/products/banana.png" width="120" height="120" />
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <div className=" text-blue-300 mb-1">Seeds of Change Organic</div>
-                    <div className="flex gap-4">
-                      <ul className="flex gap-1">
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-empty text-[12px]"></i>
-                        </li>
-                      </ul>
-                      <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-heading5 text-green-200">$2.51</span>
-                    <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex gap-3 lg:gap-5">
-                <img src="../assets/images/products/orange-fruit.png" width="120" height="120" />
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <div className=" text-blue-300 mb-1">Seeds of Change Organic</div>
-                    <div className="flex gap-4">
-                      <ul className="flex gap-1">
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-empty text-[12px]"></i>
-                        </li>
-                      </ul>
-                      <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-heading5 text-green-200">$2.51</span>
-                    <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex gap-3 lg:gap-5">
-                <img src="../assets/images/products/watter-melon.png" width="120" height="120" />
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <div className=" text-blue-300 mb-1">Seeds of Change Organic</div>
-                    <div className="flex gap-4">
-                      <ul className="flex gap-1">
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-full text-[12px]"></i>
-                        </li>
-                        <li className="flex">
-                          <i className="icon-star-empty text-[12px]"></i>
-                        </li>
-                      </ul>
-                      <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-heading5 text-green-200">$2.51</span>
-                    <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+          <div className="flex flex-col border-[1px] border-[#D7DEDB]rounded-[10px] px-[25px] py-7 gap-6 mb-10">
+            <p className=" mb-[14px] pb-[14px] border-b text-2xl font-bold">Popular Items</p>
             {CategoryPopularItems.map((item, index) => {
               return (
                 <MiniProductCard
@@ -383,7 +253,7 @@ export default function ShopCategory() {
                 width={16}
                 height={16}
               />
-              Sort by: Featured{" "}
+              Sort by: Featured
               <IconBox icon="icon-angle-small-down" className="text-text-body-2" />
             </div>
           </div>
