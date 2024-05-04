@@ -7,8 +7,6 @@ import { TrendingProductsMock } from "@/mock/TrendingProducts";
 import { RecentlyAddedMock } from "@/mock/RecentlyAdded";
 import { TopRatedMock } from "@/mock/TopRated";
 
-interface Props {}
-
 export function CategorySlider() {
   return (
     <Swiper

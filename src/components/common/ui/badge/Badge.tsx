@@ -6,7 +6,9 @@ interface Props {
   sale_price?: number;
 }
 
-export function Badge({ badge = "", price, sale_price }: Props) {
+export function Badge({ badge = "", price, sale_price = 0 }: Props) {
+  const rate = 100 - Math.round((sale_price / price) * 100);
+
   return (
     <>
       {badge.length > 0 ? (
@@ -23,7 +25,7 @@ export function Badge({ badge = "", price, sale_price }: Props) {
             badge.toLowerCase() == "hot" ? "bg-danger-color" : "bg-brand-color-one"
           }  text-white font-lato text-xs py-[10px] px-4 left-0 md:top-5 top-0 rounded-r-full min-w-[64px] flex justify-center items-center`}
         >
-          <p className="product_label">{Math.round((sale_price / price) * 100)}%</p>
+          <p className="product_label">{rate}%</p>
         </div>
       ) : (
         <></>

@@ -10,11 +10,13 @@ interface Props {
     price: number;
     sale_price?: number;
   };
+  className?: string;
+  titleHeight?: string;
 }
 
-export function MiniProductCard({ data }: Props) {
+export function MiniProductCard({ data, className = "", titleHeight = "h-[72px]" }: Props) {
   return (
-    <div className="top-selling_item flex items-start gap-5">
+    <div className={`top-selling_item flex items-start gap-5 ${className}`}>
       <div className="top-selling_img-wrapper min-w-[120px] min-h-[120px]">
         <ImageView
           className={"top-selling_img rounded-xl"}
@@ -25,7 +27,9 @@ export function MiniProductCard({ data }: Props) {
         />
       </div>
       <div className="top-selling_content-wrapper">
-        <p className="top-selling_content-title font-bold h-[72px] overflow-hidden text-ellipsis">
+        <p
+          className={`top-selling_content-title font-bold overflow-hidden text-ellipsis ${titleHeight}`}
+        >
           {data.title}
         </p>
         <div className="top-selling-wrapper flex">

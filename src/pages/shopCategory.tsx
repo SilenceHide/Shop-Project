@@ -1,21 +1,25 @@
-import { IconBox, ImageView } from "@/components";
+import { IconBox, ImageView, MiniProductCard, SimpleProductCard } from "@/components";
+import { CategoryPopularItems } from "@/mock/CategoryPopularItems";
+import { CategoryProducts } from "@/mock/CategoryProducts";
 import React from "react";
 
 export default function ShopCategory() {
   return (
     <>
-      <section className="mb-[68px] container">
-        <div className="bg-hero-pattern rounded-[6px] md:rounded-[14px] lg:rounded-[30px] bg-[#3bb77e33] bg-opacity-20 bg-cover bg-top bg-no-repeat flex justify-between mt-[38px] relative h-[235px]">
-          <div className="min-h-[160px] pl-3 pt-3 sm:pl-4 sm:pt4 md:pl-6 md:pt-6 lg:pl-10 lg:py-10 xl:pl-14 xl:py-14 2xl:py-[72px] 2xl:pl-[72px]">
-            <h2 className="max-w-[100%] text-5xl font-bold">Vegetables & tubers</h2>
+      <section className="mb-[68px] container mt-8">
+        <div className="bg-hero-pattern rounded-[6px] md:rounded-[14px] lg:rounded-[30px] bg-[#3bb77e33] bg-opacity-20 bg-cover bg-top bg-no-repeat flex lg:justify-between lg:items-start mt-[38px] relative lg:h-[235px] items-center justify-center">
+          <div className="min-h-[160px] px-5 lg:pl-10 lg:py-10 xl:pl-14 xl:py-14 2xl:py-[72px] 2xl:pl-[72px] flex items-center justify-center lg:justify-start lg:items-start">
+            <h2 className="max-w-full md:text-5xl text-[40px] font-bold text-center md:leading-none leading-[50px]">
+              Vegetables & tubers
+            </h2>
           </div>
         </div>
       </section>
 
       {/* <!--shop Start--> */}
-      <section className="container md:flex md:flex-row sm:flex-col md:justify-between">
+      <section className="container flex lg:flex-row flex-col md:justify-between">
         {/* <!--sidebar Start--> */}
-        <div className="flex flex-col mr-7 max-w-[380px]">
+        <div className="flex flex-col mr-7 max-w-[380px] w-full shrink-0">
           {/* <!-- 1 --> */}
           <form className="flex flex-col border-[1px] border-border-gray rounded-[15px] px-[25px] py-7 mb-[55px] shadow-main-shadow">
             <p className="text-2xl font-bold mb-[14px] pb-[14px] border-b border-[#D7DEDB]">
@@ -220,9 +224,9 @@ export default function ShopCategory() {
             </div>
           </form>
           {/* <!-- 2 --> */}
-          <div className="flex flex-col border-[1px] border-gray-200 rounded-[10px] px-[30px] pt-7 gap-6 pb-[36px] pr-[180px] mb-10">
+          <div className="flex flex-col border-[1px] border-gray-200 rounded-[10px] px-[25px] py-7 gap-6 mb-10">
             <p className=" mb-[14px] pb-[14px] border-b-2">Popular Items</p>
-            <div className="flex flex-col gap-6">
+            {/* <div className="flex flex-col gap-6">
               <div className="flex gap-3 lg:gap-5">
                 <img src="../assets/images/products/avocado.png" width="120" height="120" />
                 <div className="flex flex-col justify-between">
@@ -351,18 +355,28 @@ export default function ShopCategory() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
+            {CategoryPopularItems.map((item, index) => {
+              return (
+                <MiniProductCard
+                  data={item}
+                  key={index}
+                  className={"cursor-pointer hover:text-brand-color-one transition-all"}
+                  titleHeight={"h-[60px]"}
+                />
+              );
+            })}
           </div>
         </div>
         {/* <!--sidebar End--> */}
 
         {/* <!--Right_col Start--> */}
-        <div>
-          <div className="flex justify-between rounded-[15px] bg-[#f5f5f5] py-[25px] px-[30px] mb-[48px]">
-            <div className=" text-text-body font-bold">
+        <div className="flex flex-col mb-5">
+          <div className="flex justify-between rounded-[15px] bg-[#f5f5f5] sm:py-[25px] sm:px-[30px] p-5 mb-[48px]">
+            <div className=" text-text-body font-bold max-w-[145px] sm:max-w-fit">
               There are <span className="text-brand-color-one">568</span> products in this category
             </div>
-            <div className="text-text-body font-lato gap-1 flex justify-center items-center">
+            <div className="text-text-body font-lato gap-1 flex justify-center items-center text-center">
               <ImageView
                 src={"/images/category/fi-rs-sort.svg"}
                 alt={"image"}
@@ -374,879 +388,50 @@ export default function ShopCategory() {
             </div>
           </div>
           {/* <!-- Cards Start --> */}
-          <div className="flex flex-col md:flex md:flex-row md:flex-wrap gap-4 md:gap-6 lg:gap-2 mb-[45px]">
-            {/* <!-- 1 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/8 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
+          <div className="flex items-center xs:justify-between justify-center max-w-[1180px] gap-5 flex-wrap">
+            {CategoryProducts.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="popular-product relative rounded-xl border border-[#e5e5e5] hover:border-brand-color-one overflow-hidden p-5 pb-5 md:pt-14 transition-all xl:max-w-[345px] lg:max-w-[280px] md:max-w-[345px] sm:max-w-[290px] xs:max-w-[230px] max-w-[290px] w-full min-h-[335px]"
+                >
+                  <SimpleProductCard data={item} />
                 </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 2 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/18 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 3 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/1 902.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 4 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/8 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 5 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/9 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 6 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/11 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 7 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/12 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 8 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/16 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 9 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/1 902.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 10 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/3 389454.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 11 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/5 7.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 12 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <div className="mt-8 hidden group-hover:flex rounded-[5px] border-[1px] border-green-200 w-max absolute top-[100px] left-[50%] translate-x-[-50%] bg-white productAction cursor-pointer">
-                <div className="p-2.5 border-r-[1px] border-r-green-200 hover:bg-green-150">
-                  <i className="icon-heart text-[15px] text-brand1"></i>
-                </div>
-                <div className="p-2.5 border-r-[1px] border-r-green-200 hover:bg-green-150">
-                  <i className="icon-shuffle text-[15px]"></i>
-                </div>
-                <div className="p-2.5 hover:bg-green-150">
-                  <i className="icon-eye text-[15px]"></i>
-                </div>
-              </div>
-              <img
-                src="../assets/images/7 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 13 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/11 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 14 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/12 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- 15 --> */}
-            <div className="group sm:w-full md:w-[45%] lg:w-[32%] border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
-              <img
-                src="../assets/images/21 1.png"
-                className="m-auto w-full aspect-[3/2] mb-[28px]"
-              />
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500 text-xsmall">Hodo Foods</div>
-                <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden max-w-[72%]">
-                  Blue Diamond Almonds Lightly Salted Packing Paper
-                </h3>
-                <div className="flex gap-4">
-                  <ul className="flex gap-1">
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-full text-[12px]"></i>
-                    </li>
-                    <li className="flex">
-                      <i className="icon-star-empty text-[12px]"></i>
-                    </li>
-                  </ul>
-                  <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                </div>
-                <div className="font-lato text-xsmall text-gray-500">500 gram</div>
-              </div>
-              <div className="flex items-center justify-between mt-3">
-                <div>
-                  <span className="text-heading5 text-green-200">$2.51</span>
-                  <span className="text-heading-sm line-through text-gray-500">$2.80</span>
-                </div>
-                <div className="add-product">
-                  <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">
-                    Adds +
-                  </button>
-                  <div className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                    <input
-                      type="number"
-                      value="1"
-                      className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <i className="up icon-angle-small-up text-[10px]"></i>
-                      <i className="down icon-angle-small-down text-[10px]"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
           {/* <!-- Cards Ends --> */}
           {/* <!-- buttons----> */}
-          <div className="flex flex-wrap gap-[10px] justify-center items-start mb-[60px]">
-            <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer">
-              <i className="icon-angle-small-left"></i>
+          <div className="flex flex-wrap gap-[10px] mt-11">
+            <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-border-light font-bold cursor-pointer">
+              <ImageView
+                className={"popular-fruits_section-left_arrow-img object-cover"}
+                src={"/images/section3/fi-rs-arrow-small-left 1.svg"}
+                alt={"arrow"}
+                width={14}
+                height={14}
+              />
             </div>
-            <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer">
+            <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center text-text-body bg-border-light font-bold cursor-pointer">
               1
             </div>
-            <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer">
+            <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center text-text-body bg-border-light font-bold cursor-pointer">
               2
             </div>
-            <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer">
+            <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center text-text-body bg-border-light font-bold cursor-pointer">
               3
             </div>
-            <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer pb-1">
+            <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center text-text-body bg-border-light font-bold cursor-pointer pb-1">
               ...
             </div>
-            <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer">
-              <i className="icon-angle-small-right flex justify-center items-center"></i>
+            <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-brand-color-one cursor-pointer">
+              <ImageView
+                className={"popular-fruits_section-right_arrow-img object-cover hidden md:block"}
+                src={"/images/section3/fi-rs-arrow-small-right 2.svg"}
+                alt={"arrow"}
+                width={14}
+                height={12}
+              />
             </div>
           </div>
         </div>
