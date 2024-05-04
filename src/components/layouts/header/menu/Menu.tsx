@@ -18,7 +18,7 @@ export function Menu() {
             className={"category_browser-arrow"}
           />
         </div>
-        <div className="category_browser-inner-wrapper bg-transparent opacity-0 invisible transition-all duration-200 lg:absolute lg:top-12 lg:left-0 h-0 lg:w-[266px]">
+        <div className="category_browser-inner-wrapper bg-transparent opacity-0 invisible transition-all duration-200 lg:absolute lg:top-12 lg:left-0 h-0 lg:w-[266px] relative z-10">
           <div className="category_browser bg-white flex text-text-heading font-bold text-sm lg:border-border-light-green lg:border-[1px] items-center justify-between max-w-60 lg:max-w-[500px] lg:min-w-[500px] rounded-md lg:px-8 lg:pt-8 pt-5 lg:pb-6 pb-2 lg:gap-4 gap-5 flex-wrap lg:mt-[26px]">
             {browsCategoriesMock.map((item, index) => {
               return (
