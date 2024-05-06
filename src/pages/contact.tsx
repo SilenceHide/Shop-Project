@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Contact() {
   return (
-    <section className="container mt-14 mb-[120px]">
+    <section className="container mt-14 mb-[100px]">
       <div className="flex lg:flex-row flex-col justify-center items-end xl:gap-[90px] gap-10">
         <div className="flex flex-col max-w-[415px] w-full gap-5 self-start">
           <h3 className="text-2xl font-bold text-brand-color-one">How can help you ?</h3>
@@ -68,7 +68,7 @@ export default function Contact() {
         />
       </div>
 
-      <div className="flex flex-wrap justify-center xl:gap-[150px] gap-[50px]">
+      <div className="flex flex-wrap lg:justify-center justify-between xl:gap-[150px] md:gap-[40px] gap-9">
         <div className="flex flex-col max-w-[315px] gap-4 items-start">
           <h4 className="text-2xl font-black">Office</h4>
           <div className="flex flex-col font-lato text-text-body text-lg">
@@ -116,7 +116,64 @@ export default function Contact() {
         </div>
       </div>
 
-      <div></div>
+      <div className="md:mt-[68px] mt-14 flex justify-center items-center gap-[60px]">
+        <form action="#" className="max-w-[875px] w-full flex flex-col">
+          <h3 className="font-black text-brand-color-one text-2xl">Contact form</h3>
+          <h2 className="md:text-5xl text-4xl font-black mb-3">Drop Us a Line</h2>
+          <p className="font-lato text-sm text-text-body">
+            Your email address will not be published. Required fields are marked *
+          </p>
+          <div className="md:mt-12 mt-9 flex flex-col gap-6 font-lato placeholder:text-text-body-2">
+            <div className="flex sm:items-center justify-between gap-6 sm:flex-row flex-col">
+              <input
+                type="text"
+                className="max-w-[440px] w-full h-[64px] px-6 rounded-[10px] border border-border-gray"
+                placeholder="Your name *"
+              />
+              <input
+                type="email"
+                className="max-w-[440px] w-full h-[64px] px-6 rounded-[10px] border border-border-gray"
+                placeholder="Email *"
+              />
+            </div>
+            <div className="flex sm:items-center justify-between gap-6 sm:flex-row flex-col">
+              <input
+                type="text"
+                className="max-w-[440px] w-full h-[64px] px-6 rounded-[10px] border border-border-gray"
+                placeholder="Phone number *"
+              />
+              <input
+                type="text"
+                className="max-w-[440px] w-full h-[64px] px-6 rounded-[10px] border border-border-gray"
+                placeholder="Subject *"
+              />
+            </div>
+            <div>
+              <textarea
+                name="message"
+                id="contact-message"
+                className="sm:max-w-[875px] max-w-[440px] h-[245px] w-full resize-none p-6 rounded-[10px] border border-border-gray outline-none"
+                placeholder="Message *"
+              ></textarea>
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="w-[190px] h-[64px] rounded-[10px] text-white bg-text-heading mt-7 font-black"
+          >
+            Send Message
+          </button>
+        </form>
+        <div className="hidden lg:block">
+          <ImageView
+            src={"/images/contact/pic01.png"}
+            alt={"image"}
+            width={380}
+            height={415}
+            className="bg-center bg-cover"
+          />
+        </div>
+      </div>
     </section>
   );
 }
