@@ -19,7 +19,7 @@ export function IconBox({
 }: Props) {
   let span = [];
   for (let i = 1; i <= path; i++) {
-    span.push(<span className={`path${i}`}></span>);
+    span.push(<span className={`path${i}`} key={i}></span>);
   }
 
   return (

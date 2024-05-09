@@ -1,11 +1,32 @@
 import { IconBox, ImageView, Logo } from "@/components";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { BaseSyntheticEvent, useEffect, useState } from "react";
 import { SearchForm } from "./searchForm";
 import { Menu } from "./menu";
 
 export function Header() {
   const [navOpen, isNavOpen] = useState(false);
+
+  const navOpenClickHandler = (e: Event | BaseSyntheticEvent) => {
+    e.stopPropagation();
+    isNavOpen((prevState) => !prevState);
+  };
+
+  const menuClickHandler = (e: Event | BaseSyntheticEvent) => {
+    e.stopPropagation();
+  };
+
+  useEffect(() => {
+    const clickHandler = () => {
+      isNavOpen(false);
+    };
+
+    document.addEventListener("click", clickHandler);
+
+    return () => {
+      document.removeEventListener("click", clickHandler);
+    };
+  }, []);
 
   return (
     <>
@@ -16,7 +37,7 @@ export function Header() {
               <div className="header_logo flex flex-shrink-0 flex-grow basis-full lg:basis-0 justify-between items-center">
                 <Logo />
                 <div className="header_menu-button-wrapper h-8">
-                  <div className="header_menu-button" onClick={() => isNavOpen(!navOpen)}></div>
+                  <div className="header_menu-button" onClick={navOpenClickHandler}></div>
                 </div>
               </div>
 
@@ -54,12 +75,18 @@ export function Header() {
 
           {/* <!--*******--------**** Menu ****--------*******--> */}
           <div
-            className={`menu_wrapper flex flex-col lg:flex-row lg:items-center lg:justify-between lg:mb-[14px] lg:mt-11 font-bold fixed lg:static  top-0 bg-white bottom-0 px-6 py-4 lg:p-0 gap-2 rounded-r-3xl lg:rounded-none transition-all z-10 overflow-y-scroll lg:overflow-visible overflow-x-hidden ${
+            onClick={menuClickHandler}
+            className={`menu_wrapper flex flex-col lg:flex-row lg:items-center lg:justify-between lg:mb-[14px] lg:mt-11 font-bold fixed lg:relative lg:left-0 top-0 bg-white bottom-0 px-6 py-4 lg:p-0 gap-2 rounded-r-3xl lg:rounded-none transition-all z-10 overflow-y-scroll lg:overflow-visible overflow-x-hidden ${
               navOpen ? "left-0" : "-left-full"
             }`}
           >
             <Menu />
           </div>
+          <div
+            className={`cover lg:hidden fixed top-0 right-0 w-full h-full bg-[#000000a3] ${
+              navOpen ? "z-[5] opacity-100 visible" : "z-[-10] opacity-0 invisible"
+            }`}
+          ></div>
         </div>
       </header>
       <div className="header_mobile-line w-full h-px bg-gray-300 mt-4 absolute -z-10"></div>

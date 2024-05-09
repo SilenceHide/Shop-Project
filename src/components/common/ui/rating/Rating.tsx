@@ -12,6 +12,7 @@ export function Rating({ rate }: Props) {
   for (let i = 0; i < rate; i++) {
     fillStar.push(
       <ImageView
+        key={i}
         className={"product_rate-img"}
         src={"/images/section3/002-fill star.svg"}
         alt={"star"}
@@ -24,6 +25,7 @@ export function Rating({ rate }: Props) {
   for (let i = rate; i < 5; i++) {
     emptyStar.push(
       <ImageView
+        key={i}
         className={"product_rate-img"}
         src={"/images/section3/001-empty star.svg"}
         alt={"star"}

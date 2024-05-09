@@ -12,7 +12,6 @@ export default function Document() {
         <Main />
         <NextScript />
         {/* <!--*******--------**** Menu Cover Background ****--------*******--> */}
-        <div className="cover lg:hidden fixed top-0 right-0 w-full h-full -z-[1] opacity-0 transition-all"></div>
       </body>
     </Html>
   );
