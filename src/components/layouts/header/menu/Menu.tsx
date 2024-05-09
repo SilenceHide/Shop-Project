@@ -3,12 +3,18 @@ import Link from "next/link";
 import { IconBox, ImageView } from "@/components/common";
 import { browsCategoriesMock } from "@/mock/browsCategory";
 import { menuMock } from "@/mock/menu";
+import { useQuery } from "@tanstack/react-query";
+import { getMenuApiCall } from "@/api/Menu";
 
 export function Menu() {
   // TODO load menu data from api
+  const { data: menuData } = useQuery({ queryKey: ["get-menu"], queryFn: () => getMenuApiCall() });
+
+  console.log(menuData);
+
   return (
     <>
-      <div className="category_browser-wrapper flex lg:flex-row flex-col text-white lg:relative">
+      <div className="category_browser-wrapper flex lg:flex-row flex-col text-white lg:relative cursor-pointer">
         <div className="category_content bg-brand-color-one flex items-center px-5 py-[12px] gap-2 rounded-md">
           <IconBox icon={"icon-apps"} />
           <p className="category_browser-title">Browse All Categories</p>
