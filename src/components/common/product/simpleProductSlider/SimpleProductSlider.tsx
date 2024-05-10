@@ -3,9 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { SimpleProductCard } from "@/components";
 import { Navigation } from "swiper/modules";
+import { EntityType } from "@/types";
+import { ProductType } from "@/types/api/Product";
 
 interface Props {
-  sliderData: Array<any>;
+  sliderData: Array<EntityType<ProductType>>;
   prevSlide?: string;
   nextSlide?: string;
 }
@@ -14,7 +16,7 @@ export function SimpleProductSlider({ sliderData, prevSlide, nextSlide }: Props)
   return (
     <>
       <Swiper
-        slidesPerView={2.1}
+        slidesPerView={2}
         spaceBetween={10}
         loop={true}
         navigation={{
@@ -43,7 +45,7 @@ export function SimpleProductSlider({ sliderData, prevSlide, nextSlide }: Props)
           return (
             <SwiperSlide
               key={index}
-              className="popular-product relative rounded-xl border border-[#e5e5e5] hover:border-brand-color-one overflow-hidden px-5 pb-5 md:pt-14 transition-all"
+              className="popular-product relative rounded-xl border border-[#e5e5e5] hover:border-brand-color-one overflow-hidden px-5 py-5 md:pt-14 transition-all"
             >
               <SimpleProductCard data={slideData} />
             </SwiperSlide>

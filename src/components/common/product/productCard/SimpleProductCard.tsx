@@ -1,31 +1,29 @@
 import React from "react";
 import { Badge, IconBox, ImageView, Rating } from "@/components";
 import Link from "next/link";
+import { EntityType } from "@/types";
+import { ProductType } from "@/types/api/Product";
 
 interface Props {
-  data: {
-    title: string;
-    image: string;
-    category: string;
-    rate: number;
-    weight: number;
-    unit: string;
-    price: number;
-    sale_price: number;
-    label: string;
-  };
+  data: EntityType<ProductType>;
 }
 
 export function SimpleProductCard({ data }: Props) {
   return (
     <>
-      <Badge badge={data.label} price={data.price} sale_price={data.sale_price} />
+      {data.attributes.label && (
+        <Badge
+          badge={data.attributes.label}
+          price={data.attributes.price}
+          sale_price={data.attributes.sell_price}
+        />
+      )}
       <div className="product_img-wrapper relative flex items-center justify-center md:mt-3 md:max-w-[245px] max-w-[150px] md:min-h-[146px] min-h-[120px] max-h-[146px] m-auto">
         <ImageView
           className={
             "product_img bg-cover bg-center bg-no-repeat md:max-w-[180px] md:max-h-[170px] max-w-[150px] max-h-[170px]"
           }
-          src={data.image}
+          src={data.attributes.thumbnail?.data?.attributes.url}
           alt={"fruit"}
           width={202}
           height={146}
@@ -49,29 +47,35 @@ export function SimpleProductCard({ data }: Props) {
         </div>
       </div>
       <div className="product_content">
-        <p className="hodo_foods font-lato text-xs text-text-body md:mt-5">{data.category}</p>
+        {data.attributes.categories?.data[0] ? (
+          <p className="hodo_foods font-lato text-xs text-text-body md:mt-5">
+            {data.attributes.categories?.data[0].attributes.title}
+          </p>
+        ) : (
+          <p className="hodo_foods font-lato text-xs text-text-body md:mt-5">Hodo Foods</p>
+        )}
         <Link href={"#"}>
           <h3 className="product_title font-bold md:text-sm text-xs my-1 h-[48px] text-ellipsis overflow-hidden">
-            {data.title}
+            {data.attributes.title}
           </h3>
         </Link>
         <div className="product_rate-wrapper flex">
-          <Rating rate={data.rate} />
+          <Rating rate={data.attributes.rate} />
         </div>
         <h5 className="product_weight font-lato text-xs text-text-body mt-1 mb-3">
-          {data.weight} {data.unit}
+          {data.attributes.weight} {data.attributes.unit}
         </h5>
         <div className="product_price-wrapper flex items-center justify-between">
-          {data.sale_price ? (
+          {data.attributes.sell_price ? (
             <p className="offer_price flex items-center justify-between md:gap-2 gap-1 font-bold md:text-xl text-sm text-brand-color-one">
-              ${data.sale_price}
+              ${data.attributes.sell_price}
               <span className="offer_price-discount line-through text-xs text-text-body">
-                ${data.price}
+                ${data.attributes.price}
               </span>
             </p>
           ) : (
             <p className="offer_price flex items-center justify-between md:gap-2 gap-1 font-bold md:text-xl text-sm text-brand-color-one">
-              ${data.price}
+              ${data.attributes.price}
             </p>
           )}
           <div className="product_add-btn_wrapper">

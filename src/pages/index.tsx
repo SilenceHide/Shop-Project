@@ -9,15 +9,14 @@ import {
   SimpleProductSlider,
 } from "@/components";
 import { ImageView } from "@/components";
-import { BestSellers } from "@/mock/BestSellers";
 import { DealsOfTheDaysMock } from "@/mock/DealsOfTheDays";
-import { popularFruits } from "@/mock/PopularFruits";
-import { popularProducts } from "@/mock/PopularProducts";
+import { ApiResponseType } from "@/types";
+import { ProductType } from "@/types/api/Product";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
-  const { data: popularProductsData } = useQuery({
-    queryKey: [getAllProductsApiCall.name],
+  const { data: popularProductsData } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: [getAllProductsApiCall.name, "popular-products"],
     queryFn: () =>
       getAllProductsApiCall({
         populate: ["categories", "thumbnail"],
@@ -25,7 +24,23 @@ export default function Home() {
       }),
   });
 
-  console.log(popularProductsData);
+  const { data: popularFruitsData } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: [getAllProductsApiCall.name, "popular-fruits"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+        filters: { is_popular_fruit: true },
+      }),
+  });
+
+  const { data: bestSellerData } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: [getAllProductsApiCall.name, "best-seller"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+        filters: { is_best_seller: true },
+      }),
+  });
 
   return (
     <>
@@ -73,11 +88,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <SimpleProductSlider
-          sliderData={popularProducts}
-          prevSlide={".popular-products_section-left_arrow"}
-          nextSlide={".popular-products_section-right_arrow"}
-        />
+        {popularProductsData && (
+          <SimpleProductSlider
+            sliderData={popularProductsData.data}
+            prevSlide={".popular-products_section-left_arrow"}
+            nextSlide={".popular-products_section-right_arrow"}
+          />
+        )}
       </Section>
 
       <Section className={"popular-products_section md:mt-16 mt-8"}>
@@ -111,24 +128,26 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <SimpleProductSlider
-          sliderData={popularFruits}
-          prevSlide={".popular-fruits_section-left_arrow"}
-          nextSlide={".popular-fruits_section-right_arrow"}
-        />
+        {popularFruitsData && (
+          <SimpleProductSlider
+            sliderData={popularFruitsData.data}
+            prevSlide={".popular-fruits_section-left_arrow"}
+            nextSlide={".popular-fruits_section-right_arrow"}
+          />
+        )}
       </Section>
 
       <Section className={"our-offers_section md:mt-16 mt-10"}>
-        <BestSellerSlider sliderData={BestSellers} />
+        {bestSellerData && <BestSellerSlider sliderData={bestSellerData.data} />}
       </Section>
-
+      {/* 
       <Section className={"deals_section md:mt-16 mt-8"}>
         <DealsSlider sliderData={DealsOfTheDaysMock} />
-      </Section>
+      </Section> */}
 
-      <Section className={"category_section md:mt-[68px] mt-9"}>
+      {/* <Section className={"category_section md:mt-[68px] mt-9"}>
         <CategorySlider />
-      </Section>
+      </Section> */}
     </>
   );
 }

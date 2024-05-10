@@ -6,19 +6,6 @@ import { getFeaturedCategoryApiCall } from "@/api/Category";
 import { ApiResponseType, CategoryType, EntityType } from "@/types";
 
 export function FeaturedCategories() {
-  // const borderColors = [
-  //   "#81B13D",
-  //   "#fdea7e",
-  //   "#95ff95",
-  //   "#ffa081",
-  //   "#ffbf94",
-  //   "#ffb6ff",
-  //   "#bdff61",
-  //   "#ffe869",
-  //   "#bbff5d",
-  //   "#ffa0ff",
-  // ];
-
   const { data: featuredCategories } = useQuery<ApiResponseType<CategoryType>>({
     queryKey: [getFeaturedCategoryApiCall.name],
     queryFn: () => getFeaturedCategoryApiCall(),

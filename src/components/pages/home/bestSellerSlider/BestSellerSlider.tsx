@@ -1,12 +1,14 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { ImageView, Rating } from "@/components/common";
+import { ImageView } from "@/components/common";
 import Link from "next/link";
 import { BestSellerSlide } from "./bestSellerSlide/BestSellerSlide";
+import { EntityType } from "@/types";
+import { ProductType } from "@/types/api/Product";
 
 interface Props {
-  sliderData: Array<any>;
+  sliderData: Array<EntityType<ProductType>>;
 }
 
 export function BestSellerSlider({ sliderData }: Props) {
