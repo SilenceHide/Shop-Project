@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import Link from "next/link";
 import { IconBox, ImageView } from "@/components/common";
 import { EntityType, MenuItemType } from "@/types";

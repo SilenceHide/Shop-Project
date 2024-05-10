@@ -1,6 +1,6 @@
 import { IconBox, Logo } from "@/components";
 import Link from "next/link";
-import React, { MouseEvent, useEffect, useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import { SearchForm } from "./searchForm";
 import { Menu } from "./menu";
 import { useOverlay } from "@/hooks/useOverlay";

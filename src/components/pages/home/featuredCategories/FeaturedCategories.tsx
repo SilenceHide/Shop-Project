@@ -1,9 +1,8 @@
 import { FeaturedCategoriesSlider, ImageView } from "@/components";
 import Link from "next/link";
 import React from "react";
-import { featuredCategoriesMock } from "@/mock/featuredCategories";
-import { useQueries, useQuery } from "@tanstack/react-query";
-import { getFeaturedCategory } from "@/api/Category";
+import { useQuery } from "@tanstack/react-query";
+import { getFeaturedCategoryApiCall } from "@/api/Category";
 import { ApiResponseType, CategoryType, EntityType } from "@/types";
 
 export function FeaturedCategories() {
@@ -21,8 +20,8 @@ export function FeaturedCategories() {
   // ];
 
   const { data: featuredCategories } = useQuery<ApiResponseType<CategoryType>>({
-    queryKey: [getFeaturedCategory.name],
-    queryFn: () => getFeaturedCategory(),
+    queryKey: [getFeaturedCategoryApiCall.name],
+    queryFn: () => getFeaturedCategoryApiCall(),
   });
 
   return (
