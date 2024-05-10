@@ -1,32 +1,30 @@
-import { IconBox, ImageView, Logo } from "@/components";
+import { IconBox, Logo } from "@/components";
 import Link from "next/link";
-import React, { BaseSyntheticEvent, useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { SearchForm } from "./searchForm";
 import { Menu } from "./menu";
+import { useOverlay } from "@/hooks/useOverlay";
 
 export function Header() {
-  const [navOpen, isNavOpen] = useState(false);
+  const [navOpen, isNavOpen] = useState<boolean>(false);
 
-  const navOpenClickHandler = (e: Event | BaseSyntheticEvent) => {
+  const navOpenClickHandler = (e: MouseEvent) => {
     e.stopPropagation();
     isNavOpen((prevState) => !prevState);
   };
 
-  const menuClickHandler = (e: Event | BaseSyntheticEvent) => {
-    e.stopPropagation();
+  const menuClickHandler = (e: MouseEvent) => {
+    if (window.innerWidth <= 768) {
+      e.stopPropagation();
+    }
   };
 
-  useEffect(() => {
-    const clickHandler = () => {
+  useOverlay({
+    stateFunc: () => {
       isNavOpen(false);
-    };
-
-    document.addEventListener("click", clickHandler);
-
-    return () => {
-      document.removeEventListener("click", clickHandler);
-    };
-  }, []);
+    },
+    state: navOpen,
+  });
 
   return (
     <>

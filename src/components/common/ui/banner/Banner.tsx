@@ -15,7 +15,7 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
       className="hero_bg rounded-[30px] 2xl:h-[530px] bg-hero-bg mt-8 flex items-center justify-between sm:min-h-[250px] xs:min-h-[200px] min-h-[160px] lg:static relative"
     >
       <div className="hero_content 2xl:ml-20 md:ml-8 ml-6 flex flex-col flex-grow lg:basis-[70%]">
-        <h1 className="hero_title font-bold 2xl:text-6xl xl:text-5xl lg:text-4xl sm:text-3xl text-xl 2xl:mt-0 mt-6 lg:mr-0 md:mr-96 sm:mr-60 xs:mr-56 mr-32">
+        <h1 className="hero_title font-bold 2xl:text-6xl xl:text-5xl lg:text-4xl sm:text-3xl text-xl 2xl:mt-0 lg:mr-0 md:mr-96 sm:mr-60 xs:mr-56 mr-32">
           {title}
         </h1>
         <p className="hero_desc font-lato xl:text-3xl text-2xl text-text-body mt-8 xl:mb-16 mb-8 hidden lg:block">

@@ -1,8 +1,9 @@
-import React, { BaseSyntheticEvent, useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { IconBox, ImageView } from "@/components/common";
 import { EntityType, MenuItemType } from "@/types";
 import { useMenu } from "@/hooks/useMenu";
+import { useOverlay } from "@/hooks/useOverlay";
 
 export function Menu() {
   const [showCategoryMenu, setShowCategoryMenu] = useState<boolean>(false);
@@ -10,26 +11,20 @@ export function Menu() {
   const { data: mainMenuItems } = useMenu({ position: "main_menu" });
   const { data: browseCategoryMenuItems } = useMenu({ position: "brows-category" });
 
-  const categoryMenuBtnClickHandler = (e: Event | BaseSyntheticEvent) => {
+  const categoryMenuBtnClickHandler = (e: MouseEvent) => {
     e.stopPropagation();
     setShowCategoryMenu((prevState) => !prevState);
   };
 
-  const categoryBodyClickHandler = (e: Event | BaseSyntheticEvent) => {
+  const categoryBodyClickHandler = (e: MouseEvent) => {
     e.stopPropagation();
   };
 
-  useEffect(() => {
-    const clickHandler = () => {
+  useOverlay({
+    stateFunc: () => {
       setShowCategoryMenu(false);
-    };
-
-    document.addEventListener("click", clickHandler);
-
-    return () => {
-      document.removeEventListener("click", clickHandler);
-    };
-  }, []);
+    },
+  });
 
   return (
     <>

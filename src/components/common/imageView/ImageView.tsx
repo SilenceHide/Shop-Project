@@ -10,13 +10,27 @@ interface Props {
 }
 
 export function ImageView({ src, alt, width, height, className = "" }: Props) {
-  return (
-    <Image
-      className={className}
-      src={src}
-      alt={alt}
-      width={Number(width)}
-      height={Number(height)}
-    />
-  );
+  const isRemote = src.substring(0, 8) === "/uploads";
+
+  if (src.length > 0) {
+    return (
+      <Image
+        className={className}
+        src={`${isRemote ? "https://nest.navaxcollege.com" + src : src}`}
+        alt={alt}
+        width={Number(width)}
+        height={Number(height)}
+      />
+    );
+  } else {
+    return (
+      <Image
+        className={className}
+        src={"/images/section1/cat-9.png"}
+        alt={alt}
+        width={Number(width)}
+        height={Number(height)}
+      />
+    );
+  }
 }
