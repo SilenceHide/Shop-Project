@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge, IconBox, ImageView, Rating } from "@/components";
 import Link from "next/link";
 import { EntityType } from "@/types";
@@ -9,6 +9,8 @@ interface Props {
 }
 
 export function SimpleProductCard({ data }: Props) {
+  const [showAddInput, setShowAddInput] = useState<boolean>(false);
+
   return (
     <>
       {data.attributes.label && (
@@ -80,7 +82,10 @@ export function SimpleProductCard({ data }: Props) {
           )}
           <div className="product_add-btn_wrapper">
             <button
-              className="product_add-btn flex items-center justify-center gap-2 md:w-16 w-9 min-h-[32px] bg-[#DEF9EC] py-1 rounded text-brand-color-one hover:bg-brand-color-two transition-all hover:bg-opacity-40 "
+              onClick={() => setShowAddInput(true)}
+              className={`product_add-btn flex items-center justify-center gap-2 md:w-16 w-9 min-h-[32px] bg-[#DEF9EC] py-1 rounded text-brand-color-one hover:bg-brand-color-two transition-all hover:bg-opacity-40 ${
+                showAddInput ? "hidden" : "block"
+              }`}
               type="button"
             >
               <span className="product_add-span">
@@ -92,7 +97,9 @@ export function SimpleProductCard({ data }: Props) {
               name="number"
               min="1"
               value="1"
-              className="product_price-input md:max-w-16 max-w-9 hidden text-brand-color-one focus:outline-0 border border-brand-color-one rounded md:pl-4 pl-2 font-bold text-sm py-1 h-[32px]"
+              className={`product_price-input md:max-w-16 max-w-9  text-brand-color-one focus:outline-0 border border-brand-color-one rounded md:pl-4 pl-2 font-bold text-sm py-1 h-[32px] ${
+                showAddInput ? "block" : "hidden"
+              }`}
               max="100"
               maxLength={3}
             />

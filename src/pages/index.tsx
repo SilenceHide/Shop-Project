@@ -9,7 +9,6 @@ import {
   SimpleProductSlider,
 } from "@/components";
 import { ImageView } from "@/components";
-import { DealsOfTheDaysMock } from "@/mock/DealsOfTheDays";
 import { ApiResponseType } from "@/types";
 import { ProductType } from "@/types/api/Product";
 import { useQuery } from "@tanstack/react-query";
@@ -20,7 +19,7 @@ export default function Home() {
     queryFn: () =>
       getAllProductsApiCall({
         populate: ["categories", "thumbnail"],
-        filters: { is_popular: true },
+        filters: { is_popular: { $eq: true } },
       }),
   });
 
@@ -29,7 +28,7 @@ export default function Home() {
     queryFn: () =>
       getAllProductsApiCall({
         populate: ["categories", "thumbnail"],
-        filters: { is_popular_fruit: true },
+        filters: { is_popular_fruit: { $eq: true } },
       }),
   });
 
@@ -38,7 +37,16 @@ export default function Home() {
     queryFn: () =>
       getAllProductsApiCall({
         populate: ["categories", "thumbnail"],
-        filters: { is_best_seller: true },
+        filters: { is_best_seller: { $eq: true } },
+      }),
+  });
+
+  const { data: dealsData } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: [getAllProductsApiCall.name, "deals"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+        filters: { discount_expire_date: { $notNull: true } },
       }),
   });
 
@@ -140,14 +148,14 @@ export default function Home() {
       <Section className={"our-offers_section md:mt-16 mt-10"}>
         {bestSellerData && <BestSellerSlider sliderData={bestSellerData.data} />}
       </Section>
-      {/* 
-      <Section className={"deals_section md:mt-16 mt-8"}>
-        <DealsSlider sliderData={DealsOfTheDaysMock} />
-      </Section> */}
 
-      {/* <Section className={"category_section md:mt-[68px] mt-9"}>
+      <Section className={"deals_section md:mt-16 mt-8 "}>
+        {dealsData && <DealsSlider sliderData={dealsData.data} />}
+      </Section>
+
+      <Section className={"category_section md:mt-[68px] mt-9"}>
         <CategorySlider />
-      </Section> */}
+      </Section>
     </>
   );
 }
