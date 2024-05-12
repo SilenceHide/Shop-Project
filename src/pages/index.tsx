@@ -1,3 +1,5 @@
+import { getFeaturedCategoryApiCall } from "@/api/Category";
+import { getMenuApiCall } from "@/api/Menu";
 import { getAllProductsApiCall } from "@/api/Product";
 import {
   Banner,
@@ -11,7 +13,7 @@ import {
 import { ImageView } from "@/components";
 import { ApiResponseType } from "@/types";
 import { ProductType } from "@/types/api/Product";
-import { useQuery } from "@tanstack/react-query";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 
 export default function Home() {
   const { data: popularProductsData } = useQuery<ApiResponseType<ProductType>>({
@@ -158,4 +160,113 @@ export default function Home() {
       </Section>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: [getMenuApiCall.name],
+    queryFn: getMenuApiCall,
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: [getFeaturedCategoryApiCall.name],
+    queryFn: () => getFeaturedCategoryApiCall(),
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: [getAllProductsApiCall.name, "popular-products"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+        filters: { is_popular: { $eq: true } },
+      }),
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: [getAllProductsApiCall.name, "popular-fruits"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+        filters: { is_popular_fruit: { $eq: true } },
+      }),
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: [getAllProductsApiCall.name, "best-seller"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+        filters: { is_best_seller: { $eq: true } },
+      }),
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: [getAllProductsApiCall.name, "deals"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+        filters: { discount_expire_date: { $notNull: true } },
+      }),
+  });
+
+  // await queryClient.prefetchQuery({
+  //   queryKey: [getAllProductsApiCall.name, "top-selling"],
+  //   queryFn: () =>
+  //     getAllProductsApiCall({
+  //       populate: ["thumbnail"],
+  //       filters: { is_top_selling: { $notNull: true } },
+  //       pagination: {
+  //         withCount: false,
+  //         start: 12,
+  //         limit: 3,
+  //       },
+  //     }),
+  // });
+
+  // await queryClient.prefetchQuery({
+  //   queryKey: [getAllProductsApiCall.name, "trending"],
+  //   queryFn: () =>
+  //     getAllProductsApiCall({
+  //       populate: ["thumbnail"],
+  //       filters: { is_trending: { $notNull: true } },
+  //       pagination: {
+  //         withCount: false,
+  //         start: 1,
+  //         limit: 3,
+  //       },
+  //     }),
+  // });
+
+  // await queryClient.prefetchQuery({
+  //   queryKey: [getAllProductsApiCall.name, "recently-added"],
+  //   queryFn: () =>
+  //     getAllProductsApiCall({
+  //       populate: ["thumbnail"],
+  //       pagination: {
+  //         withCount: false,
+  //         page: 1,
+  //         pageSize: 3,
+  //       },
+  //     }),
+  // });
+
+  // await queryClient.prefetchQuery({
+  //   queryKey: [getAllProductsApiCall.name, "top-rated"],
+  //   queryFn: () =>
+  //     getAllProductsApiCall({
+  //       populate: ["thumbnail"],
+  //       sort: ["rate:desc"],
+  //       pagination: {
+  //         withCount: false,
+  //         page: 1,
+  //         pageSize: 3,
+  //       },
+  //     }),
+  // });
+
+  return {
+    props: { dehydratedState: dehydrate(queryClient) },
+  };
 }

@@ -7,7 +7,10 @@ interface Props {
 }
 
 export function useMenu({ position }: Props) {
-  const { data: menuData } = useQuery({ queryKey: ["get-menu"], queryFn: () => getMenuApiCall() });
+  const { data: menuData } = useQuery({
+    queryKey: [getMenuApiCall.name],
+    queryFn: () => getMenuApiCall(),
+  });
 
   let menuItems: null | PopulateType<MenuItemType> = null;
 
