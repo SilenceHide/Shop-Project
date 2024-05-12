@@ -6,9 +6,12 @@ import { useQuery } from "@tanstack/react-query";
 import { ApiResponseType } from "@/types";
 import { ProductType } from "@/types/api/Product";
 import { getAllProductsApiCall } from "@/api/Product";
+import { InView } from "react-intersection-observer";
 
 export function CategorySlider() {
-  const { data: topSellingData } = useQuery<ApiResponseType<ProductType>>({
+  const { data: topSellingData, refetch: topSellingDataRefetch } = useQuery<
+    ApiResponseType<ProductType>
+  >({
     queryKey: [getAllProductsApiCall.name, "top-selling"],
     queryFn: () =>
       getAllProductsApiCall({
@@ -20,9 +23,12 @@ export function CategorySlider() {
           limit: 3,
         },
       }),
+    enabled: false,
   });
 
-  const { data: trendingProductData } = useQuery<ApiResponseType<ProductType>>({
+  const { data: trendingProductData, refetch: trendingProductDataRefetch } = useQuery<
+    ApiResponseType<ProductType>
+  >({
     queryKey: [getAllProductsApiCall.name, "trending"],
     queryFn: () =>
       getAllProductsApiCall({
@@ -34,9 +40,12 @@ export function CategorySlider() {
           limit: 3,
         },
       }),
+    enabled: false,
   });
 
-  const { data: recentlyAddedData } = useQuery<ApiResponseType<ProductType>>({
+  const { data: recentlyAddedData, refetch: recentlyAddedDataRefetch } = useQuery<
+    ApiResponseType<ProductType>
+  >({
     queryKey: [getAllProductsApiCall.name, "recently-added"],
     queryFn: () =>
       getAllProductsApiCall({
@@ -47,9 +56,12 @@ export function CategorySlider() {
           pageSize: 3,
         },
       }),
+    enabled: false,
   });
 
-  const { data: topRatedData } = useQuery<ApiResponseType<ProductType>>({
+  const { data: topRatedData, refetch: topRatedDataRefetch } = useQuery<
+    ApiResponseType<ProductType>
+  >({
     queryKey: [getAllProductsApiCall.name, "top-rated"],
     queryFn: () =>
       getAllProductsApiCall({
@@ -61,50 +73,64 @@ export function CategorySlider() {
           pageSize: 3,
         },
       }),
+    enabled: false,
   });
 
   return (
-    <Swiper
-      slidesPerView={1.15}
-      spaceBetween={25}
-      loop={true}
-      breakpoints={{
-        540: {
-          slidesPerView: 2,
-          spaceBetween: 25,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 25,
-        },
-        1536: {
-          loop: false,
-          slidesPerView: 4,
-          spaceBetween: 25,
-        },
+    <InView
+      as="div"
+      onChange={(inView, entry) => {
+        inView && topSellingDataRefetch();
+        inView && trendingProductDataRefetch();
+        inView && recentlyAddedDataRefetch();
+        inView && topRatedDataRefetch();
       }}
-      className="category_slider"
     >
-      <SwiperSlide className="category-slide ">
-        {topSellingData && (
-          <CategoryVerticalList title={"Top Selling"} sliderData={topSellingData.data} />
-        )}
-      </SwiperSlide>
-      <SwiperSlide className="category-slide ">
-        {trendingProductData && (
-          <CategoryVerticalList title={"Trending Products"} sliderData={trendingProductData.data} />
-        )}
-      </SwiperSlide>
-      <SwiperSlide className="category-slide ">
-        {recentlyAddedData && (
-          <CategoryVerticalList title={"Recently added"} sliderData={recentlyAddedData.data} />
-        )}
-      </SwiperSlide>
-      <SwiperSlide className="category-slide ">
-        {topRatedData && (
-          <CategoryVerticalList title={"Top Rated"} sliderData={topRatedData.data} />
-        )}
-      </SwiperSlide>
-    </Swiper>
+      <Swiper
+        slidesPerView={1.15}
+        spaceBetween={25}
+        loop={true}
+        breakpoints={{
+          540: {
+            slidesPerView: 2,
+            spaceBetween: 25,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 25,
+          },
+          1536: {
+            loop: false,
+            slidesPerView: 4,
+            spaceBetween: 25,
+          },
+        }}
+        className="category_slider"
+      >
+        <SwiperSlide className="category-slide ">
+          {topSellingData && (
+            <CategoryVerticalList title={"Top Selling"} sliderData={topSellingData.data} />
+          )}
+        </SwiperSlide>
+        <SwiperSlide className="category-slide ">
+          {trendingProductData && (
+            <CategoryVerticalList
+              title={"Trending Products"}
+              sliderData={trendingProductData.data}
+            />
+          )}
+        </SwiperSlide>
+        <SwiperSlide className="category-slide ">
+          {recentlyAddedData && (
+            <CategoryVerticalList title={"Recently added"} sliderData={recentlyAddedData.data} />
+          )}
+        </SwiperSlide>
+        <SwiperSlide className="category-slide ">
+          {topRatedData && (
+            <CategoryVerticalList title={"Top Rated"} sliderData={topRatedData.data} />
+          )}
+        </SwiperSlide>
+      </Swiper>
+    </InView>
   );
 }
