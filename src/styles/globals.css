@@ -233,6 +233,17 @@
     z-index: 1;
   }
 
+  input[type="search"]::-webkit-search-cancel-button {
+    filter: hue-rotate(250deg);
+    -webkit-filter: hue-rotate(250deg);
+    cursor: pointer;
+  }
+
+  input[type="search"]:focus::-webkit-search-cancel-button {
+    filter: hue-rotate(250deg);
+    -webkit-filter: hue-rotate(250deg);
+  }
+
   .menu_wrapper::-webkit-scrollbar {
     display: none;
   }

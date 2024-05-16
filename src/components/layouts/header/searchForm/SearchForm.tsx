@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IconBox } from "@/components/common";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -6,6 +6,7 @@ import { getAllProductsApiCall } from "@/api/Product";
 import { EntityType } from "@/types";
 import { ProductType } from "@/types/api/Product";
 import Link from "next/link";
+import { useDebounce } from "@/hooks/useDebounce";
 
 interface FormInput {
   search_box_input: string;
@@ -20,13 +21,26 @@ export function SearchForm() {
 
   const [searchResultData, setSearchResultData] = useState<Array<EntityType<ProductType>>>([]);
 
-  const { register, handleSubmit } = useForm<FormInput>();
+  const { register, handleSubmit, watch } = useForm<FormInput>();
 
   const mutation = useMutation({
     mutationFn: (data: FilterData) => getAllProductsApiCall({ filters: data }),
   });
 
+  const searchBoxText = watch("search_box_input");
+
+  useEffect(() => {
+    if (searchBoxText) {
+      delayApiCall();
+    } else {
+      setSearchResultData([]);
+    }
+  }, [searchBoxText]);
+
   const formOnSubmit = (data: FormInput) => {
+    if (data.search_box_input.length <= 1) {
+      return;
+    }
     mutation.mutate(
       {
         title: {
@@ -40,6 +54,8 @@ export function SearchForm() {
       },
     );
   };
+
+  const delayApiCall = useDebounce(handleSubmit(formOnSubmit), 1000);
 
   return (
     <div className="header_search-box_wrapper relative">
@@ -57,6 +73,7 @@ export function SearchForm() {
           }`}
           placeholder="Search for items"
           {...register("search_box_input")}
+          autoComplete="off"
         />
         <button
           type="submit"
