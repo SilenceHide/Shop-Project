@@ -3,3 +3,5 @@ export * from "./banner";
 export * from "./rating";
 export * from "./badge";
 export * from "./iconBox";
+export * from "./modal";
+export * from "./portal";

@@ -4,6 +4,9 @@ import React, { MouseEvent, useState } from "react";
 import { SearchForm } from "./searchForm";
 import { Menu } from "./menu";
 import { useOverlay } from "@/hooks/useOverlay";
+import Modal from "@/components/common/ui/modal/Modal";
+import Login from "@/pages/login";
+import LoginModal from "@/components/common/auth/LoginModal";
 
 export function Header() {
   const [navOpen, isNavOpen] = useState<boolean>(false);
