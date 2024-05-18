@@ -4,19 +4,14 @@ import React, { MouseEvent, useState } from "react";
 import { SearchForm } from "./searchForm";
 import { Menu } from "./menu";
 import { useOverlay } from "@/hooks/useOverlay";
-import Modal from "@/components/common/ui/modal/Modal";
-import Login from "@/pages/login";
 import LoginModal from "@/components/common/auth/LoginModal";
 import RegisterModal from "@/components/common/auth/RegisterModal";
+import { useModal } from "@/store/ModalContext";
 
 export function Header() {
   const [navOpen, isNavOpen] = useState<boolean>(false);
 
-  const [showModal, setShowModal] = useState<"login" | "register" | null>(null);
-
-  const onCloseHandler = () => {
-    setShowModal(null);
-  };
+  const { currentModal, openModal } = useModal();
 
   const navOpenClickHandler = (e: MouseEvent) => {
     e.stopPropagation();
@@ -39,12 +34,8 @@ export function Header() {
   return (
     <>
       <header className="header border-b-gray-300 border-b">
-        {showModal === "login" && (
-          <LoginModal onClose={onCloseHandler} setShowModal={setShowModal} />
-        )}
-        {showModal === "register" && (
-          <RegisterModal onClose={onCloseHandler} setShowModal={setShowModal} />
-        )}
+        {currentModal === "login" && <LoginModal />}
+        {currentModal === "register" && <RegisterModal />}
         <div className="container">
           <div className="header_wrapper lg:mt-8 mt-3 text-text-body">
             <div className="header_content flex lg:mb-8 mb-[12px] items-center flex-wrap lg:flex-nowrap">
@@ -62,7 +53,7 @@ export function Header() {
                   <div className="header_account flex mr-7">
                     <p
                       className="header_account-link flex items-center cursor-pointer"
-                      onClick={() => setShowModal("login")}
+                      onClick={() => openModal("login")}
                     >
                       <IconBox
                         icon={"icon-user"}

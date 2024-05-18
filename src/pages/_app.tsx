@@ -7,6 +7,7 @@ import { Layout } from "@/components";
 import { HydrationBoundary, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import { useState } from "react";
+import { ModalContextProvider } from "@/store/ModalContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -26,18 +27,20 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <HydrationBoundary state={pageProps.dehydratedState}>
-        <div id={"portal"}></div>
-        <Layout>
-          <Component {...pageProps} />
-          <ToastContainer
-            autoClose={false}
-            hideProgressBar={false}
-            closeOnClick={true}
-            draggable={false}
-            theme="light"
-            position="top-right"
-          />
-        </Layout>
+        <ModalContextProvider>
+          <div id={"portal"}></div>
+          <Layout>
+            <Component {...pageProps} />
+            <ToastContainer
+              autoClose={false}
+              hideProgressBar={false}
+              closeOnClick={true}
+              draggable={false}
+              theme="light"
+              position="top-right"
+            />
+          </Layout>
+        </ModalContextProvider>
       </HydrationBoundary>
     </QueryClientProvider>
   );

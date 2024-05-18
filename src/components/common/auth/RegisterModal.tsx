@@ -1,15 +1,13 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import Modal from "../ui/modal/Modal";
 import Link from "next/link";
+import { useModal } from "@/store/ModalContext";
 
-interface Props {
-  onClose: () => void;
-  setShowModal: Dispatch<SetStateAction<"login" | "register" | null>>;
-}
+export default function RegisterModal() {
+  const { openModal, closeModal } = useModal();
 
-export default function RegisterModal({ onClose, setShowModal }: Props) {
   return (
-    <Modal title="Register" closeModal={onClose}>
+    <Modal title="Register" closeModal={closeModal}>
       <form className="font-lato max-w-[480px] h-full">
         <p className="mb-5 text-xs text-text-body-2">
           Your personal data will be used to support your experience throughout this website, to
@@ -17,7 +15,7 @@ export default function RegisterModal({ onClose, setShowModal }: Props) {
         </p>
         <p
           className="text-sm text-brand-color-one font-bold cursor-pointer mb-5"
-          onClick={() => setShowModal("login")}
+          onClick={() => openModal("login")}
         >
           I have an account
         </p>

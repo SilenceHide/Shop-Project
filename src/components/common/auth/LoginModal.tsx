@@ -1,22 +1,20 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import Modal from "../ui/modal/Modal";
 import Link from "next/link";
+import { useModal } from "@/store/ModalContext";
 
-interface Props {
-  onClose: () => void;
-  setShowModal: Dispatch<SetStateAction<"login" | "register" | null>>;
-}
+export default function LoginModal() {
+  const { openModal, closeModal } = useModal();
 
-export default function LoginModal({ onClose, setShowModal }: Props) {
   return (
-    <Modal title="Login" closeModal={onClose}>
+    <Modal title="Login" closeModal={closeModal}>
       <form className="max-w-[480px] h-full">
         <div className="font-lato">
           <p className="text-sm text-text-body-2 mb-10">
             Don't have an account?{" "}
             <span
               className="text-brand-color-one font-bold cursor-pointer"
-              onClick={() => setShowModal("register")}
+              onClick={() => openModal("register")}
             >
               Create here
             </span>
