@@ -39,7 +39,7 @@ export default function Login() {
               type="number"
               placeholder="Security code *"
               aria-label="securityCode"
-              className="placeholder:text-text-body-2  border border-border-gray rounded-xl px-9 h-[64px] w-full mb-6"
+              className="placeholder:text-text-body-2  border border-border-gray rounded-xl sm:px-9 px-4 h-[64px] w-full mb-6"
             />
             <div className="rounded-xl min-w-[115px] h-[65px] bg-border-light-green flex items-center justify-center">
               <p className="text-2xl font-bold">
