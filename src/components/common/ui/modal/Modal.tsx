@@ -20,7 +20,7 @@ export default function Modal({ children, title, closeModal }: Props) {
             &times;
           </div>
         </div>
-        <div className="flex 2xs:px-8 2xs:pb-8 px-4 pb-4 text-[18px] bg-white w-full overflow-y-scroll max-h-[500px]">
+        <div className="flex 2xs:px-8 2xs:pb-8 px-4 pb-4 text-[18px] bg-white w-full overflow-y-auto  max-h-[500px]">
           {children}
         </div>
       </div>
