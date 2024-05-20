@@ -3,12 +3,16 @@ import Modal from "../ui/modal/Modal";
 import Link from "next/link";
 import { useModal } from "@/store/ModalContext";
 import { useForm } from "react-hook-form";
+import ErrorMessage from "../ui/form/ErrorMessage";
+import { stringify } from "postcss";
+import Input from "../ui/form/Input";
 
 interface FormData {
   username: string;
   email: string;
   password: string;
   re_password: string;
+  security: number;
 }
 
 export default function RegisterModal() {
@@ -21,7 +25,7 @@ export default function RegisterModal() {
   } = useForm<FormData>();
 
   const onFormSubmit = (data: FormData) => {
-    console.log(data);
+    // console.log(data);
   };
 
   return (
@@ -37,44 +41,59 @@ export default function RegisterModal() {
         >
           I have an account
         </p>
-        <input
+
+        <Input
           type={"text"}
-          id={"username"}
-          aria-label="username"
-          placeholder="Username"
-          className="placeholder:text-text-body-2  border border-border-gray rounded-xl px-9 h-[64px] w-full mb-6"
-          {...register("username", { required: true, minLength: 7 })}
+          placeholder="Username *"
+          register={register("username", {
+            required: "Please Enter Your Username",
+            minLength: 7,
+          })}
+          errors={errors}
         />
-        <input
+        <Input
           type={"email"}
-          id={"email"}
-          aria-label="email"
-          placeholder="Email"
-          className="placeholder:text-text-body-2  border border-border-gray rounded-xl px-9 h-[64px] w-full mb-6"
-          {...register("email", { required: "Please Enter Your Email" })}
+          placeholder="Email *"
+          register={register("email", { required: "Please Enter Your Email" })}
+          errors={errors}
         />
-        <input
+        <Input
           type={"password"}
-          id={"password"}
-          aria-label="password"
-          placeholder="Password"
-          className="placeholder:text-text-body-2 placeholder:text-base placeholder:font-lato placeholder:tracking-normal border border-border-gray rounded-xl px-9 h-[64px] w-full mb-6"
-          {...register("password", { required: true, minLength: 8, maxLength: 15 })}
+          placeholder="Password *"
+          register={register("password", {
+            required: "Please Enter Your Password ",
+            minLength: 8,
+            maxLength: 15,
+          })}
+          errors={errors}
         />
-        <input
+        <Input
           type={"password"}
-          id={"password-repeat"}
-          aria-label="password"
-          placeholder="Confirm password"
-          className="placeholder:text-text-body-2 placeholder:text-base placeholder:font-lato placeholder:tracking-normal border border-border-gray rounded-xl px-9 h-[64px] w-full mb-6"
-          {...register("re_password", { required: true, minLength: 8, maxLength: 15 })}
+          placeholder="Confirm password *"
+          register={register("re_password", {
+            required: "Please Repeat Your Password ",
+            minLength: 8,
+            maxLength: 15,
+          })}
+          errors={errors}
         />
+
         <div className="flex gap-5">
-          <input
+          {/* <input
             type="number"
             aria-label="securityCode"
             placeholder="Security code *"
             className="placeholder:text-text-body-2  border border-border-gray rounded-xl px-9 h-[64px] w-full mb-6"
+          /> */}
+          <Input
+            type={"number"}
+            placeholder="Security code *"
+            register={register("security", {
+              required: "Please Enter The Security Number",
+              minLength: 4,
+              maxLength: 4,
+            })}
+            errors={errors}
           />
           <div className="rounded-xl min-w-[115px] h-[65px] bg-border-light-green flex items-center justify-center">
             <p className="text-2xl font-bold">

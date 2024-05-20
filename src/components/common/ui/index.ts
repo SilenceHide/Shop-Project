@@ -5,3 +5,4 @@ export * from "./badge";
 export * from "./iconBox";
 export * from "./modal";
 export * from "./portal";
+export * from "./form";
