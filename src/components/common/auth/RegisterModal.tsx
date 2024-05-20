@@ -79,12 +79,6 @@ export default function RegisterModal() {
         />
 
         <div className="flex gap-5">
-          {/* <input
-            type="number"
-            aria-label="securityCode"
-            placeholder="Security code *"
-            className="placeholder:text-text-body-2  border border-border-gray rounded-xl px-9 h-[64px] w-full mb-6"
-          /> */}
           <Input
             type={"number"}
             placeholder="Security code *"
