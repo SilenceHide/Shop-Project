@@ -3,9 +3,9 @@ import Modal from "../ui/modal/Modal";
 import Link from "next/link";
 import { useModal } from "@/store/ModalContext";
 import { useForm } from "react-hook-form";
-import ErrorMessage from "../ui/form/ErrorMessage";
-import { stringify } from "postcss";
 import Input from "../ui/form/Input";
+import { useMutation } from "@tanstack/react-query";
+import { registerApiCall } from "@/api/Auth";
 
 interface FormData {
   username: string;
@@ -24,8 +24,14 @@ export default function RegisterModal() {
     formState: { errors },
   } = useForm<FormData>();
 
+  const mutate = useMutation({ mutationFn: registerApiCall });
+
   const onFormSubmit = (data: FormData) => {
-    // console.log(data);
+    mutate.mutate(data, {
+      onSuccess: (response) => {
+        console.log("response", response);
+      },
+    });
   };
 
   return (
@@ -44,7 +50,7 @@ export default function RegisterModal() {
 
         <Input
           type={"text"}
-          placeholder="Username *"
+          {...{ placeholder: "Username *" }}
           register={register("username", {
             required: "Please Enter Your Username",
             minLength: 7,
@@ -53,13 +59,13 @@ export default function RegisterModal() {
         />
         <Input
           type={"email"}
-          placeholder="Email *"
+          {...{ placeholder: "Email *" }}
           register={register("email", { required: "Please Enter Your Email" })}
           errors={errors}
         />
         <Input
           type={"password"}
-          placeholder="Password *"
+          {...{ placeholder: "Password *" }}
           register={register("password", {
             required: "Please Enter Your Password ",
             minLength: 8,
@@ -69,7 +75,7 @@ export default function RegisterModal() {
         />
         <Input
           type={"password"}
-          placeholder="Confirm password *"
+          {...{ placeholder: "Confirm password *" }}
           register={register("re_password", {
             required: "Please Repeat Your Password ",
             minLength: 8,
@@ -81,7 +87,7 @@ export default function RegisterModal() {
         <div className="flex gap-5">
           <Input
             type={"number"}
-            placeholder="Security code *"
+            {...{ placeholder: "Security code *" }}
             register={register("security", {
               required: "Please Enter The Security Number",
               minLength: 4,

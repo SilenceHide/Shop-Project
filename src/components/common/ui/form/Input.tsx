@@ -2,10 +2,9 @@ import React from "react";
 import { FieldErrors, UseFormRegisterReturn } from "react-hook-form";
 import ErrorMessage from "./ErrorMessage";
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLInputElement> {
   type?: "text" | "email" | "password" | "tel" | "number";
   label?: string;
-  placeholder?: string;
   className?: string;
   register: UseFormRegisterReturn<any>;
   errors: FieldErrors<any>;
@@ -14,10 +13,10 @@ interface Props {
 export default function Input({
   type = "text",
   label,
-  placeholder = "",
   className,
   register,
   errors,
+  ...rest
 }: Props) {
   const name = register.name;
   let hasError = false;
@@ -30,11 +29,11 @@ export default function Input({
     <div className="flex flex-col mb-6 gap-1">
       <input
         type={type}
-        placeholder={placeholder}
         className={`placeholder:text-text-body-2 border  rounded-xl px-9 h-[64px] w-full placeholder:text-base placeholder:font-lato placeholder:tracking-normal ${
           hasError ? "border-danger-system-color" : "border-border-gray"
         }`}
         {...register}
+        {...rest}
       />
       <ErrorMessage errors={errors} name={name} />
     </div>
