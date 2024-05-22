@@ -1,12 +1,20 @@
-import { RegisterResponseType } from "@/types";
+import { AuthResponseType } from "@/types";
 import apiClient from "./config/ApiClient";
 
-interface Data {
+interface RegisterData {
   username: string;
   email: string;
   password: string;
 }
+interface LoginData {
+  identifier: string;
+  password: string;
+}
 
-export function registerApiCall(data: Data): Promise<RegisterResponseType> {
+export function registerApiCall(data: RegisterData): Promise<AuthResponseType> {
   return apiClient.post("/auth/local/register", data);
+}
+
+export function loginApiCall(data: LoginData): Promise<AuthResponseType> {
+  return apiClient.post("/auth/local", data);
 }

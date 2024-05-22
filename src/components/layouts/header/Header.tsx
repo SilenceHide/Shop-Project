@@ -7,8 +7,12 @@ import { useOverlay } from "@/hooks/useOverlay";
 import LoginModal from "@/components/common/auth/LoginModal";
 import RegisterModal from "@/components/common/auth/RegisterModal";
 import { useModal } from "@/store/ModalContext";
+import { useUser } from "@/store/AuthContext";
+import { toast } from "react-toastify";
 
 export function Header() {
+  const { isLogin, logout } = useUser();
+
   const [navOpen, isNavOpen] = useState<boolean>(false);
 
   const { currentModal, openModal } = useModal();
@@ -30,6 +34,15 @@ export function Header() {
     },
     state: navOpen,
   });
+
+  const accountHandler = () => {
+    if (isLogin) {
+      logout();
+      toast.success("Logout Successfully");
+    } else {
+      openModal("login");
+    }
+  };
 
   return (
     <>
@@ -53,14 +66,16 @@ export function Header() {
                   <div className="header_account flex mr-7">
                     <p
                       className="header_account-link flex items-center cursor-pointer"
-                      onClick={() => openModal("login")}
+                      onClick={accountHandler}
                     >
                       <IconBox
                         icon={"icon-user"}
                         size={"text-[26px]"}
                         className={"text-text-heading"}
                       />
-                      <span className="account_title ml-1 lg:inline-block hidden">Account</span>
+                      <span className="account_title ml-1 lg:inline-block hidden">
+                        {isLogin ? "Logout" : "Account"}
+                      </span>
                     </p>
                   </div>
                   <div className="header_cart flex">

@@ -2,13 +2,47 @@ import React from "react";
 import Modal from "../ui/modal/Modal";
 import Link from "next/link";
 import { useModal } from "@/store/ModalContext";
+import Input from "../ui/form/Input";
+import { useUser } from "@/store/AuthContext";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { loginApiCall } from "@/api/Auth";
+import { toast } from "react-toastify";
+
+interface FormData {
+  identifier: string;
+  password: string;
+  security: number;
+}
 
 export default function LoginModal() {
   const { openModal, closeModal } = useModal();
 
+  const { login, isLogin } = useUser();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  const mutate = useMutation({ mutationFn: loginApiCall });
+
+  // console.log(isLogin);
+  const onFormSubmit = (data: FormData) => {
+    mutate.mutate(data, {
+      onSuccess: (response) => {
+        // console.log("response", response);
+        login(response.jwt, response.user);
+        toast.success("Login Successfully");
+        closeModal();
+      },
+    });
+  };
+
   return (
     <Modal title="Login" closeModal={closeModal}>
-      <form className="max-w-[480px] h-full">
+      <form className="max-w-[480px] h-full" onSubmit={handleSubmit(onFormSubmit)}>
         <div className="font-lato">
           <p className="text-sm text-text-body-2 mb-10">
             Don't have an account?{" "}
@@ -19,24 +53,37 @@ export default function LoginModal() {
               Create here
             </span>
           </p>
-          <input
-            type="text"
-            placeholder="Username or Email *"
-            aria-label="email"
-            className="placeholder:text-text-body-2  border border-border-gray rounded-xl px-9 h-[64px] w-full mb-6"
+
+          <Input
+            type={"text"}
+            {...{ placeholder: "Username or Email *" }}
+            register={register("identifier", {
+              required: "Please Enter Your Username",
+              minLength: 6,
+            })}
+            errors={errors}
           />
-          <input
-            type="password"
-            placeholder="Your password *"
-            aria-label="password"
-            className="placeholder:text-text-body-2 placeholder:text-base placeholder:font-lato placeholder:tracking-normal border border-border-gray rounded-xl px-9 h-[64px] w-full mb-6"
+          <Input
+            type={"password"}
+            {...{ placeholder: "Your password *" }}
+            register={register("password", {
+              required: "Please Enter Your Password ",
+              minLength: 8,
+              maxLength: 15,
+            })}
+            errors={errors}
           />
+
           <div className="flex gap-5">
-            <input
-              type="number"
-              placeholder="Security code *"
-              aria-label="securityCode"
-              className="placeholder:text-text-body-2  border border-border-gray rounded-xl px-9 h-[64px] w-full mb-6"
+            <Input
+              type={"number"}
+              {...{ placeholder: "Security code *" }}
+              register={register("security", {
+                required: "Please Enter The Security Number",
+                minLength: 4,
+                maxLength: 4,
+              })}
+              errors={errors}
             />
             <div className="rounded-xl min-w-[115px] h-[65px] bg-border-light-green flex items-center justify-center">
               <p className="text-2xl font-bold">

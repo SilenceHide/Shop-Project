@@ -7,6 +7,7 @@ import Input from "../ui/form/Input";
 import { useMutation } from "@tanstack/react-query";
 import { registerApiCall } from "@/api/Auth";
 import { useUser } from "@/store/AuthContext";
+import { toast } from "react-toastify";
 
 interface FormData {
   username: string;
@@ -29,12 +30,14 @@ export default function RegisterModal() {
 
   const mutate = useMutation({ mutationFn: registerApiCall });
 
-  console.log(isLogin);
+  // console.log(isLogin);
   const onFormSubmit = (data: FormData) => {
     mutate.mutate(data, {
       onSuccess: (response) => {
-        console.log("response", response);
+        // console.log("response", response);
         login(response.jwt, response.user);
+        toast.success("Register Successfully");
+        closeModal();
       },
     });
   };
@@ -58,7 +61,7 @@ export default function RegisterModal() {
           {...{ placeholder: "Username *" }}
           register={register("username", {
             required: "Please Enter Your Username",
-            minLength: 7,
+            minLength: 6,
           })}
           errors={errors}
         />
