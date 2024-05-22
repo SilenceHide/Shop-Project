@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import Input from "../ui/form/Input";
 import { useMutation } from "@tanstack/react-query";
 import { registerApiCall } from "@/api/Auth";
+import { useUser } from "@/store/AuthContext";
 
 interface FormData {
   username: string;
@@ -18,6 +19,8 @@ interface FormData {
 export default function RegisterModal() {
   const { openModal, closeModal } = useModal();
 
+  const { login, isLogin } = useUser();
+
   const {
     register,
     handleSubmit,
@@ -26,10 +29,12 @@ export default function RegisterModal() {
 
   const mutate = useMutation({ mutationFn: registerApiCall });
 
+  console.log(isLogin);
   const onFormSubmit = (data: FormData) => {
     mutate.mutate(data, {
       onSuccess: (response) => {
         console.log("response", response);
+        login(response.jwt, response.user);
       },
     });
   };
