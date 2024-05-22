@@ -29,21 +29,9 @@ export default function AddProductInput({ productData }: Props) {
           <span className="hidden md:inline-block">Add</span>+
         </span>
       </button>
-      {/* <input
-        type="number"
-        name="number"
-        min="1"
-        max="100"
-        className={`product_price-input md:max-w-16 max-w-9  text-brand-color-one focus:outline-0 border border-brand-color-one rounded md:pl-4 pl-2 font-bold text-sm py-1 h-[32px] ${
-          showAddInput ? "block" : "hidden"
-        }`}
-        maxLength={3}
-      /> */}
+
       <div
-        // className={`product_price-input md:max-w-16 max-w-9 text-brand-color-one border border-brand-color-one rounded font-bold text-sm overflow-hidden h-[32px] py-1 md:px-3 px-1 flex ${
-        //   showAddInput ? "block" : "hidden"
-        // }`}
-        className={`product_price-input md:max-w-16 max-w-9 text-brand-color-one border border-brand-color-one rounded font-bold text-sm overflow-hidden h-[32px] py-1 md:px-3 px-1  ${
+        className={`product_price-input md:max-w-16 max-w-9  text-brand-color-one focus:outline-0 border border-brand-color-one rounded md:px-3 px-2 font-bold text-sm py-1 h-[32px] items-center justify-center ${
           showAddInput ? "flex" : "hidden"
         }`}
       >
@@ -52,13 +40,13 @@ export default function AddProductInput({ productData }: Props) {
           name="number"
           min="1"
           max="100"
-          value={1}
           maxLength={3}
-          className="w-full focus:outline-0 "
+          value={1}
+          className="w-full"
         />
         <div className="flex flex-col justify-between">
-          <IconBox icon="up icon-angle-small-up" size="10" />
-          <IconBox icon="down icon-angle-small-down" size="10" />
+          <IconBox icon="up icon-angle-small-up" size="10" className="cursor-pointer" />
+          <IconBox icon="down icon-angle-small-down" size="10" className="cursor-pointer" />
         </div>
       </div>
     </div>
