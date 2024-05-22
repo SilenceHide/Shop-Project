@@ -19,9 +19,12 @@
   input {
     outline: none;
   }
-
+  /* 
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
+  } */
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 
   input[type="checkbox"] {
@@ -91,7 +94,7 @@
     vertical-align: middle;
   }
 
-  input.cart_input-number:focus {
+  /* input.cart_input-number:focus {
     position: relative;
     background-image: url("../../public/images/section3/input-arrows.png");
     background-position: center right;
@@ -127,7 +130,7 @@
     height: 40px;
     width: 25px;
     cursor: pointer;
-  }
+  } */
 
   input[type="radio"] {
     appearance: none;

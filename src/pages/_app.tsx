@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 import { ModalContextProvider } from "@/store/ModalContext";
 import AuthContextProvider from "@/store/AuthContext";
+import BasketContextProvider from "@/store/BasketContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -29,20 +30,22 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <HydrationBoundary state={pageProps.dehydratedState}>
         <AuthContextProvider>
-          <ModalContextProvider>
-            <div id={"portal"}></div>
-            <Layout>
-              <Component {...pageProps} />
-              <ToastContainer
-                // autoClose={true}
-                hideProgressBar={false}
-                closeOnClick={true}
-                draggable={false}
-                theme="light"
-                position="top-right"
-              />
-            </Layout>
-          </ModalContextProvider>
+          <BasketContextProvider>
+            <ModalContextProvider>
+              <div id={"portal"}></div>
+              <Layout>
+                <Component {...pageProps} />
+                <ToastContainer
+                  // autoClose={true}
+                  hideProgressBar={false}
+                  closeOnClick={true}
+                  draggable={false}
+                  theme="light"
+                  position="top-right"
+                />
+              </Layout>
+            </ModalContextProvider>
+          </BasketContextProvider>
         </AuthContextProvider>
       </HydrationBoundary>
     </QueryClientProvider>

@@ -1,4 +1,5 @@
 import { ImageView, Rating } from "@/components/common";
+import AddProductInput from "@/components/common/product/productCard/AddProductInput";
 import { EntityType } from "@/types";
 import { ProductType } from "@/types/api/Product";
 import { timerHelper } from "@/utils/timer";
@@ -10,8 +11,6 @@ interface Props {
 }
 
 export function DealsSlide({ data }: Props) {
-  const [showAddInput, setShowAddInput] = useState<boolean>(false);
-
   const [remainTime, setRemainTime] = useState({
     days: 0,
     hours: 0,
@@ -115,7 +114,7 @@ export function DealsSlide({ data }: Props) {
                 ${data.attributes.price}
               </p>
             )}
-            <div className="deal_add-btn_wrapper">
+            {/* <div className="deal_add-btn_wrapper">
               <button
                 onClick={() => setShowAddInput(true)}
                 type="button"
@@ -136,7 +135,8 @@ export function DealsSlide({ data }: Props) {
                 max="100"
                 maxLength={3}
               />
-            </div>
+            </div> */}
+            <AddProductInput productData={data} />
           </div>
         </div>
       </div>
