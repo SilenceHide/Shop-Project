@@ -1,6 +1,6 @@
 import { EntityType } from "@/types";
 import { ProductType } from "@/types/api/Product";
-import React, { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useReducer, useState } from "react";
 
 interface Props {
   children: ReactNode;
@@ -30,55 +30,71 @@ export const BasketContext = createContext<{
   getItem: (productID: number) => undefined,
 });
 
-export default function BasketContextProvider({ children }: Props) {
-  const [basketItems, setBasketItems] = useState<Array<ProductItem>>([]);
+type Action =
+  | { type: "ADD_ITEM"; product: EntityType<ProductType> }
+  | { type: "INCREASE_ITEM"; productID: number }
+  | { type: "DECREASE_ITEM"; productID: number }
+  | { type: "DELETE_ITEM"; productID: number };
 
-  const addItemHandler = (product: EntityType<ProductType>) => {
-    const newProduct: ProductItem = {
-      productID: product.id,
-      title: product.attributes.title,
-      price: product.attributes.price,
-      img: product.attributes.thumbnail?.data?.attributes.url,
-      quantity: 1,
-    };
+const basketReducer = (currentState: ProductItem[], action: Action) => {
+  switch (action.type) {
+    case "ADD_ITEM":
+      return [
+        ...currentState,
+        {
+          productID: action.product.id,
+          title: action.product.attributes.title,
+          price: action.product.attributes.price,
+          img: action.product.attributes.thumbnail?.data?.attributes.url,
+          quantity: 1,
+        },
+      ];
+    case "INCREASE_ITEM":
+      return currentState.map((item) => {
+        if (item.productID === action.productID) {
+          return { ...item, quantity: item.quantity + 1 };
+        } else {
+          return item;
+        }
+      });
+    case "DECREASE_ITEM":
+      const currentProduct = currentState.find((item) => item.productID === action.productID);
 
-    setBasketItems((prevState) => [...prevState, newProduct]);
-  };
-
-  const increaseItemHandler = (productID: number) => {
-    const newBasket = basketItems.map((item) => {
-      if (item.productID === productID) {
-        return { ...item, quantity: item.quantity + 1 };
-      } else {
-        return item;
+      if (currentProduct && currentProduct.quantity === 1) {
+        return currentState.filter((item) => item.productID !== action.productID);
       }
-    });
 
-    setBasketItems(newBasket);
-  };
-
-  const decreaseItemHandler = (productID: number) => {
-    const currentProduct = basketItems.find((item) => item.productID === productID);
-
-    if (currentProduct && currentProduct.quantity === 1) {
-      deleteItemHandler(productID);
-    } else {
-      const newBasket = basketItems.map((item) => {
-        if (item.productID === productID) {
+      return currentState.map((item) => {
+        if (item.productID === action.productID) {
           return { ...item, quantity: item.quantity - 1 };
         } else {
           return item;
         }
       });
+    case "DELETE_ITEM":
+      return currentState.filter((item) => item.productID !== action.productID);
+    default:
+      return currentState;
+  }
+};
 
-      setBasketItems(newBasket);
-    }
+export default function BasketContextProvider({ children }: Props) {
+  const [basketItems, dispatch] = useReducer(basketReducer, []);
+
+  const addItemHandler = (product: EntityType<ProductType>) => {
+    dispatch({ type: "ADD_ITEM", product: product });
+  };
+
+  const increaseItemHandler = (productID: number) => {
+    dispatch({ type: "INCREASE_ITEM", productID: productID });
+  };
+
+  const decreaseItemHandler = (productID: number) => {
+    dispatch({ type: "DECREASE_ITEM", productID: productID });
   };
 
   const deleteItemHandler = (productID: number) => {
-    const newBasket = basketItems.filter((item) => item.productID !== productID);
-
-    setBasketItems(newBasket);
+    dispatch({ type: "DELETE_ITEM", productID: productID });
   };
 
   const getItemHandler = (productID: number): ProductItem | undefined => {
