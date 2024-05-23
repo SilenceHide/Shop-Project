@@ -66,9 +66,9 @@ export function SimpleProductCard({ data }: Props) {
         <h5 className="product_weight font-lato text-xs text-text-body mt-1 mb-3">
           {data.attributes.weight} {data.attributes.unit}
         </h5>
-        <div className="product_price-wrapper flex items-center justify-between">
+        <div className="product_price-wrapper flex items-center justify-between ">
           {data.attributes.sell_price ? (
-            <p className="offer_price flex items-center justify-between md:gap-2 gap-1 font-bold md:text-xl text-sm text-brand-color-one">
+            <p className="offer_price flex items-center justify-between sm:flex-row flex-col md:gap-2 gap-1 font-bold md:text-xl text-sm text-brand-color-one">
               ${data.attributes.sell_price}
               <span className="offer_price-discount line-through text-xs text-text-body">
                 ${data.attributes.price}

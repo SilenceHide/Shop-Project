@@ -114,28 +114,7 @@ export function DealsSlide({ data }: Props) {
                 ${data.attributes.price}
               </p>
             )}
-            {/* <div className="deal_add-btn_wrapper">
-              <button
-                onClick={() => setShowAddInput(true)}
-                type="button"
-                className={`deal_add-btn flex items-center justify-center gap-2 w-16 min-h-[32px] bg-[#DEF9EC] py-1 rounded text-brand-color-one hover:bg-brand-color-two transition-all hover:bg-opacity-40 ${
-                  showAddInput ? "hidden" : "block"
-                }`}
-              >
-                <span className="deal_add-span">Add +</span>
-              </button>
-              <input
-                type="number"
-                name="number"
-                min="1"
-                value="1"
-                className={`deal_number-input max-w-16 text-brand-color-one focus:outline-0 border border-brand-color-one rounded pl-4 font-bold text-sm py-1 h-[32px] ${
-                  showAddInput ? "block" : "hidden"
-                }`}
-                max="100"
-                maxLength={3}
-              />
-            </div> */}
+
             <AddProductInput productData={data} />
           </div>
         </div>

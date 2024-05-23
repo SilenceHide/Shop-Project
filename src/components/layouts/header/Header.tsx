@@ -1,6 +1,6 @@
 import { IconBox, Logo } from "@/components";
 import Link from "next/link";
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, useContext, useState } from "react";
 import { SearchForm } from "./searchForm";
 import { Menu } from "./menu";
 import { useOverlay } from "@/hooks/useOverlay";
@@ -9,6 +9,7 @@ import RegisterModal from "@/components/common/auth/RegisterModal";
 import { useModal } from "@/store/ModalContext";
 import { useUser } from "@/store/AuthContext";
 import { toast } from "react-toastify";
+import { BasketContext } from "@/store/BasketContext";
 
 export function Header() {
   const { isLogin, logout } = useUser();
@@ -43,6 +44,8 @@ export function Header() {
       openModal("login");
     }
   };
+
+  const basket = useContext(BasketContext);
 
   return (
     <>
@@ -85,9 +88,13 @@ export function Header() {
                         size={"text-[26px]"}
                         className={"text-text-heading"}
                       />
-                      <div className="header_cart-number_wrapper absolute top-[-10px] lg:right-[28px] right-[-9px] bg-brand-color-one text-white rounded-full w-5 h-5 flex items-center justify-center">
-                        <p className="header_cart-number text-xs">4</p>
-                      </div>
+                      {basket.basketItems.length ? (
+                        <div className="header_cart-number_wrapper absolute top-[-10px] lg:right-[28px] right-[-9px] bg-brand-color-one text-white rounded-full w-5 h-5 flex items-center justify-center">
+                          <p className="header_cart-number text-xs">{basket.basketItems.length}</p>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                       <span className="shopping-cart_title ml-1 lg:inline-block hidden">Cart</span>
                     </Link>
                   </div>

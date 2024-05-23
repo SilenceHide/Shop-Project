@@ -20,12 +20,14 @@ export const BasketContext = createContext<{
   increaseItem: (productID: number) => void;
   decreaseItem: (productID: number) => void;
   deleteItem: (productID: number) => void;
+  getItem: (productID: number) => ProductItem | undefined;
 }>({
   basketItems: [],
   addItem: (product: EntityType<ProductType>) => {},
   increaseItem: (productID: number) => {},
   decreaseItem: (productID: number) => {},
   deleteItem: (productID: number) => {},
+  getItem: (productID: number) => undefined,
 });
 
 export default function BasketContextProvider({ children }: Props) {
@@ -41,7 +43,6 @@ export default function BasketContextProvider({ children }: Props) {
     };
 
     setBasketItems((prevState) => [...prevState, newProduct]);
-    console.log(basketItems);
   };
 
   const increaseItemHandler = (productID: number) => {
@@ -57,16 +58,10 @@ export default function BasketContextProvider({ children }: Props) {
   };
 
   const decreaseItemHandler = (productID: number) => {
-    const currentProduct = basketItems.find((item) => {
-      item.productID = productID;
-    });
+    const currentProduct = basketItems.find((item) => item.productID === productID);
 
     if (currentProduct && currentProduct.quantity === 1) {
-      const newBasket = basketItems.filter((item) => {
-        item.productID !== productID;
-      });
-
-      setBasketItems(newBasket);
+      deleteItemHandler(productID);
     } else {
       const newBasket = basketItems.map((item) => {
         if (item.productID === productID) {
@@ -81,11 +76,13 @@ export default function BasketContextProvider({ children }: Props) {
   };
 
   const deleteItemHandler = (productID: number) => {
-    const newBasket = basketItems.filter((item) => {
-      item.productID !== productID;
-    });
+    const newBasket = basketItems.filter((item) => item.productID !== productID);
 
     setBasketItems(newBasket);
+  };
+
+  const getItemHandler = (productID: number): ProductItem | undefined => {
+    return basketItems.find((item) => item.productID === productID);
   };
 
   return (
@@ -96,6 +93,7 @@ export default function BasketContextProvider({ children }: Props) {
         increaseItem: increaseItemHandler,
         decreaseItem: decreaseItemHandler,
         deleteItem: deleteItemHandler,
+        getItem: getItemHandler,
       }}
     >
       {children}

@@ -7,6 +7,7 @@ interface Props {
   title?: string;
   titleClassName?: string;
   path?: number;
+  onClick?: () => void;
 }
 
 export function IconBox({
@@ -16,6 +17,7 @@ export function IconBox({
   title,
   titleClassName,
   path = 0,
+  onClick,
 }: Props) {
   let span = [];
   for (let i = 1; i <= path; i++) {
@@ -24,9 +26,15 @@ export function IconBox({
 
   return (
     <>
-      <i className={`${icon} ${size} ${className}`}>{span}</i>
+      <i className={`${icon} ${size} ${className}`} onClick={onClick}>
+        {span}
+      </i>
 
-      {title && <p className={`${titleClassName}`}>{title}</p>}
+      {title && (
+        <p className={`${titleClassName}`} onClick={onClick}>
+          {title}
+        </p>
+      )}
     </>
   );
 }
