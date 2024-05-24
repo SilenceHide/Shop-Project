@@ -10,8 +10,15 @@ import { useModal } from "@/store/ModalContext";
 import { useUser } from "@/store/AuthContext";
 import { toast } from "react-toastify";
 import { BasketContext } from "@/store/BasketContext";
+import { useBasket } from "@/hooks/useBasket";
 
 export function Header() {
+  const { basketItems } = useBasket();
+
+  console.log("basketItems", basketItems);
+
+  // const basket = useContext(BasketContext);
+
   const { isLogin, logout } = useUser();
 
   const [navOpen, isNavOpen] = useState<boolean>(false);
@@ -44,8 +51,6 @@ export function Header() {
       openModal("login");
     }
   };
-
-  const basket = useContext(BasketContext);
 
   return (
     <>
@@ -88,9 +93,9 @@ export function Header() {
                         size={"text-[26px]"}
                         className={"text-text-heading"}
                       />
-                      {basket.basketItems.length ? (
+                      {basketItems.length ? (
                         <div className="header_cart-number_wrapper absolute top-[-10px] lg:right-[28px] right-[-9px] bg-brand-color-one text-white rounded-full w-5 h-5 flex items-center justify-center">
-                          <p className="header_cart-number text-xs">{basket.basketItems.length}</p>
+                          <p className="header_cart-number text-xs">{basketItems.length}</p>
                         </div>
                       ) : (
                         ""
