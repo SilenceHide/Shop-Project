@@ -11,13 +11,12 @@ import { useUser } from "@/store/AuthContext";
 import { toast } from "react-toastify";
 import { BasketContext } from "@/store/BasketContext";
 import { useBasket } from "@/hooks/useBasket";
+import { useQueryClient } from "@tanstack/react-query";
 
 export function Header() {
   const { basketItems } = useBasket();
 
-  console.log("basketItems", basketItems);
-
-  // const basket = useContext(BasketContext);
+  const queryClient = useQueryClient();
 
   const { isLogin, logout } = useUser();
 
@@ -46,6 +45,7 @@ export function Header() {
   const accountHandler = () => {
     if (isLogin) {
       logout();
+      queryClient.invalidateQueries({ queryKey: ["get-basket"] });
       toast.success("Logout Successfully");
     } else {
       openModal("login");

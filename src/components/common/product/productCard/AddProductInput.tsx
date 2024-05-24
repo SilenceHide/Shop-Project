@@ -1,19 +1,21 @@
-import { BasketContext } from "@/store/BasketContext";
 import { EntityType } from "@/types";
 import { ProductType } from "@/types/api/Product";
-import React, { useContext } from "react";
+import React from "react";
 import { IconBox } from "../../ui";
+import { useBasket } from "@/hooks/useBasket";
 
 interface Props {
   productData: EntityType<ProductType>;
 }
 
 function AddProductInput({ productData }: Props) {
-  const basket = useContext(BasketContext);
-
-  const currentProductInBasket = basket.getItem(productData.id);
-
+  // const basket = useContext(BasketContext);
+  // const currentProductInBasket = basket.getItem(productData.id);
   // console.log(currentProductInBasket);
+
+  const { addItem, updateItem, getItem } = useBasket();
+
+  const currentProductInBasket = getItem(productData.id);
 
   return (
     <div className="product_add-btn_wrapper">
@@ -29,19 +31,19 @@ function AddProductInput({ productData }: Props) {
               icon="up icon-angle-small-up"
               size="10"
               className="cursor-pointer"
-              onClick={() => basket.increaseItem(productData.id)}
+              onClick={() => updateItem(productData.id, "increase")}
             />
             <IconBox
               icon="down icon-angle-small-down"
               size="10"
               className="cursor-pointer"
-              onClick={() => basket.decreaseItem(productData.id)}
+              onClick={() => updateItem(productData.id, "decrease")}
             />
           </div>
         </div>
       ) : (
         <button
-          onClick={() => basket.addItem(productData)}
+          onClick={() => addItem(productData.id)}
           className={
             "product_add-btn flex items-center justify-center gap-2 md:w-16 w-12 sm:h-[32px] h-[40px] bg-[#DEF9EC] py-1 rounded text-brand-color-one hover:bg-brand-color-two transition-all hover:bg-opacity-40 "
           }

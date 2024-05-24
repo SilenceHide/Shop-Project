@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { loginApiCall } from "@/api/Auth";
 import { toast } from "react-toastify";
+import { useBasket } from "@/hooks/useBasket";
 
 interface FormData {
   identifier: string;
@@ -18,7 +19,9 @@ interface FormData {
 export default function LoginModal() {
   const { openModal, closeModal } = useModal();
 
-  const { login, isLogin } = useUser();
+  const { login } = useUser();
+
+  const { uuidToUser } = useBasket();
 
   const {
     register,
@@ -36,6 +39,7 @@ export default function LoginModal() {
         login(response.jwt, response.user);
         toast.success("Login Successfully");
         closeModal();
+        uuidToUser();
       },
     });
   };
