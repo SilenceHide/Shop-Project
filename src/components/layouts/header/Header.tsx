@@ -1,6 +1,6 @@
 import { IconBox, Logo } from "@/components";
 import Link from "next/link";
-import React, { MouseEvent, useContext, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { SearchForm } from "./searchForm";
 import { Menu } from "./menu";
 import { useOverlay } from "@/hooks/useOverlay";
@@ -9,11 +9,13 @@ import RegisterModal from "@/components/common/auth/RegisterModal";
 import { useModal } from "@/store/ModalContext";
 import { useUser } from "@/store/AuthContext";
 import { toast } from "react-toastify";
-import { BasketContext } from "@/store/BasketContext";
 import { useBasket } from "@/hooks/useBasket";
 import { useQueryClient } from "@tanstack/react-query";
+import OrderList from "@/components/common/ui/order-list/OrderList";
 
 export function Header() {
+  const [orderListOpen, isOrderListOpen] = useState<boolean>(false);
+
   const { basketItems } = useBasket();
 
   const queryClient = useQueryClient();
@@ -26,6 +28,7 @@ export function Header() {
 
   const navOpenClickHandler = (e: MouseEvent) => {
     e.stopPropagation();
+    isOrderListOpen(false);
     isNavOpen((prevState) => !prevState);
   };
 
@@ -43,6 +46,7 @@ export function Header() {
   });
 
   const accountHandler = () => {
+    isOrderListOpen(false);
     if (isLogin) {
       logout();
       queryClient.invalidateQueries({ queryKey: ["get-basket"] });
@@ -67,10 +71,10 @@ export function Header() {
                 </div>
               </div>
 
-              <div className="header_right-wrapper flex items-center justify-between lg:flex-grow 2xl:basis-[47%] xl:basis-[60%] lg:pl-[40px] mt-[29px] lg:mt-0 w-full h-[45px]">
+              <div className="header_right-wrapper flex items-center justify-between lg:flex-grow 2xl:basis-[47%] xl:basis-[60%] lg:pl-[40px] mt-[29px] lg:mt-0 w-full h-[45px] ">
                 <SearchForm />
 
-                <div className="header_account-wrapper flex font-lato">
+                <div className="header_account-wrapper flex font-lato relative">
                   <div className="header_account flex mr-7">
                     <p
                       className="header_account-link flex items-center cursor-pointer"
@@ -86,7 +90,7 @@ export function Header() {
                       </span>
                     </p>
                   </div>
-                  <div className="header_cart flex">
+                  <div className="header_cart flex" onClick={() => isOrderListOpen(!orderListOpen)}>
                     <Link className="header_account-link flex items-center relative" href="#">
                       <IconBox
                         icon={"icon-shopping-cart"}
@@ -102,6 +106,13 @@ export function Header() {
                       )}
                       <span className="shopping-cart_title ml-1 lg:inline-block hidden">Cart</span>
                     </Link>
+                  </div>
+                  <div
+                    className={`header_order-wrapper absolute right-[-5px] top-[40px] z-20 sm:w-auto w-[340px]  ${
+                      orderListOpen ? "block" : "hidden"
+                    }`}
+                  >
+                    <OrderList />
                   </div>
                 </div>
               </div>
