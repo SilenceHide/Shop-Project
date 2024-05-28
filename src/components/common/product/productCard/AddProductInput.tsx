@@ -9,10 +9,6 @@ interface Props {
 }
 
 function AddProductInput({ productData }: Props) {
-  // const basket = useContext(BasketContext);
-  // const currentProductInBasket = basket.getItem(productData.id);
-  // console.log(currentProductInBasket);
-
   const { addItem, updateItem, getItem } = useBasket();
 
   const currentProductInBasket = getItem(productData.id);

@@ -1,4 +1,5 @@
 import { ImageView } from "@/components";
+import Link from "next/link";
 import React from "react";
 
 export default function Cart() {
@@ -323,8 +324,8 @@ export default function Cart() {
               <div className="text-text-body-2 font-medium">Total</div>
               <div className="sm:text-2xl text-xl font-black text-brand-color-one">$12.31</div>
             </div>
-            <button
-              type="submit"
+            <Link
+              href={"/checkout"}
               className="mt-6 h-[50px] bg-brand-color-one w-full max-w-[405px] text-white font-black rounded-[4px] cursor-pointer flex items-center justify-center gap-3"
             >
               Proceed to Checkout
@@ -334,7 +335,7 @@ export default function Cart() {
                 width={16}
                 height={16}
               />
-            </button>
+            </Link>
           </div>
         </div>
       </form>

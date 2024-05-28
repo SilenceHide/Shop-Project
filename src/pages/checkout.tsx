@@ -13,13 +13,17 @@ export default function Checkout() {
         </div>
         <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12 ">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-6 font-lato">
-            <div className="lg:col-span-2 2xl:col-span-1 text-medium  bg-white flex gap-[7px] py-[13px] items-center justify-center shadow-c rounded-[10px] border-[1px] border-border-gray hover:shadow-main-shadow transition-all duration-300">
+            <Link
+              target="_blank"
+              href={"/login"}
+              className="lg:col-span-2 2xl:col-span-1 text-medium  bg-white flex gap-[7px] py-[13px] items-center justify-center shadow-c rounded-[10px] border-[1px] border-border-gray hover:shadow-main-shadow transition-all duration-300"
+            >
               <IconBox icon="icon-user" className="text-text-body" />
               <div className="text-text-body">Already have an account?</div>
               <a className="text-brand-color-one" href="#">
                 Click here to login
               </a>
-            </div>
+            </Link>
             <div className="lg:col-span-2 2xl:col-span-1 focus-within:border-green-200 bg-white text-medium  flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-border-gray min-h-[52px]">
               {/* <!--<i className="fi-rs-user"></i>--> */}
               <div className="flex gap-[7px] ml-[22px] flex-1">

@@ -108,11 +108,11 @@ export function Header() {
                     </Link>
                   </div>
                   <div
-                    className={`header_order-wrapper absolute right-[-5px] top-[40px] z-20 sm:w-auto w-[340px]  ${
+                    className={`header_order-wrapper absolute right-[-5px] top-[40px] z-20 sm:w-auto w-[340px] overflow-hidden rounded-[10px]  ${
                       orderListOpen ? "block" : "hidden"
                     }`}
                   >
-                    <OrderList />
+                    <OrderList hasButton={true} isOrderListOpen={isOrderListOpen} />
                   </div>
                 </div>
               </div>
