@@ -1,6 +1,7 @@
 import { IconBox, ImageView, MiniProductCard, SimpleProductCard } from "@/components";
 import { CategoryPopularItems } from "@/mock/CategoryPopularItems";
 import { CategoryProducts } from "@/mock/CategoryProducts";
+import { useRouter } from "next/router";
 import React from "react";
 
 export default function CategoryByID() {

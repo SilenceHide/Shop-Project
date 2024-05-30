@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Navigation } from "swiper/modules";
 import { relatedProducts } from "@/mock/RelatedProducts";
+import { useRouter } from "next/router";
 
 export default function Product() {
   return (
