@@ -55,7 +55,7 @@ export function SimpleProductCard({ data }: Props) {
         ) : (
           <p className="hodo_foods font-lato text-xs text-text-body md:mt-5">Hodo Foods</p>
         )}
-        <Link href={"#"}>
+        <Link href={"/singleProduct"} target="_blank">
           <h3 className="product_title font-bold md:text-sm text-xs my-1 h-[48px] text-ellipsis overflow-hidden">
             {data.attributes.title}
           </h3>

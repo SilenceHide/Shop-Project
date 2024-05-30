@@ -20,9 +20,7 @@ export default function Checkout() {
             >
               <IconBox icon="icon-user" className="text-text-body" />
               <div className="text-text-body">Already have an account?</div>
-              <a className="text-brand-color-one" href="#">
-                Click here to login
-              </a>
+              <p className="text-brand-color-one">Click here to login</p>
             </Link>
             <div className="lg:col-span-2 2xl:col-span-1 focus-within:border-green-200 bg-white text-medium  flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-border-gray min-h-[52px]">
               {/* <!--<i className="fi-rs-user"></i>--> */}

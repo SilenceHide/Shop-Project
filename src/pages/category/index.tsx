@@ -3,7 +3,7 @@ import { CategoryPopularItems } from "@/mock/CategoryPopularItems";
 import { CategoryProducts } from "@/mock/CategoryProducts";
 import React from "react";
 
-export default function ShopCategory() {
+export default function Category() {
   return (
     <>
       <section className="mb-[68px] container mt-8">
@@ -226,7 +226,7 @@ export default function ShopCategory() {
           {/* <!-- 2 --> */}
           <div className="flex flex-col border-[1px] border-[#D7DEDB]rounded-[10px] px-[25px] py-7 gap-6 mb-10">
             <p className=" mb-[14px] pb-[14px] border-b text-2xl font-bold">Popular Items</p>
-            {CategoryPopularItems.map((item, index) => {
+            {/* {CategoryPopularItems.map((item, index) => {
               return (
                 <MiniProductCard
                   data={item}
@@ -235,7 +235,7 @@ export default function ShopCategory() {
                   titleHeight={"h-[60px]"}
                 />
               );
-            })}
+            })} */}
           </div>
         </div>
         {/* <!--sidebar End--> */}
@@ -259,7 +259,7 @@ export default function ShopCategory() {
           </div>
           {/* <!-- Cards Start --> */}
           <div className="flex items-center xs:justify-between justify-center max-w-[1180px] gap-5 flex-wrap">
-            {CategoryProducts.map((item, index) => {
+            {/* {CategoryProducts.map((item, index) => {
               return (
                 <div
                   key={index}
@@ -268,7 +268,7 @@ export default function ShopCategory() {
                   <SimpleProductCard data={item} />
                 </div>
               );
-            })}
+            })} */}
           </div>
           {/* <!-- Cards Ends --> */}
           {/* <!-- buttons----> */}

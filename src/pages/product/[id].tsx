@@ -5,7 +5,7 @@ import "swiper/css";
 import { Navigation } from "swiper/modules";
 import { relatedProducts } from "@/mock/RelatedProducts";
 
-export default function SingleProduct() {
+export default function ProductByID() {
   return (
     <main>
       <section className="container flex flex-col items-center mb-[100px] mt-[74px]">
@@ -278,7 +278,7 @@ export default function SingleProduct() {
         <div className="related-product flex flex-col mt-12">
           <h2 className="text-center font-bold text-[32px]">Related products</h2>
           <div className="flex items-center justify-center max-w-[1180px] gap-5 mt-12 flex-wrap">
-            {relatedProducts.map((item, index) => {
+            {/* {relatedProducts.map((item, index) => {
               return (
                 <div
                   key={index}
@@ -287,7 +287,7 @@ export default function SingleProduct() {
                   <SimpleProductCard data={item} />
                 </div>
               );
-            })}
+            })} */}
           </div>
         </div>
       </section>

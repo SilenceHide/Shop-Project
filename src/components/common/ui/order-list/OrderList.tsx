@@ -8,7 +8,12 @@ interface Props {
   isOrderListOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function OrderList({ hasButton, isOrderListOpen }: Props) {
+export default function OrderList({
+  hasButton,
+  isOrderListOpen = () => {
+    true;
+  },
+}: Props) {
   const { basketItems } = useBasket();
 
   return (
@@ -35,7 +40,7 @@ export default function OrderList({ hasButton, isOrderListOpen }: Props) {
                 className={"max-h-[64px] max-w-[64px] xl:max-h-[114px] xl:max-w-[114px]"}
               />
             </div>
-            <div className="text-text-heading font-bold flex justify-center items-center sm:py-[22px] max-w-[190px] text-center sm:text-start">
+            <div className="text-text-heading font-bold flex  items-center sm:py-[22px] max-w-[190px] text-center sm:text-start">
               {basketData.title}
             </div>
             <div className="flex gap-10 w-full justify-center">
@@ -59,10 +64,8 @@ export default function OrderList({ hasButton, isOrderListOpen }: Props) {
         <Link
           href={"/cart"}
           target="_blank"
-          className="lg:mt-6 px-[50px] h-[50px] max-w-[250px] w-full rounded-[3px] text-white bg-brand-color-one gap-3 flex items-center justify-center font-bold"
-          onClick={() => {
-            isOrderListOpen;
-          }}
+          className="lg:mt-6 px-[50px] h-[50px] min-h-[50px] max-w-[250px] min-w-[250px] w-full rounded-[3px] text-white bg-brand-color-one gap-3 flex items-center justify-center font-bold"
+          onClick={() => isOrderListOpen(false)}
         >
           Proceed
           <ImageView

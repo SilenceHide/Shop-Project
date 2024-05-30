@@ -56,12 +56,9 @@ export default function Login() {
         <div className="font-lato">
           <p className="text-sm text-text-body-2 mb-10">
             Don't have an account?{" "}
-            <span
-              className="text-brand-color-one font-bold cursor-pointer"
-              onClick={() => openModal("register")}
-            >
+            <Link href={"/register"} className="text-brand-color-one font-bold cursor-pointer">
               Create here
-            </span>
+            </Link>
           </p>
 
           <Input

@@ -1,8 +1,29 @@
 import { ImageView } from "@/components";
+import AddProductInput from "@/components/common/product/productCard/AddProductInput";
+import { useBasket } from "@/hooks/useBasket";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Cart() {
+  const { basketItems } = useBasket();
+
+  // let total = 0;
+
+  // useEffect(() => {
+  //   const elements = document.querySelectorAll(".total-price");
+  //   let totalPrice = [];
+
+  //   for (let index = 0; index < elements.length; index++) {
+  //     const element = elements[index];
+  //     const elementValue = Number(element.innerHTML.substring(1));
+  //     totalPrice.push(elementValue);
+  //   }
+
+  //   for (let index = 0; index < totalPrice.length; index++) {
+  //     total += totalPrice[index];
+  //   }
+  // }, [basketItems]);
+
   return (
     <div className="container m-auto mt-[45px] mb-[150px]">
       <h1 className="xs:text-[40px] text-3xl font-bold">Your Cart</h1>
@@ -42,166 +63,67 @@ export default function Cart() {
                     <div className="flex justify-center items-center font-black">Subtotal</div>
                     <div className="flex justify-center items-center font-black">Remove</div>
                   </div>
-                  <div className="md:w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
-                    <div className="flex justify-center items-center">
-                      <label htmlFor="checkbox1" className="hidden"></label>
-                      <input
-                        type="checkbox"
-                        name="checkbox1"
-                        id="checkbox1"
-                        className="w-3 h-3 md:w-4 md:h-4"
-                      />
-                    </div>
-                    <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
-                      <ImageView
-                        src={"/images/cart/orange.png"}
-                        alt={"orange"}
-                        width={210}
-                        height={168}
-                        className={"max-h-[64px] max-w-[64px] xl:max-h-[114px] xl:max-w-[114px]"}
-                      />
-                      <div className="font-black xl:text-start text-center md:text-base text-sm">
-                        Field Roast Chao Cheese Creamy Original
+                  {basketItems.map((basketItem, index) => {
+                    const basketData = basketItem.product.data.attributes;
+
+                    return (
+                      <div
+                        className="md:w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]"
+                        key={index}
+                      >
+                        <div className="flex justify-center items-center">
+                          <label htmlFor="checkbox1" className="hidden"></label>
+                          <input
+                            type="checkbox"
+                            name="checkbox1"
+                            id="checkbox1"
+                            className="w-3 h-3 md:w-4 md:h-4"
+                          />
+                        </div>
+                        <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
+                          <ImageView
+                            src={basketData.thumbnail?.data?.attributes.url}
+                            alt={"orange"}
+                            width={210}
+                            height={168}
+                            className={
+                              "max-h-[64px] max-w-[64px] xl:max-h-[114px] xl:max-w-[114px]"
+                            }
+                          />
+                          <div className="font-black xl:text-start text-center md:text-base text-sm sm:max-w-[200px] w-full">
+                            {basketData.title}
+                          </div>
+                        </div>
+                        <div className="flex justify-center items-center">
+                          <div className="font-black text-text-body-2 md:text-2xl text-lg ">
+                            ${basketData.sell_price ? basketData.sell_price : basketData.price}
+                          </div>
+                        </div>
+                        <div className="flex justify-center items-center">
+                          <div className="flex justify-center items-center  rounded-[7px] max-h-[50px] md:max-w-[118px] max-w-[80px] px-4 py-2">
+                            <AddProductInput productData={basketItem.product.data} />
+                          </div>
+                        </div>
+                        <div className="flex justify-center items-center ">
+                          <div className="total-price font-black text-brand-color-one md:text-2xl text-lg">
+                            $
+                            {basketData.sell_price
+                              ? basketData.sell_price * basketItem.quantity
+                              : basketData.price * basketItem.quantity}
+                          </div>
+                        </div>
+                        <div className="flex justify-center items-center">
+                          <ImageView
+                            src={"/icons/fi-rs-cross-circle.svg"}
+                            alt={"clean sign"}
+                            width={25}
+                            height={25}
+                            className={"cursor-pointer"}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <div className="font-black text-text-body-2 md:text-2xl text-lg ">$2.51</div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <div className="flex justify-center items-center focus-within:border-brand-color-one focus-within:border-[1.5px] focus-within:rounded-[7px] focus-within:text-brand-color-one text-text-body-2 border-[1.5px] border-text-body-2 rounded-[7px] max-h-[50px] md:max-w-[118px] max-w-[80px] px-4 py-2">
-                        <label htmlFor="price1" className="hidden"></label>
-                        <input
-                          type="number"
-                          id="price1"
-                          min="1"
-                          max="10"
-                          name="price1"
-                          placeholder="1"
-                          className="product_input-number pl-4 flex justify-center items-center focus:outline-none font-bold focus:text-brand-color-one"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <div className="font-black text-brand-color-one md:text-2xl text-lg">
-                        $2.51
-                      </div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <ImageView
-                        src={"/icons/fi-rs-cross-circle.svg"}
-                        alt={"clean sign"}
-                        width={25}
-                        height={25}
-                        className={"cursor-pointer"}
-                      />
-                    </div>
-                  </div>
-                  <div className="md:w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
-                    <div className="flex justify-center items-center">
-                      <label htmlFor="checkbox2" className="hidden"></label>
-                      <input
-                        type="checkbox"
-                        name="checkbox2"
-                        id="checkbox2"
-                        className="w-3 h-3 md:w-4 md:h-4"
-                      />
-                    </div>
-                    <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
-                      <ImageView
-                        src={"/images/cart/lemon.png"}
-                        alt={"orange"}
-                        width={210}
-                        height={168}
-                        className={"max-h-[64px] max-w-[64px] xl:max-h-[114px] xl:max-w-[114px]"}
-                      />
-                      <div className="font-black xl:text-start text-center md:text-base text-sm">
-                        Seeds of Change Organic Quinoa, Brown, & Red Rice
-                      </div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <div className="font-black text-text-body-2 md:text-2xl text-lg">$2.8</div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <div className="flex justify-center items-center focus-within:border-brand-color-one focus-within:border-[1.5px] focus-within:rounded-[7px] focus-within:text-brand-color-one text-text-body-2 border-[1.5px] border-text-body-2 rounded-[7px] max-h-[50px] md:max-w-[118px] max-w-[80px] px-4 py-2">
-                        <label htmlFor="price2" className="hidden"></label>
-                        <input
-                          type="number"
-                          id="price2"
-                          min="1"
-                          max="10"
-                          name="price2"
-                          placeholder="1"
-                          className="product_input-number pl-4 flex justify-center items-center focus:outline-none font-bold focus:text-brand-color-one"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <div className="font-black text-brand-color-one md:text-2xl text-lg">
-                        $2.8
-                      </div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <ImageView
-                        src={"/icons/fi-rs-cross-circle.svg"}
-                        alt={"clean sign"}
-                        width={25}
-                        height={25}
-                        className={"cursor-pointer"}
-                      />
-                    </div>
-                  </div>
-                  <div className="md:w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
-                    <div className="flex justify-center items-center">
-                      <label htmlFor="checkbox3" className="hidden"></label>
-                      <input
-                        type="checkbox"
-                        name="checkbox3"
-                        id="checkbox3"
-                        className="w-3 h-3 md:w-4 md:h-4"
-                      />
-                    </div>
-                    <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
-                      <ImageView
-                        src={"/images/cart/pork.png"}
-                        alt={"orange"}
-                        width={210}
-                        height={168}
-                        className={"max-h-[64px] max-w-[64px] xl:max-h-[114px] xl:max-w-[114px]"}
-                      />
-                      <div className="font-black xl:text-start text-center md:text-base text-sm">
-                        Angie’s Boomchickapop Sweet & Salty Kettle Corn
-                      </div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <div className="font-black text-text-body-2 md:text-2xl text-lg">$3.5</div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <div className="flex justify-center items-center focus-within:border-brand-color-one focus-within:border-[1.5px] focus-within:rounded-[7px] focus-within:text-brand-color-one text-text-body-2 border-[1.5px] border-text-body-2 rounded-[7px] max-h-[50px] md:max-w-[118px] max-w-[80px] px-4 py-2">
-                        <label htmlFor="price3" className="hidden"></label>
-                        <input
-                          type="number"
-                          id="price3"
-                          min="1"
-                          max="10"
-                          name="price3"
-                          placeholder="2"
-                          className="product_input-number pl-4 flex justify-center items-center focus:outline-none font-bold focus:text-brand-color-one"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <div className="font-black text-brand-color-one md:text-2xl text-lg">$7</div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <ImageView
-                        src={"/icons/fi-rs-cross-circle.svg"}
-                        alt={"clean sign"}
-                        width={25}
-                        height={25}
-                        className={"cursor-pointer"}
-                      />
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
               <div className="flex flex-col gap-[30px] mt-[26px]">
@@ -308,7 +230,7 @@ export default function Cart() {
           <div className="bg-white flex flex-col flex-shrink-0 flex-grow items-center justify-between rounded-[10px] border-[1px] border-border-gray py-12 px-8 lg:max-h-[430px] max-w-[490px] lg:gap-0 gap-7">
             <div className="flex justify-between items-center w-full">
               <div className="text-text-body-2 font-medium">Subtotal</div>
-              <div className="sm:text-2xl text-xl font-black text-brand-color-one">$12.31</div>
+              <div className="sm:text-2xl text-xl font-black text-brand-color-one">$12</div>
             </div>
             <div className="h-[1px] w-full bg-gray-200"></div>
             <div className="grid grid-cols-2 gap-7 w-full">
