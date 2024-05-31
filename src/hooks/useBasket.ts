@@ -2,7 +2,7 @@ import {
   basketApiCall,
   updateBasketApiCall,
   UpdateBasketData,
-  UUIDtoUSerApiCall,
+  UUIDtoUserApiCall,
 } from "@/api/Basket";
 import { BasketItemType } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -15,7 +15,7 @@ export function useBasket() {
   const mutate = useMutation({ mutationFn: updateBasketApiCall });
 
   const mutateUUIDtoUSer = useMutation({
-    mutationFn: UUIDtoUSerApiCall,
+    mutationFn: UUIDtoUserApiCall,
     onSuccess: (response) => {
       // console.log("response", response);
       window.localStorage.removeItem("uuid");

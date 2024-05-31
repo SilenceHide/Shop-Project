@@ -40,7 +40,11 @@ export async function updateBasketApiCall(
       {
         data: data,
       },
-      { params: { uuid: uuid } },
+      {
+        params: {
+          uuid: uuid,
+        },
+      },
     );
   }
 
@@ -49,6 +53,6 @@ export async function updateBasketApiCall(
   });
 }
 
-export async function UUIDtoUSerApiCall(uuid: string): Promise<ApiResponseSingleType<BasketType>> {
+export async function UUIDtoUserApiCall(uuid: string): Promise<ApiResponseSingleType<BasketType>> {
   return await apiClient.put("/basket2User/" + uuid);
 }

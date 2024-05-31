@@ -3,17 +3,21 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Navigation } from "swiper/modules";
-import { relatedProducts } from "@/mock/RelatedProducts";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import { getAllProductsApiCall, getProduct } from "@/api/Product";
-import { ApiResponseType, EntityType } from "@/types";
+import { getProduct } from "@/api/Product";
+import { ApiResponseType } from "@/types";
 import { ProductType } from "@/types/api/Product";
+import { useBasket } from "@/hooks/useBasket";
 
 export default function ProductByID() {
   const productRouter = useRouter();
 
   const { id } = productRouter.query;
+
+  const { addItem, updateItem, getItem } = useBasket();
+
+  const currentProductInBasket = getItem(Number(id));
 
   let currentProduct: Array<ProductType> = [];
 
@@ -33,7 +37,7 @@ export default function ProductByID() {
     }
   });
 
-  console.log(currentProduct);
+  // console.log(currentProduct);
 
   return (
     <main>
@@ -155,7 +159,7 @@ export default function ProductByID() {
             </div>
             <h1 className="md:text-[40px] text-3xl text font-bold">{currentProduct[0]?.title}</h1>
             <div className="flex gap-0.5">
-              <Rating rate={4} />
+              <Rating rate={currentProduct[0]?.rate} />
             </div>
             <div className="flex items-center gap-5">
               {currentProduct[0]?.sell_price ? (
@@ -185,26 +189,36 @@ export default function ProductByID() {
               </p>
             </div>
             <form action="#" className="flex items-center gap-2.5 mt-10">
-              <div className="flex justify-center items-center focus-within:border-brand-color-one focus-within:border-[1.5px] focus-within:rounded-[7px] focus-within:text-brand-color-one text-text-body-2 border-[1.5px] border-text-body-2 rounded-[7px] h-[50px] md:max-w-[118px] max-w-[80px] px-4 py-2">
-                <label htmlFor="price2" className="hidden"></label>
-                <input
-                  type="number"
-                  id="price2"
-                  min="1"
-                  max="10"
-                  name="price2"
-                  placeholder="1"
-                  className="product_input-number pl-4 flex justify-center items-center focus:outline-none font-bold"
-                />
+              <div className="flex justify-center items-center border-[1.5px] border-brand-color-one rounded-[7px] h-[50px] md:max-w-[110px] max-w-[80px] px-4 py-2 w-full">
+                <span className="font-bold text-xl text-brand-color-one">1</span>
               </div>
-              <button className="offer_add-btn w-full text-white bg-brand-color-one flex items-center justify-center gap-2 rounded py-3 transition-all hover:bg-brand-color-two max-w-[175px] h-[50px]">
-                <img
-                  className="offer_add-btn_img"
-                  src="../images/section4/fi-rs-shopping-cart.svg"
-                  alt="shopping-cart"
-                />
-                <p className="offer_add-btn_title font-bold text-sm">Add To Cart</p>
-              </button>
+              {currentProductInBasket ? (
+                <button
+                  onClick={() => updateItem(Number(id), "increase")}
+                  className="offer_add-btn w-full text-white bg-brand-color-one flex items-center justify-center gap-2 rounded py-3 transition-all hover:bg-brand-color-two max-w-[175px] h-[50px]"
+                  type="button"
+                >
+                  <img
+                    className="offer_add-btn_img"
+                    src="../images/section4/fi-rs-shopping-cart.svg"
+                    alt="shopping-cart"
+                  />
+                  <p className="offer_add-btn_title font-bold text-sm">Add To Cart</p>
+                </button>
+              ) : (
+                <button
+                  onClick={() => addItem(Number(id))}
+                  className="offer_add-btn w-full text-white bg-brand-color-one flex items-center justify-center gap-2 rounded py-3 transition-all hover:bg-brand-color-two max-w-[175px] h-[50px]"
+                  type="button"
+                >
+                  <img
+                    className="offer_add-btn_img"
+                    src="../images/section4/fi-rs-shopping-cart.svg"
+                    alt="shopping-cart"
+                  />
+                  <p className="offer_add-btn_title font-bold text-sm">Add To Cart</p>
+                </button>
+              )}
             </form>
             <div className="md:text-lg font-lato mt-10">
               <p className="">
@@ -317,16 +331,18 @@ export default function ProductByID() {
         <div className="related-product flex flex-col mt-12">
           <h2 className="text-center font-bold text-[32px]">Related products</h2>
           <div className="flex items-center justify-center max-w-[1180px] gap-5 mt-12 flex-wrap">
-            {/* {relatedProducts.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className="popular-product relative rounded-xl border border-[#e5e5e5] hover:border-brand-color-one overflow-hidden p-5 pb-5 md:pt-14 transition-all max-w-[280px] min-h-[335px]"
-                >
-                  <SimpleProductCard data={item} />
-                </div>
-              );
-            })} */}
+            {response?.data.map((item, index) => {
+              if (index < 4) {
+                return (
+                  <div
+                    key={index}
+                    className="popular-product relative rounded-xl border border-[#e5e5e5] hover:border-brand-color-one overflow-hidden p-5 pb-5 md:pt-14 transition-all max-w-[280px] min-h-[335px]"
+                  >
+                    <SimpleProductCard data={item} />
+                  </div>
+                );
+              }
+            })}
           </div>
         </div>
       </section>
