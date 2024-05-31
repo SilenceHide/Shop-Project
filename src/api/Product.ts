@@ -1,4 +1,4 @@
-import { ApiResponseType } from "@/types";
+import { ApiResponseSingleType, ApiResponseType } from "@/types";
 import apiClient from "./config/ApiClient";
 import { ProductType } from "@/types/api/Product";
 
@@ -39,11 +39,10 @@ export function getAllProductsApiCall({
 export function getProduct({
   productID,
   populate,
-}: ProductID): Promise<ApiResponseType<ProductType>> {
-  return apiClient.get("/products", {
+}: ProductID): Promise<ApiResponseSingleType<ProductType>> {
+  return apiClient.get(`/products/${productID}`, {
     params: {
       populate: populate?.join(","),
-      productID: productID,
     },
   });
 }

@@ -1,11 +1,15 @@
-import React, { MouseEvent, useState } from "react";
+import React, { Dispatch, MouseEvent, SetStateAction, useState } from "react";
 import Link from "next/link";
 import { IconBox, ImageView } from "@/components/common";
 import { EntityType, MenuItemType } from "@/types";
 import { useMenu } from "@/hooks/useMenu";
 import { useOverlay } from "@/hooks/useOverlay";
 
-export function Menu() {
+interface Props {
+  isOrderListOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export function Menu({ isOrderListOpen }: Props) {
   const [showCategoryMenu, setShowCategoryMenu] = useState<boolean>(false);
 
   const { data: mainMenuItems } = useMenu({ position: "main_menu" });
@@ -14,6 +18,7 @@ export function Menu() {
   const categoryMenuBtnClickHandler = (e: MouseEvent) => {
     e.stopPropagation();
     setShowCategoryMenu((prevState) => !prevState);
+    isOrderListOpen(false);
   };
 
   const categoryBodyClickHandler = (e: MouseEvent) => {
@@ -56,7 +61,12 @@ export function Menu() {
                   key={index}
                   className="category rounded-md hover:border-border-light-green transition-all duration-200 lg:px-4 lg:py-[7px] lg:border-border-light lg:border-2 lg:basis-[48%] basis-full flex-shrink-0 lg:hover:shadow-main-shadow"
                 >
-                  <Link key={index} className="category_link flex items-center gap-3" href="#">
+                  <Link
+                    key={index}
+                    className="category_link flex items-center gap-3"
+                    href="/category"
+                    target="_blank"
+                  >
                     <IconBox
                       icon={item.attributes.icon_name}
                       size={"text-[30px]"}
@@ -72,7 +82,8 @@ export function Menu() {
           <div className="more_category rounded-md px-4 pt-2 basis-full flex-shrink-0 text-text-body hidden lg:block">
             <Link
               className="more_category-link flex items-center gap-3 justify-center mx-auto my-0 max-w-44"
-              href="#"
+              href="/category"
+              target="_blank"
             >
               <IconBox icon={"icon-add"} />
               <p className="category_name">More Categories</p>

@@ -5,8 +5,8 @@ import "swiper/css";
 import { Navigation } from "swiper/modules";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import { getProduct } from "@/api/Product";
-import { ApiResponseType } from "@/types";
+import { getAllProductsApiCall, getProduct } from "@/api/Product";
+import { ApiResponseSingleType, ApiResponseType } from "@/types";
 import { ProductType } from "@/types/api/Product";
 import { useBasket } from "@/hooks/useBasket";
 
@@ -19,9 +19,7 @@ export default function ProductByID() {
 
   const currentProductInBasket = getItem(Number(id));
 
-  let currentProduct: Array<ProductType> = [];
-
-  const { data: response } = useQuery<ApiResponseType<ProductType>>({
+  const { data: singleResponse } = useQuery<ApiResponseSingleType<ProductType>>({
     queryKey: ["product", id],
     queryFn: () =>
       getProduct({
@@ -31,13 +29,16 @@ export default function ProductByID() {
     enabled: !!id,
   });
 
-  response?.data.map((item) => {
-    if (item.id === Number(id)) {
-      currentProduct.push(item.attributes);
-    }
-  });
+  const data = singleResponse?.data;
+  console.log(data);
 
-  // console.log(currentProduct);
+  const { data: response } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: [getAllProductsApiCall.name, "popular-products"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+      }),
+  });
 
   return (
     <main>
@@ -49,7 +50,7 @@ export default function ProductByID() {
                 <IconBox icon="icon-search" size="text-[24px]" className="text-text-body-2 mb-20" />
               </div>
               <ImageView
-                src={currentProduct[0]?.thumbnail?.data?.attributes.url}
+                src={data?.attributes.thumbnail?.data?.attributes.url}
                 alt={"orange"}
                 width={585}
                 height={420}
@@ -157,23 +158,23 @@ export default function ProductByID() {
             <div className="bg-[#def9ec] w-[75px] h-[29px] flex items-center justify-center text-brand-color-one text-sm font-bold">
               In Stock
             </div>
-            <h1 className="md:text-[40px] text-3xl text font-bold">{currentProduct[0]?.title}</h1>
+            <h1 className="md:text-[40px] text-3xl text font-bold">{data?.attributes.title}</h1>
             <div className="flex gap-0.5">
-              <Rating rate={currentProduct[0]?.rate} />
+              <Rating rate={data?.attributes.rate!} />
             </div>
             <div className="flex items-center gap-5">
-              {currentProduct[0]?.sell_price ? (
+              {data?.attributes.sell_price ? (
                 <>
                   <p className="text-brand-color-one font-bold md:text-7xl text-5xl">
-                    ${currentProduct[0]?.sell_price}
+                    ${data?.attributes.sell_price}
                   </p>
                   <p className="text-text-body-2 line-through font-bold md:text-[32px] text-2xl">
-                    ${currentProduct[0]?.price}
+                    ${data?.attributes.price}
                   </p>
                 </>
               ) : (
                 <p className="text-brand-color-one font-bold md:text-7xl text-5xl">
-                  ${currentProduct[0]?.price}
+                  ${data?.attributes.price}
                 </p>
               )}
             </div>

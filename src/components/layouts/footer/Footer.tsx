@@ -137,25 +137,25 @@ export function Footer() {
                   footerCompanyOpen ? "h-[228px]" : " h-0 sm:h-fit sm:min-h-full"
                 }`}
               >
-                <Link href={"#"} className="company_subtitle">
+                <Link href={"/about"} target="_blank" className="company_subtitle">
                   About Us
                 </Link>
-                <Link href={"#"} className="company_subtitle">
+                <Link href={"/about"} target="_blank" className="company_subtitle">
                   Delivery Information
                 </Link>
-                <Link href={"#"} className="company_subtitle">
+                <Link href={"/about"} target="_blank" className="company_subtitle">
                   Privacy Policy
                 </Link>
-                <Link href={"#"} className="company_subtitle">
+                <Link href={"/about"} target="_blank" className="company_subtitle">
                   Terms & Conditions
                 </Link>
-                <Link href={"#"} className="company_subtitle">
+                <Link href={"/contact"} target="_blank" className="company_subtitle">
                   Contact Us
                 </Link>
-                <Link href={"#"} className="company_subtitle">
+                <Link href={"/about"} target="_blank" className="company_subtitle">
                   Support Center
                 </Link>
-                <Link href={"#"} className="company_subtitle">
+                <Link href={"/about"} target="_blank" className="company_subtitle">
                   Careers
                 </Link>
               </div>
@@ -183,22 +183,22 @@ export function Footer() {
                   footerInfoOpen ? "h-[228px]" : " h-0 sm:h-fit sm:min-h-full"
                 }`}
               >
-                <Link href={"#"} className="info_subtitle">
+                <Link href={"/contact"} target="_blank" className="info_subtitle">
                   Search Terms
                 </Link>
-                <Link href={"#"} className="info_subtitle">
+                <Link href={"/contact"} target="_blank" className="info_subtitle">
                   Advanced Search
                 </Link>
-                <Link href={"#"} className="info_subtitle">
+                <Link href={"/contact"} target="_blank" className="info_subtitle">
                   Help & FAQ's
                 </Link>
-                <Link href={"#"} className="info_subtitle">
+                <Link href={"/contact"} target="_blank" className="info_subtitle">
                   Store Location
                 </Link>
-                <Link href={"#"} className="info_subtitle">
+                <Link href={"/contact"} target="_blank" className="info_subtitle">
                   Orders & Returns
                 </Link>
-                <Link href={"#"} className="info_subtitle">
+                <Link href={"/contact"} target="_blank" className="info_subtitle">
                   Feedback for us
                 </Link>
               </div>

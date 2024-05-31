@@ -1,6 +1,6 @@
 import { IconBox, Logo } from "@/components";
 import Link from "next/link";
-import React, { MouseEvent, useEffect, useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import { SearchForm } from "./searchForm";
 import { Menu } from "./menu";
 import { useOverlay } from "@/hooks/useOverlay";
@@ -38,11 +38,27 @@ export function Header() {
     }
   };
 
+  const orderListClickHandler = (e: MouseEvent) => {
+    e.stopPropagation();
+    isNavOpen(false);
+    isOrderListOpen((prevState) => !prevState);
+  };
+
+  const orderListBodyClickHandler = (e: MouseEvent) => {
+    e.stopPropagation();
+  };
+
   useOverlay({
     stateFunc: () => {
       isNavOpen(false);
     },
     state: navOpen,
+  });
+
+  useOverlay({
+    stateFunc: () => {
+      isOrderListOpen(false);
+    },
   });
 
   const accountHandler = () => {
@@ -90,7 +106,7 @@ export function Header() {
                       </span>
                     </p>
                   </div>
-                  <div className="header_cart flex" onClick={() => isOrderListOpen(!orderListOpen)}>
+                  <div className="header_cart flex" onClick={orderListClickHandler}>
                     <Link className="header_account-link flex items-center relative" href="#">
                       <IconBox
                         icon={"icon-shopping-cart"}
@@ -108,6 +124,7 @@ export function Header() {
                     </Link>
                   </div>
                   <div
+                    onClick={orderListBodyClickHandler}
                     className={`header_order-wrapper absolute right-[-5px] top-[40px] z-20 sm:w-auto w-[340px] overflow-hidden rounded-[10px]  ${
                       orderListOpen ? "block" : "hidden"
                     }`}
@@ -126,7 +143,7 @@ export function Header() {
               navOpen ? "left-0" : "-left-full"
             }`}
           >
-            <Menu />
+            <Menu isOrderListOpen={isOrderListOpen} />
           </div>
           <div
             className={`cover lg:hidden fixed top-0 right-0 w-full h-full bg-[#000000a3] ${
