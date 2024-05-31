@@ -15,6 +15,11 @@ interface Props {
   };
 }
 
+interface ProductID {
+  productID: string | string[] | undefined;
+  populate?: Array<"categories" | "thumbnail" | "gallery">;
+}
+
 export function getAllProductsApiCall({
   populate,
   filters = {},
@@ -31,30 +36,14 @@ export function getAllProductsApiCall({
   });
 }
 
-// interface Props {
-//   populate?: Array<"categories" | "thumbnail" | "gallery">;
-//   filters?: {
-//     is_popular?: boolean;
-//     is_popular_fruit?: boolean;
-//     is_best_seller?: boolean;
-//     discount_expire_date?: boolean;
-//   };
-// }
-
-// interface Filters {
-//   is_popular?: { $eq: boolean };
-//   is_popular_fruit?: { $eq: boolean };
-//   is_best_seller?: { $eq: boolean };
-//   discount_expire_date?: { $notNull: boolean };
-// }
-
-// const customFilter: Filters = {};
-
-// filters?.is_popular && (customFilter.is_popular = { $eq: filters.is_popular });
-
-// filters?.is_popular_fruit && (customFilter.is_popular_fruit = { $eq: filters.is_popular_fruit });
-
-// filters?.is_best_seller && (customFilter.is_best_seller = { $eq: filters.is_best_seller });
-
-// filters?.discount_expire_date &&
-//   (customFilter.discount_expire_date = { $notNull: filters.discount_expire_date });
+export function getProduct({
+  productID,
+  populate,
+}: ProductID): Promise<ApiResponseType<ProductType>> {
+  return apiClient.get("/products", {
+    params: {
+      populate: populate?.join(","),
+      productID: productID,
+    },
+  });
+}

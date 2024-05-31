@@ -4,8 +4,37 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Navigation } from "swiper/modules";
 import { relatedProducts } from "@/mock/RelatedProducts";
+import { useRouter } from "next/router";
+import { useQuery } from "@tanstack/react-query";
+import { getAllProductsApiCall, getProduct } from "@/api/Product";
+import { ApiResponseType, EntityType } from "@/types";
+import { ProductType } from "@/types/api/Product";
 
 export default function ProductByID() {
+  const productRouter = useRouter();
+
+  const { id } = productRouter.query;
+
+  let currentProduct: Array<ProductType> = [];
+
+  const { data: response } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: ["product", id],
+    queryFn: () =>
+      getProduct({
+        populate: ["categories", "thumbnail"],
+        productID: id,
+      }),
+    enabled: !!id,
+  });
+
+  response?.data.map((item) => {
+    if (item.id === Number(id)) {
+      currentProduct.push(item.attributes);
+    }
+  });
+
+  console.log(currentProduct);
+
   return (
     <main>
       <section className="container flex flex-col items-center mb-[100px] mt-[74px]">
@@ -16,7 +45,7 @@ export default function ProductByID() {
                 <IconBox icon="icon-search" size="text-[24px]" className="text-text-body-2 mb-20" />
               </div>
               <ImageView
-                src={"/images/product/pic-01.png"}
+                src={currentProduct[0]?.thumbnail?.data?.attributes.url}
                 alt={"orange"}
                 width={585}
                 height={420}
@@ -124,15 +153,25 @@ export default function ProductByID() {
             <div className="bg-[#def9ec] w-[75px] h-[29px] flex items-center justify-center text-brand-color-one text-sm font-bold">
               In Stock
             </div>
-            <h1 className="md:text-[40px] text-3xl text font-bold">
-              Seeds of Change Organic Quinoa, Brown
-            </h1>
+            <h1 className="md:text-[40px] text-3xl text font-bold">{currentProduct[0]?.title}</h1>
             <div className="flex gap-0.5">
               <Rating rate={4} />
             </div>
             <div className="flex items-center gap-5">
-              <p className="text-brand-color-one font-bold md:text-7xl text-5xl">$38</p>
-              <p className="text-text-body-2 line-through font-bold md:text-[32px] text-2xl">$42</p>
+              {currentProduct[0]?.sell_price ? (
+                <>
+                  <p className="text-brand-color-one font-bold md:text-7xl text-5xl">
+                    ${currentProduct[0]?.sell_price}
+                  </p>
+                  <p className="text-text-body-2 line-through font-bold md:text-[32px] text-2xl">
+                    ${currentProduct[0]?.price}
+                  </p>
+                </>
+              ) : (
+                <p className="text-brand-color-one font-bold md:text-7xl text-5xl">
+                  ${currentProduct[0]?.price}
+                </p>
+              )}
             </div>
             <div className="flex flex-col font-lato md:text-lg text-text-body gap-6">
               <p>
