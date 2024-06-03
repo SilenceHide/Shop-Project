@@ -1,6 +1,8 @@
 import { ImageView, Rating } from "@/components/common";
+import { useBasket } from "@/hooks/useBasket";
 import { EntityType } from "@/types";
 import { ProductType } from "@/types/api/Product";
+import Link from "next/link";
 import React from "react";
 
 interface Props {
@@ -8,6 +10,10 @@ interface Props {
 }
 
 export function BestSellerSlide({ data }: Props) {
+  const { addItem, updateItem, getItem } = useBasket();
+
+  const currentProductInBasket = getItem(data.id);
+
   return (
     <>
       <div className="offer_percentage-wrapper absolute text-white bg-danger-color top-0 md:top-5 left-0 min-w-[64px] py-[10px] px-4 rounded-r-full">
@@ -32,9 +38,11 @@ export function BestSellerSlide({ data }: Props) {
         ) : (
           <p className="offer_hodo-foods font-lato text-xs text-text-body md:mt-5">Hodo Foods</p>
         )}
-        <h3 className="offer_title font-bold md:text-sm text-xs my-1 h-[48px] overflow-hidden text-ellipsis">
-          {data.attributes.title}
-        </h3>
+        <div className="offer_title font-bold md:text-sm text-xs my-1 min-h-[48px] overflow-hidden text-ellipsis">
+          <Link href={`/product/${data.id}`} target="_blank">
+            {data.attributes.title}
+          </Link>
+        </div>
         <div className="offer_rate-wrapper flex">
           <Rating rate={data.attributes.rate} />
         </div>
@@ -72,14 +80,33 @@ export function BestSellerSlide({ data }: Props) {
             Sold: {data.attributes.sold}/{data.attributes.total}
           </p>
         </div>
-        <button className="offer_add-btn min-w-full text-white bg-brand-color-one flex items-center justify-center gap-2 rounded py-3 mt-6 transition-all hover:bg-brand-color-two">
-          <img
-            className="offer_add-btn_img"
-            src="../images/section4/fi-rs-shopping-cart.svg"
-            alt="shopping-cart"
-          />
-          <p className="offer_add-btn_title font-bold text-sm">Add To Cart</p>
-        </button>
+        {currentProductInBasket ? (
+          <button
+            onClick={() => updateItem(data.id, "increase")}
+            type="button"
+            className="offer_add-btn min-w-full text-white bg-brand-color-one flex items-center justify-center gap-2 rounded py-3 mt-6 transition-all hover:bg-brand-color-two"
+          >
+            <img
+              className="offer_add-btn_img"
+              src="../images/section4/fi-rs-shopping-cart.svg"
+              alt="shopping-cart"
+            />
+            <p className="offer_add-btn_title font-bold text-sm">Add To Cart</p>
+          </button>
+        ) : (
+          <button
+            onClick={() => addItem(data.id)}
+            type="button"
+            className="offer_add-btn min-w-full text-white bg-brand-color-one flex items-center justify-center gap-2 rounded py-3 mt-6 transition-all hover:bg-brand-color-two"
+          >
+            <img
+              className="offer_add-btn_img"
+              src="../images/section4/fi-rs-shopping-cart.svg"
+              alt="shopping-cart"
+            />
+            <p className="offer_add-btn_title font-bold text-sm">Add To Cart</p>
+          </button>
+        )}
       </div>
     </>
   );

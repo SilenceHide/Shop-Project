@@ -30,7 +30,8 @@ export function BestSellerSlider({ sliderData }: Props) {
             />
           </div>
           <Link
-            href="#"
+            href="/category"
+            target="_blank"
             className="our-offers_banner-shop_btn absolute flex items-center left-12 bottom-12 text-white bg-brand-color-one hover:bg-brand-color-two gap-2 px-4 py-2 rounded transition-all"
           >
             <p className="our-offers_banner-btn_title font-bold text-xs">Shop Now</p>

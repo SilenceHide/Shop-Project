@@ -101,7 +101,11 @@ export default function Cart() {
                         </div>
                         <div className="flex justify-center items-center">
                           <div className="flex justify-center items-center  rounded-[7px] max-h-[50px] md:max-w-[118px] max-w-[80px] px-4 py-2">
-                            <AddProductInput productData={basketItem.product.data} />
+                            <AddProductInput
+                              productData={basketItem.product.data}
+                              className="w-20 h-13"
+                              arrowSize="text-[18px]"
+                            />
                           </div>
                         </div>
                         <div className="flex justify-center items-center ">
@@ -129,10 +133,8 @@ export default function Cart() {
               <div className="flex flex-col gap-[30px] mt-[26px]">
                 <div className="h-[1px] w-full bg-gray-200"></div>
                 <div className="flex flex-col xs:flex-row justify-between items-center">
-                  <button
-                    type="submit"
-                    className="mt-6 py-2 bg-brand-color-two h-[50px] w-[242px] rounded-[4px] cursor-pointer flex justify-center items-center gap-2.5"
-                  >
+                  <button className="mt-6 py-2 bg-brand-color-two h-[50px] w-[242px] rounded-[4px] cursor-pointer flex justify-center items-center gap-2.5">
+                    <link rel="stylesheet" href="/" className="w-full" />
                     <i className="icon-arrow-small-right text-[24px] rotate-180"></i>
                     <span className="text-white text-lg font-bold">Continue Shopping</span>
                   </button>

@@ -44,7 +44,8 @@ export function FeaturedCategoriesSlider() {
                 {item.title}
               </p>
               <Link
-                href="#"
+                href="/category"
+                target="_blank"
                 className="category-item_link font-bold text-white text-xs flex items-center justify-between max-w-[110px] bg-brand-color-one hover:bg-brand-color-two transition-all px-4 py-2 rounded lg:mb-20 sm:mb-6 mb-8"
               >
                 <p className="category-item_link-title">Shop Now</p>

@@ -3,6 +3,7 @@ import { ImageView } from "../../imageView";
 import { useBasket } from "@/hooks/useBasket";
 import Link from "next/link";
 import { useOverlay } from "@/hooks/useOverlay";
+import AddProductInput from "../../product/productCard/AddProductInput";
 
 interface Props {
   hasButton?: boolean;
@@ -36,7 +37,7 @@ export default function OrderList({
 
           return (
             <div
-              className="sm:grid sm:grid-cols-[minmax(0,_2fr)_minmax(0,_3fr)_minmax(0,_2fr)] gap-7 w-full flex flex-wrap items-center justify-center my-3 sm:my-0"
+              className="sm:grid sm:grid-cols-[minmax(0,_2fr)_minmax(0,_2fr)_minmax(0,_3fr)] gap-7 w-full flex flex-wrap items-center justify-center my-3 sm:my-0"
               key={index}
             >
               <div className="flex justify-center items-center w-[115px] h-[115px] border border-border-gray rounded-[8px] p-1">
@@ -48,12 +49,16 @@ export default function OrderList({
                   className={"max-h-[64px] max-w-[64px] xl:max-h-[114px] xl:max-w-[114px]"}
                 />
               </div>
-              <div className="text-text-heading font-bold flex  items-center sm:py-[22px] max-w-[190px] text-center sm:text-start">
+              <div className="text-text-heading font-bold flex  items-center sm:py-[22px] max-w-[150px] text-center sm:text-start">
                 {basketData.title}
               </div>
-              <div className="flex gap-10 w-full justify-center">
+              <div className="flex gap-10 w-full sm:justify-between justify-center">
                 <div className="text-2xl font-bold text-text-body-2 flex justify-center items-center">
-                  ×{basketItem.quantity}
+                  <AddProductInput
+                    productData={basketItem.product.data}
+                    className="w-20 h-13"
+                    arrowSize="text-[18px]"
+                  />
                 </div>
                 {basketData.sell_price ? (
                   <div className="text-2xl font-bold text-brand-color-one flex justify-center items-center">

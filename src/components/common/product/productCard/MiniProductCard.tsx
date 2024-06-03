@@ -3,6 +3,7 @@ import { ImageView } from "../../imageView";
 import { Rating } from "../../ui";
 import { EntityType } from "@/types";
 import { ProductType } from "@/types/api/Product";
+import Link from "next/link";
 
 interface Props {
   data: EntityType<ProductType>;
@@ -23,11 +24,13 @@ export function MiniProductCard({ data, className = "", titleHeight = "h-[72px]"
         />
       </div>
       <div className="top-selling_content-wrapper">
-        <p
+        <Link
+          href={"/category"}
+          target="_blank"
           className={`top-selling_content-title font-bold overflow-hidden text-ellipsis ${titleHeight}`}
         >
           {data.attributes.title}
-        </p>
+        </Link>
         <div className="top-selling-wrapper flex">
           <Rating rate={data.attributes.rate} />
         </div>
