@@ -5,35 +5,19 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 
 export default function Cart() {
-  const { basketItems } = useBasket();
-
-  // let total = 0;
-
-  // useEffect(() => {
-  //   const elements = document.querySelectorAll(".total-price");
-  //   let totalPrice = [];
-
-  //   for (let index = 0; index < elements.length; index++) {
-  //     const element = elements[index];
-  //     const elementValue = Number(element.innerHTML.substring(1));
-  //     totalPrice.push(elementValue);
-  //   }
-
-  //   for (let index = 0; index < totalPrice.length; index++) {
-  //     total += totalPrice[index];
-  //   }
-  // }, [basketItems]);
+  const { basketItems, deleteItem, clearBasket } = useBasket();
 
   return (
     <div className="container m-auto mt-[45px] mb-[150px]">
       <h1 className="xs:text-[40px] text-3xl font-bold">Your Cart</h1>
       <form className="">
         <div className="mt-4 font-bold text-text-body">
-          There are <span className="text-brand-color-one">3</span> products in your cart
+          There are <span className="text-brand-color-one">{basketItems.length}</span> products in
+          your cart
         </div>
         <div className="flex xl:flex-row flex-col gap-8 mt-12 flex-grow-0">
           <div className="max-w-[1050px]">
-            <div className="flex items-center justify-end pb-[20px]">
+            <div className="flex items-center justify-end pb-[20px]" onClick={clearBasket}>
               <button type="button" className="flex justify-center items-center gap-2 mr-3">
                 <ImageView
                   src={"/icons/fi-rs-trash.svg"}
@@ -116,7 +100,10 @@ export default function Cart() {
                               : basketData.price * basketItem.quantity}
                           </div>
                         </div>
-                        <div className="flex justify-center items-center">
+                        <div
+                          onClick={() => deleteItem(basketItem.product.data.id)}
+                          className="flex justify-center items-center"
+                        >
                           <ImageView
                             src={"/icons/fi-rs-cross-circle.svg"}
                             alt={"clean sign"}
@@ -232,7 +219,7 @@ export default function Cart() {
           <div className="bg-white flex flex-col flex-shrink-0 flex-grow items-center justify-between rounded-[10px] border-[1px] border-border-gray py-12 px-8 lg:max-h-[430px] max-w-[490px] lg:gap-0 gap-7">
             <div className="flex justify-between items-center w-full">
               <div className="text-text-body-2 font-medium">Subtotal</div>
-              <div className="sm:text-2xl text-xl font-black text-brand-color-one">$12</div>
+              <div className="sm:text-2xl text-xl font-black text-brand-color-one"></div>
             </div>
             <div className="h-[1px] w-full bg-gray-200"></div>
             <div className="grid grid-cols-2 gap-7 w-full">

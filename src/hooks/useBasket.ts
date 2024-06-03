@@ -17,13 +17,19 @@ export function useBasket() {
   const mutateUUIDtoUSer = useMutation({
     mutationFn: UUIDtoUserApiCall,
     onSuccess: (response) => {
-      // console.log("response", response);
       window.localStorage.removeItem("uuid");
       queryClient.invalidateQueries({ queryKey: ["get-basket"] });
     },
   });
 
   const basketItems = basketData?.data.attributes.basket_items ?? [];
+
+  const clearBasketHandler = () => {
+    basketItems.map((item) => {
+      item.quantity = 0;
+      deleteItemHandler(item.product.data.id);
+    });
+  };
 
   const addItemHandler = (productID: number) => {
     const prepareUpdateData = basketItems.map((item) => {
@@ -103,11 +109,41 @@ export function useBasket() {
     }
   };
 
+  const deleteItemHandler = (productID: number) => {
+    let prepareUpdateData = basketItems.map((item) => {
+      return {
+        product: {
+          connect: [{ id: item.product.data.id }],
+        },
+        quantity: item.quantity,
+      };
+    });
+
+    prepareUpdateData = prepareUpdateData.map((item) => {
+      if (item.product.connect[0].id === productID) {
+        item.quantity = 0;
+      }
+      return item;
+    });
+
+    const updateData: UpdateBasketData = {
+      basket_items: prepareUpdateData,
+    };
+
+    mutate.mutate(updateData, {
+      onSuccess: (response) => {
+        queryClient.invalidateQueries({ queryKey: ["get-basket"] });
+      },
+    });
+  };
+
   return {
     basketItems: basketItems,
     addItem: addItemHandler,
     updateItem: updateItemHandler,
     getItem: getItemHandler,
     uuidToUser: uuidToUserHandler,
+    deleteItem: deleteItemHandler,
+    clearBasket: clearBasketHandler,
   };
 }
