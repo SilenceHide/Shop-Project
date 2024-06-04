@@ -12,6 +12,8 @@ interface Props {
     pageSize?: number;
     start?: number;
     limit?: number;
+    total?: number;
+    pageCount?: number;
   };
 }
 

@@ -219,7 +219,7 @@ export default function Cart() {
           <div className="bg-white flex flex-col flex-shrink-0 flex-grow items-center justify-between rounded-[10px] border-[1px] border-border-gray py-12 px-8 lg:max-h-[430px] max-w-[490px] lg:gap-0 gap-7">
             <div className="flex justify-between items-center w-full">
               <div className="text-text-body-2 font-medium">Subtotal</div>
-              <div className="sm:text-2xl text-xl font-black text-brand-color-one"></div>
+              <div className="sm:text-2xl text-xl font-black text-brand-color-one">$12.31</div>
             </div>
             <div className="h-[1px] w-full bg-gray-200"></div>
             <div className="grid grid-cols-2 gap-7 w-full">
