@@ -1,5 +1,5 @@
 import { getAllProductsApiCall } from "@/api/Product";
-import { IconBox, ImageView, MiniProductCard, SimpleProductCard } from "@/components";
+import { ImageView, MiniProductCard } from "@/components";
 import PaginatedList from "@/components/lists/PaginatedList";
 import { ApiResponseType } from "@/types";
 import { ProductType } from "@/types/api/Product";
