@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 
 export default function Cart() {
-  const { basketItems, deleteItem, clearBasket, totalBasketPrice } = useBasket();
+  const { basketItems, deleteItem, clearBasket, totalBasketPrice, basketItemImage } = useBasket();
 
   return (
     <div className="container m-auto mt-[45px] mb-[150px]">
@@ -49,6 +49,7 @@ export default function Cart() {
                   </div>
                   {basketItems.map((basketItem, index) => {
                     const basketData = basketItem.product.data.attributes;
+                    const basketItemID = basketItem.product.data.id;
 
                     return (
                       <div
@@ -64,16 +65,18 @@ export default function Cart() {
                             className="w-3 h-3 md:w-4 md:h-4"
                           />
                         </div>
-                        <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
-                          <ImageView
-                            src={basketData.thumbnail?.data?.attributes.url}
-                            alt={"orange"}
-                            width={210}
-                            height={168}
-                            className={
-                              "max-h-[64px] max-w-[64px] xl:max-h-[114px] xl:max-w-[114px]"
-                            }
-                          />
+                        <div className="flex flex-col xl:flex-row items-center justify-between gap-4 ">
+                          <div className="xl:h-[105px] h-[64px] max-w-[114px] w-full flex items-center justify-center">
+                            <ImageView
+                              src={basketItemImage(basketItemID)}
+                              alt={"orange"}
+                              width={210}
+                              height={168}
+                              className={
+                                "max-h-[64px] max-w-[64px] xl:max-h-[105px] xl:max-w-[114px] "
+                              }
+                            />
+                          </div>
                           <div className="font-black xl:text-start text-center md:text-base text-sm sm:max-w-[200px] w-full">
                             {basketData.title}
                           </div>

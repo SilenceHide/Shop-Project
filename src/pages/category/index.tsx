@@ -24,7 +24,6 @@ export default function Category() {
       getAllProductsApiCall({
         populate: ["categories", "thumbnail"],
         pagination: {
-          withCount: false,
           page: 1,
           pageSize: 9,
         },

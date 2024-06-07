@@ -4,10 +4,20 @@ import {
   UpdateBasketData,
   UUIDtoUserApiCall,
 } from "@/api/Basket";
-import { BasketItemType } from "@/types";
+import { getAllProductsApiCall } from "@/api/Product";
+import { ApiResponseType, BasketItemType } from "@/types";
+import { ProductType } from "@/types/api/Product";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useBasket() {
+  const { data: products } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: [getAllProductsApiCall.name, "products"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+      }),
+  });
+
   const queryClient = useQueryClient();
 
   const { data: basketData } = useQuery({ queryKey: ["get-basket"], queryFn: basketApiCall });
@@ -149,9 +159,22 @@ export function useBasket() {
       price.push(totalItemPrice);
     }
   });
+
   if (price.length > 1) {
     totalPrice = price.reduce((a, d) => a + d);
   }
+
+  const basketItemImageHandler = (productID: number) => {
+    let basketItemImageUrl = "";
+
+    products?.data.map((item) => {
+      if (item.id === productID) {
+        return (basketItemImageUrl = item.attributes.thumbnail?.data?.attributes.url!);
+      }
+    });
+
+    return basketItemImageUrl;
+  };
 
   return {
     basketItems: basketItems,
@@ -162,5 +185,6 @@ export function useBasket() {
     deleteItem: deleteItemHandler,
     clearBasket: clearBasketHandler,
     totalBasketPrice: totalPrice,
+    basketItemImage: basketItemImageHandler,
   };
 }

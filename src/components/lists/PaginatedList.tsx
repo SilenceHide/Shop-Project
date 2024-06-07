@@ -1,7 +1,9 @@
 import React from "react";
 import { IconBox, ImageView, SimpleProductCard } from "../common";
-import { EntityType } from "@/types";
+import { ApiResponseType, EntityType } from "@/types";
 import { ProductType } from "@/types/api/Product";
+import { useQuery } from "@tanstack/react-query";
+import { getAllProductsApiCall } from "@/api/Product";
 
 interface Props {
   currentPage: number;
@@ -12,6 +14,14 @@ interface Props {
 }
 
 export default function PaginatedList({ currentPage, totalPage, title, data }: Props) {
+  const { data: allProducts } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: [getAllProductsApiCall.name, "allProducts"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+      }),
+  });
+
   let list = [];
   for (let index = 1; index < totalPage; index++) {
     list.push(
@@ -32,8 +42,8 @@ export default function PaginatedList({ currentPage, totalPage, title, data }: P
     <>
       <div className="flex justify-between rounded-[15px] bg-[#f5f5f5] sm:py-[25px] sm:px-[30px] p-5 mb-[48px]">
         <div className=" text-text-body font-bold max-w-[145px] sm:max-w-fit">
-          There are <span className="text-brand-color-one">{data.length}</span> products in this
-          category
+          There are <span className="text-brand-color-one">{allProducts?.data.length}</span>{" "}
+          products in this category
         </div>
         <div className="text-text-body font-lato gap-1 flex justify-center items-center text-center">
           <ImageView src={"/images/category/fi-rs-sort.svg"} alt={"image"} width={16} height={16} />

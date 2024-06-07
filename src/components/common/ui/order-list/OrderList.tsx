@@ -1,4 +1,4 @@
-import React, { Dispatch, MouseEvent, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { ImageView } from "../../imageView";
 import { useBasket } from "@/hooks/useBasket";
 import Link from "next/link";
@@ -16,7 +16,7 @@ export default function OrderList({
     true;
   },
 }: Props) {
-  const { basketItems } = useBasket();
+  const { basketItems, basketItemImage } = useBasket();
 
   useOverlay({
     stateFunc: () => {
@@ -38,6 +38,7 @@ export default function OrderList({
         <div className="h-[1px] w-full bg-gray-200"></div>
         {basketItems.map((basketItem, index) => {
           const basketData = basketItem.product.data.attributes;
+          const basketItemID = basketItem.product.data.id;
 
           return (
             <div
@@ -50,11 +51,12 @@ export default function OrderList({
             >
               <div className="flex justify-center items-center w-[115px] h-[115px] border border-border-gray rounded-[8px] p-1">
                 <ImageView
-                  src={basketData.thumbnail?.data?.attributes.url}
+                  src={basketItemImage(basketItemID)}
                   alt={"orange"}
                   width={210}
                   height={168}
                   className={"max-h-[64px] max-w-[64px] xl:max-h-[114px] xl:max-w-[114px]"}
+                  key={index}
                 />
               </div>
               <div className="text-text-heading font-bold flex  items-center sm:py-[22px] max-w-[150px] text-center sm:text-start">
