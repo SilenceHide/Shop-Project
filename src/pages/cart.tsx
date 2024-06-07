@@ -2,10 +2,10 @@ import { ImageView } from "@/components";
 import AddProductInput from "@/components/common/product/productCard/AddProductInput";
 import { useBasket } from "@/hooks/useBasket";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function Cart() {
-  const { basketItems, deleteItem, clearBasket } = useBasket();
+  const { basketItems, deleteItem, clearBasket, totalBasketPrice } = useBasket();
 
   return (
     <div className="container m-auto mt-[45px] mb-[150px]">
@@ -29,7 +29,7 @@ export default function Cart() {
               </button>
             </div>
             <div className="w-full text-center">
-              <div className="md:max-h-[500px] xs:overflow-x-visible overflow-x-scroll">
+              <div className="md:max-h-max xs:overflow-x-visible overflow-x-scroll pb-4 sm:pb-0">
                 <div className="min-w-[500px] flex flex-col gap-[30px]">
                   <div className="bg-[#f5f5f5] rounded-[15px] h-[58px] w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] items-center md:flex-nowrap flex-wrap">
                     <div className="flex justify-center items-center">
@@ -219,7 +219,9 @@ export default function Cart() {
           <div className="bg-white flex flex-col flex-shrink-0 flex-grow items-center justify-between rounded-[10px] border-[1px] border-border-gray py-12 px-8 lg:max-h-[430px] max-w-[490px] lg:gap-0 gap-7">
             <div className="flex justify-between items-center w-full">
               <div className="text-text-body-2 font-medium">Subtotal</div>
-              <div className="sm:text-2xl text-xl font-black text-brand-color-one">$12.31</div>
+              <div className="sm:text-2xl text-xl font-black text-brand-color-one">
+                ${totalBasketPrice}
+              </div>
             </div>
             <div className="h-[1px] w-full bg-gray-200"></div>
             <div className="grid grid-cols-2 gap-7 w-full">
@@ -233,7 +235,9 @@ export default function Cart() {
             <div className="h-[1px] w-full bg-gray-200"></div>
             <div className="flex justify-between items-center w-full">
               <div className="text-text-body-2 font-medium">Total</div>
-              <div className="sm:text-2xl text-xl font-black text-brand-color-one">$12.31</div>
+              <div className="sm:text-2xl text-xl font-black text-brand-color-one">
+                ${totalBasketPrice}
+              </div>
             </div>
             <Link
               href={"/checkout"}

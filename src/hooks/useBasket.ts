@@ -137,6 +137,22 @@ export function useBasket() {
     });
   };
 
+  let price: Array<number> = [];
+  let totalPrice: number = 0;
+
+  basketItems.map((item) => {
+    if (item.product.data.attributes.sell_price) {
+      const totalItemPrice = item.quantity * item.product.data.attributes.sell_price;
+      price.push(totalItemPrice);
+    } else {
+      const totalItemPrice = item.quantity * item.product.data.attributes.price;
+      price.push(totalItemPrice);
+    }
+  });
+  if (price.length > 1) {
+    totalPrice = price.reduce((a, d) => a + d);
+  }
+
   return {
     basketItems: basketItems,
     addItem: addItemHandler,
@@ -145,5 +161,6 @@ export function useBasket() {
     uuidToUser: uuidToUserHandler,
     deleteItem: deleteItemHandler,
     clearBasket: clearBasketHandler,
+    totalBasketPrice: totalPrice,
   };
 }

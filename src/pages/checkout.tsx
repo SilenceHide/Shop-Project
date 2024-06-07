@@ -1,15 +1,19 @@
 import { IconBox, ImageView } from "@/components";
 import OrderList from "@/components/common/ui/order-list/OrderList";
+import { useBasket } from "@/hooks/useBasket";
 import Link from "next/link";
 import React from "react";
 
 export default function Checkout() {
+  const { basketItems } = useBasket();
+
   return (
     <div className="container m-auto mt-[45px] mb-[150px]">
       <form className="">
         <h1 className="xs:text-[40px] text-3xl font-bold">Checkout</h1>
         <div className="mt-4 font-bold text-text-body">
-          There are <span className="text-brand-color-one">3</span> products in your cart
+          There are <span className="text-brand-color-one">{basketItems.length}</span> products in
+          your cart
         </div>
         <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12 ">
           <div className="flex flex-col md:grid md:grid-cols-2 gap-6 font-lato">
@@ -193,7 +197,9 @@ export default function Checkout() {
             </div>
           </div>
           <div className="flex flex-col gap-[70px] ">
-            <OrderList />
+            <div className="overflow-hidden rounded-[10px]">
+              <OrderList />
+            </div>
             <div>
               <p className="text-2xl font-bold">Payment</p>
               <div className="flex flex-col items-start gap-4 mt-7">
