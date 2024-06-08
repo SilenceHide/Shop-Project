@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { IconBox, ImageView, SimpleProductCard } from "../common";
 import { ApiResponseType, EntityType } from "@/types";
 import { ProductType } from "@/types/api/Product";
@@ -8,12 +8,12 @@ import { getAllProductsApiCall } from "@/api/Product";
 interface Props {
   currentPage: number;
   totalPage: number;
-  //   children: React.ReactNode;
   title?: string;
   data: Array<EntityType<ProductType>>;
+  setPage: Dispatch<SetStateAction<number>>;
 }
 
-export default function PaginatedList({ currentPage, totalPage, title, data }: Props) {
+export default function PaginatedList({ currentPage, totalPage, title, data, setPage }: Props) {
   const { data: allProducts } = useQuery<ApiResponseType<ProductType>>({
     queryKey: [getAllProductsApiCall.name, "allProducts"],
     queryFn: () =>
@@ -23,9 +23,12 @@ export default function PaginatedList({ currentPage, totalPage, title, data }: P
   });
 
   let list = [];
-  for (let index = 1; index < totalPage; index++) {
+  for (let index = 1; index <= totalPage; index++) {
     list.push(
       <div
+        onClick={() => {
+          setPage(index);
+        }}
         key={index}
         className={`w-[40px] h-[40px] rounded-full flex items-center justify-center font-bold cursor-pointer ${
           currentPage === index
@@ -66,7 +69,14 @@ export default function PaginatedList({ currentPage, totalPage, title, data }: P
       </div>
 
       <div className="flex flex-wrap gap-[10px] mt-11">
-        <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-border-light font-bold cursor-pointer">
+        <div
+          onClick={() => {
+            if (currentPage !== 1) {
+              setPage((prevState) => prevState - 1);
+            }
+          }}
+          className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-border-light font-bold cursor-pointer"
+        >
           <ImageView
             className={"popular-fruits_section-left_arrow-img object-cover"}
             src={"/images/section3/fi-rs-arrow-small-left 1.svg"}
@@ -76,10 +86,14 @@ export default function PaginatedList({ currentPage, totalPage, title, data }: P
           />
         </div>
         {list}
-        {/* <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center text-text-body bg-border-light font-bold cursor-pointer pb-1">
-          ...
-        </div> */}
-        <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-brand-color-one cursor-pointer">
+        <div
+          onClick={() => {
+            if (currentPage !== totalPage) {
+              setPage((prevState) => prevState + 1);
+            }
+          }}
+          className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-brand-color-one cursor-pointer"
+        >
           <ImageView
             className={"popular-fruits_section-right_arrow-img object-cover hidden md:block"}
             src={"/images/section3/fi-rs-arrow-small-right 2.svg"}

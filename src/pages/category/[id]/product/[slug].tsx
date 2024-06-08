@@ -1,297 +1,297 @@
-import { IconBox, ImageView, Rating, SimpleProductCard } from "@/components";
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Navigation } from "swiper/modules";
-import { relatedProducts } from "@/mock/RelatedProducts";
-import { useRouter } from "next/router";
+import { getAllProductsApiCall } from "@/api/Product";
+import { ImageView, MiniProductCard } from "@/components";
+import PaginatedList from "@/components/lists/PaginatedList";
+import { ApiResponseType } from "@/types";
+import { ProductType } from "@/types/api/Product";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
 
-export default function ProductBySlug() {
+export default function Category() {
+  const [page, setPage] = useState<number>(1);
+
+  const { data: trendingProductData } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: [getAllProductsApiCall.name, "trending"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["thumbnail"],
+        filters: { is_trending: { $notNull: true } },
+      }),
+  });
+
+  const { data: products } = useQuery<ApiResponseType<ProductType>>({
+    queryKey: [getAllProductsApiCall.name, "paginatedProducts", page],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["categories", "thumbnail"],
+        pagination: {
+          page: page,
+          pageSize: 9,
+        },
+      }),
+  });
+
   return (
-    <main>
-      <section className="container flex flex-col items-center mb-[100px] mt-[74px]">
-        <div className="product-info flex lg:flex-row flex-col justify-center lg:gap-10 gap-12">
-          <div className="flex flex-col xl:max-w-[645px] lg:max-w-[445px] md:max-w-[645px] xs:max-w-[545px] max-w-[345px] w-full md:m-0 m-auto">
-            <div className="mb-[28px] p-[40px] border-[1px] border-border-gray rounded-2xl max-h-[695px] h-full flex items-center justify-center relative xl:shrink-0">
-              <div className="absolute top-[30px] right-[30px] flex justify-end cursor-pointer">
-                <IconBox icon="icon-search" size="text-[24px]" className="text-text-body-2 mb-20" />
-              </div>
-              <ImageView
-                src={"/images/product/pic-01.png"}
-                alt={"orange"}
-                width={585}
-                height={420}
-                className={"w-11/12 md:max-w-[585px] max-w-fit"}
-              />
-            </div>
-            <div className="flex flex-row gap-2 justify-center items-center static">
-              <div className="product_slider-left-btn bg-brand-color-one rounded-full flex flex-row-reverse items-center p-2 cursor-pointer">
-                <IconBox icon="icon-arrow-small-right" size="text-[24px]" className="rotate-180" />
-              </div>
-
-              <Swiper
-                slidesPerView={2}
-                spaceBetween={10}
-                loop={true}
-                navigation={{
-                  prevEl: ".product_slider-left-btn",
-                  nextEl: ".product_slider-right-btn ",
-                }}
-                modules={[Navigation]}
-                breakpoints={{
-                  540: {
-                    slidesPerView: 3,
-                    spaceBetween: 15,
-                  },
-                  768: {
-                    slidesPerView: 4,
-                    spaceBetween: 15,
-                  },
-                  1024: {
-                    slidesPerView: 2.5,
-                    spaceBetween: 15,
-                  },
-                  1280: {
-                    slidesPerView: 4,
-                    spaceBetween: 15,
-                  },
-                }}
-                className="xl:max-w-[645px] lg:max-w-[445px] md:max-w-[645px] xs:max-w-[545px] max-w-[345px] w-full"
-              >
-                <SwiperSlide>
-                  <div className="min-w-[117px] h-[117px] rounded-2xl p-2 border border-border-light hover:border-brand-color-one transition-all flex justify-center items-center">
-                    <ImageView
-                      src={"/images/product/pic-01.png"}
-                      alt={"orange"}
-                      width={115}
-                      height={115}
-                      className={"max-w-[110px] max-h-[100px]"}
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="min-w-[117px] h-[117px] rounded-2xl p-2 border border-border-light hover:border-brand-color-one transition-all flex justify-center items-center">
-                    <ImageView
-                      src={"/images/product/pic-02.png"}
-                      alt={"orange"}
-                      width={115}
-                      height={115}
-                      className={"max-w-[110px] max-h-[100px]"}
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="min-w-[117px] h-[117px] rounded-2xl p-2 border border-border-light hover:border-brand-color-one transition-all flex justify-center items-center">
-                    <ImageView
-                      src={"/images/product/pic-03.png"}
-                      alt={"orange"}
-                      width={115}
-                      height={115}
-                      className={"max-w-[110px] max-h-[100px]"}
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="min-w-[117px] h-[117px] rounded-2xl p-2 border border-border-light hover:border-brand-color-one transition-all flex justify-center items-center">
-                    <ImageView
-                      src={"/images/product/pic-04.png"}
-                      alt={"orange"}
-                      width={115}
-                      height={115}
-                      className={"max-w-[110px] max-h-[100px]"}
-                    />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="min-w-[117px] h-[117px] rounded-2xl p-2 border border-border-light hover:border-brand-color-one transition-all flex justify-center items-center">
-                    <ImageView
-                      src={"/images/product/pic-05.png"}
-                      alt={"orange"}
-                      width={115}
-                      height={115}
-                      className={"max-w-[110px] max-h-[100px]"}
-                    />
-                  </div>
-                </SwiperSlide>
-              </Swiper>
-
-              <div className="product_slider-right-btn bg-brand-color-one rounded-full flex items-center p-2 cursor-pointer">
-                <IconBox icon="icon-arrow-small-right" size="text-[24px]" />
-              </div>
-            </div>
-          </div>
-
-          <div className="max-w-[625px] w-full flex flex-col gap-5 xl:shrink-0">
-            <div className="bg-[#def9ec] w-[75px] h-[29px] flex items-center justify-center text-brand-color-one text-sm font-bold">
-              In Stock
-            </div>
-            <h1 className="md:text-[40px] text-3xl text font-bold">
-              Seeds of Change Organic Quinoa, Brown
-            </h1>
-            <div className="flex gap-0.5">
-              <Rating rate={4} />
-            </div>
-            <div className="flex items-center gap-5">
-              <p className="text-brand-color-one font-bold md:text-7xl text-5xl">$38</p>
-              <p className="text-text-body-2 line-through font-bold md:text-[32px] text-2xl">$42</p>
-            </div>
-            <div className="flex flex-col font-lato md:text-lg text-text-body gap-6">
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam rem officia,
-                corrupti reiciendis minima nisi modi, quasi, odio minus dolore impedit fuga eum
-                eligendi? Officia doloremque facere quia. Voluptatum, accusantium!
-              </p>
-              <p>
-                Uninhibited carnally hired played in whimpered dear gorilla koala depending and much
-                yikes off far quetzal goodness and from for grimaced goodness.
-              </p>
-            </div>
-            <form action="#" className="flex items-center gap-2.5 mt-10">
-              <div className="flex justify-center items-center focus-within:border-brand-color-one focus-within:border-[1.5px] focus-within:rounded-[7px] focus-within:text-brand-color-one text-text-body-2 border-[1.5px] border-text-body-2 rounded-[7px] h-[50px] md:max-w-[118px] max-w-[80px] px-4 py-2">
-                <label htmlFor="price2" className="hidden"></label>
-                <input
-                  type="number"
-                  id="price2"
-                  min="1"
-                  max="10"
-                  name="price2"
-                  placeholder="1"
-                  className="product_input-number pl-4 flex justify-center items-center focus:outline-none font-bold"
-                />
-              </div>
-              <button className="offer_add-btn w-full text-white bg-brand-color-one flex items-center justify-center gap-2 rounded py-3 transition-all hover:bg-brand-color-two max-w-[175px] h-[50px]">
-                <img
-                  className="offer_add-btn_img"
-                  src="../images/section4/fi-rs-shopping-cart.svg"
-                  alt="shopping-cart"
-                />
-                <p className="offer_add-btn_title font-bold text-sm">Add To Cart</p>
-              </button>
-            </form>
-            <div className="md:text-lg font-lato mt-10">
-              <p className="">
-                SKU:
-                <span className="text-text-body-2"> FWM15VKT</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="product-detail m-auto flex flex-col gap-9 w-full max-w-[1180px] lg:mt-[228px] mt-[40px] border border-border-light rounded-2xl md:p-[50px] p-[20px]">
-          <div className="product_tabs-wrapper flex sm:flex-row flex-col sm:items-center gap-6">
-            <div className="product_tab px-[30px] h-[45px] border border-border-light flex items-center justify-center font-bold text-lg rounded-[30px] text-text-body-2 cursor-pointer transition-all duration-200 hover:text-brand-color-one hover:shadow-main-shadow product_tab-active">
-              Description
-            </div>
-            <div className="product_tab px-[30px] h-[45px] border border-border-light flex items-center justify-center font-bold text-lg rounded-[30px] text-text-body-2 cursor-pointer transition-all duration-200 hover:text-brand-color-one hover:shadow-main-shadow ">
-              Additional info
-            </div>
-            <div className="product_tab px-[30px] h-[45px] border border-border-light flex items-center justify-center font-bold text-lg rounded-[30px] text-text-body-2 cursor-pointer transition-all duration-200 hover:text-brand-color-one hover:shadow-main-shadow ">
-              Reviews (3)
-            </div>
-          </div>
-          <div className="product_details-wrapper flex flex-col gap-7">
-            <div className="product_detail-wrapper flex flex-col gap-7 font-lato text-text-body">
-              <p>
-                Uninhibited carnally hired played in whimpered dear gorilla koala depending and much
-                yikes off far quetzal goodness and from for grimaced goodness unaccountably and
-                meadowlark near unblushingly crucial scallop tightly neurotic hungrily some and dear
-                furiously this apart.
-              </p>
-              <p>
-                Spluttered narrowly yikes left moth in yikes bowed this that grizzly much hello on
-                spoon-fed that alas rethought much decently richly and wow against the frequent
-                fluidly at formidable acceptably flapped besides and much circa far over the
-                bucolically hey precarious goldfinch mastodon goodness gnashed a jellyfish and one
-                however because.
-              </p>
-            </div>
-            <div className="product_detail-wrapper flex flex-col gap-3">
-              <h3 className="text-xl font-bold">Packaging & Delivery</h3>
-              <p className="font-lato text-text-body">
-                Less lion goodness that euphemistically robin expeditiously bluebird smugly
-                scratched far while thus cackled sheepishly rigid after due one assenting regarding
-                censorious while occasional or this more crane went more as this less much amid
-                overhung anathematic because much held one exuberantly sheep goodness so where rat
-                wry well concomitantly.
-              </p>
-              <ul className="font-lato text-text-body my-4 text-xs flex flex-col gap-2 ml-1">
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-text-body-2 rounded-full"></div>
-                  <p className="max-w-[120px] w-full">Type Of Packing</p>
-                  <p>Paper wrapping</p>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-text-body-2 rounded-full"></div>
-                  <p className="max-w-[120px] w-full">Color</p>
-                  <p>Green, Pink, Brown</p>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-text-body-2 rounded-full"></div>
-                  <p className="max-w-[120px] w-full">Quantity Per Case</p>
-                  <p>500g</p>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-text-body-2 rounded-full"></div>
-                  <p className="max-w-[120px] w-full">Fat percentage</p>
-                  <p>56%</p>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-text-body-2 rounded-full"></div>
-                  <p className="max-w-[120px] w-full">Piece In One</p>
-                  <p>Carton</p>
-                </li>
-              </ul>
-              <p className="font-lato text-text-body">
-                Scallop or far crud plain remarkably far by thus far iguana lewd precociously and
-                and less rattlesnake contrary caustic wow this near alas and next and pled the yikes
-                articulate about as less cackled dalmatian in much less well jeering for the thanks
-                blindly sentimental whimpered less across objectively fanciful grimaced wildly some
-                wow and rose jeepers outgrew lugubrious luridly irrationally attractively dachshund.{" "}
-              </p>
-            </div>
-            <div className="product_detail-wrapper flex flex-col gap-3">
-              <h3 className="text-xl font-bold">Suggested Use</h3>
-              <div className="flex flex-col">
-                <p className="font-lato text-text-body">Refrigeration not necessary.</p>
-                <p className="font-lato text-text-body">Stir before serving.</p>
-              </div>
-            </div>
-            <div className="product_detail-wrapper flex flex-col gap-3">
-              <h3 className="text-xl font-bold">Other Ingredients</h3>
-              <div className="flex flex-col">
-                <p className="font-lato text-text-body">Organic raw pecans, organic raw cashews.</p>
-                <p className="font-lato text-text-body">
-                  This butter was produced using a LTG (Low Temperature Grinding) process.
-                </p>
-                <p className="font-lato text-text-body">
-                  Made in machinery that processes tree nuts but does not process peanuts, gluten,
-                  dairy or soy.
-                </p>
-              </div>
-            </div>
-            <div className="product_detail-wrapper flex flex-col">
-              <h3 className="text-xl font-bold">Warnings</h3>
-              <p className="font-lato text-text-body">
-                Oil separation occurs naturally. May contain pieces of shell.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="related-product flex flex-col mt-12">
-          <h2 className="text-center font-bold text-[32px]">Related products</h2>
-          <div className="flex items-center justify-center max-w-[1180px] gap-5 mt-12 flex-wrap">
-            {/* {relatedProducts.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className="popular-product relative rounded-xl border border-[#e5e5e5] hover:border-brand-color-one overflow-hidden p-5 pb-5 md:pt-14 transition-all max-w-[280px] min-h-[335px]"
-                >
-                  <SimpleProductCard data={item} />
-                </div>
-              );
-            })} */}
+    <>
+      <section className="mb-[68px] container mt-8">
+        <div className="bg-hero-pattern rounded-[6px] md:rounded-[14px] lg:rounded-[30px] bg-[#3bb77e33] bg-opacity-20 bg-cover bg-top bg-no-repeat flex lg:justify-between lg:items-start mt-[38px] relative lg:h-[235px] items-center justify-center">
+          <div className="min-h-[160px] px-5 lg:pl-10 lg:py-10 xl:pl-14 xl:py-14 2xl:py-[72px] 2xl:pl-[72px] flex items-center justify-center lg:justify-start lg:items-start">
+            <h2 className="max-w-full md:text-5xl text-[40px] font-bold text-center md:leading-none leading-[50px]">
+              Vegetables & tubers
+            </h2>
           </div>
         </div>
       </section>
-    </main>
+
+      <section className="container flex lg:flex-row flex-col md:justify-between">
+        <div className="flex flex-col mr-7 max-w-[380px] w-full shrink-0">
+          <form className="flex flex-col border-[1px] border-border-gray rounded-[15px] px-[25px] py-7 mb-[55px] shadow-main-shadow">
+            <p className="text-2xl font-bold mb-[14px] pb-[14px] border-b border-[#D7DEDB]">
+              Filter items
+            </p>
+            <div className="flex items-center justify-between mt-3 mb-[30px]">
+              <div className="flex items-center gap-5">
+                <p className="font-lato text-text-body-2 ">Price Range:</p>
+                <p className="text-brand-color-one text-xl font-bold">$16 - $173</p>
+              </div>
+            </div>
+            <div className="catalog_filter_price-range_wrapper mb-[14px] relative min-h-[20px]">
+              <input
+                id="fromSlider"
+                type="range"
+                className="catalog_filter_price-range"
+                value={0}
+                min={0}
+                max={50}
+              />
+              <input
+                id="toSlider"
+                type="range"
+                className="catalog_filter_price-range"
+                value={100}
+                min={51}
+                max={100}
+              />
+            </div>
+            <p className="font-lato text-text-body-2 mb-[21px]">Used for:</p>
+            <div className="flex flex-col items-start mb-[20px]">
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_appetizer"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"appetizer"}
+                  checked
+                />
+                <label
+                  htmlFor="filter_appetizer"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Appetizer
+                </label>
+              </div>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_salad"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"salad"}
+                />
+                <label
+                  htmlFor="filter_salad"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Salad
+                </label>
+              </div>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_eat-fresh"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"eat-fresh"}
+                />
+                <label
+                  htmlFor="filter_eat-fresh"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Eat-fresh
+                </label>
+              </div>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_juice"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"juice"}
+                />
+                <label
+                  htmlFor="filter_juice"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Juice
+                </label>
+              </div>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_smoothie"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"smoothie"}
+                />
+                <label
+                  htmlFor="filter_smoothie"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Smoothie
+                </label>
+              </div>
+            </div>
+
+            <p className="font-lato text-text-body-2 mb-[21px]">Used for:</p>
+            <div className="flex flex-col items-start mb-[30px]">
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_cobblestone"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"cobblestone"}
+                />
+                <label
+                  htmlFor="filter_cobblestone"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Cobblestone
+                </label>
+              </div>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_McVitie's"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"mcVitie's"}
+                  checked
+                />
+                <label
+                  htmlFor="filter_McVitie's"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  McVitie's
+                </label>
+              </div>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_tastykake"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"tastykake"}
+                />
+                <label
+                  htmlFor="filter_tastykake"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Tastykake
+                </label>
+              </div>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_warburtons"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"warburtons"}
+                />
+                <label
+                  htmlFor="filter_warburtons"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Warburtons
+                </label>
+              </div>
+              <div className="flex mb-[10px] items-center w-full gap-2.5">
+                <input
+                  type="checkbox"
+                  id="filter_wonder-bread"
+                  className="filter-input w-[18px] h-[18px] focus:text-text-heading"
+                  value={"wonder-bread"}
+                />
+                <label
+                  htmlFor="filter_wonder-bread"
+                  className="font-lato text-text-body-2 focus:text-text-heading"
+                >
+                  Wonder Bread
+                </label>
+              </div>
+            </div>
+
+            <div className="flex justify-between relative ">
+              <button
+                type="submit"
+                className="rounded bg-[#def9ec] px-[30px] h-[48px] text-brand-color-one flex justify-center items-center gap-1.5"
+              >
+                <ImageView
+                  src={"/images/category/fi-rs-filter.svg"}
+                  alt={"filter"}
+                  width={16}
+                  height={16}
+                />
+                Filter
+              </button>
+              <div className="absolute hidden md:block right-[-10px] bottom-[-20px]">
+                <ImageView
+                  src={"/images/category/filter-img.png"}
+                  alt={"filter"}
+                  width={200}
+                  height={170}
+                  className={"max-w-[200px] hidden md:block"}
+                />
+              </div>
+            </div>
+          </form>
+          <div className="flex flex-col border-[1px] border-[#D7DEDB]rounded-[10px] px-[25px] py-7 gap-6 mb-10">
+            <p className=" mb-[14px] pb-[14px] border-b text-2xl font-bold">Popular Items</p>
+            {trendingProductData &&
+              trendingProductData.data.map((item, index) => {
+                if (index < 3) {
+                  return (
+                    <MiniProductCard
+                      data={item}
+                      key={index}
+                      className={"cursor-pointer hover:text-brand-color-one transition-all"}
+                      titleHeight={"h-[60px]"}
+                    />
+                  );
+                }
+              })}
+          </div>
+        </div>
+
+        <div className="flex flex-col mb-5">
+          {products && (
+            <PaginatedList
+              data={products.data}
+              currentPage={page}
+              totalPage={products.meta.pagination.pageCount}
+              setPage={setPage}
+            />
+          )}
+        </div>
+      </section>
+    </>
   );
+}
+
+export async function getServerSideProps() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: [getAllProductsApiCall.name, "trending"],
+    queryFn: () =>
+      getAllProductsApiCall({
+        populate: ["thumbnail"],
+        filters: { is_trending: { $notNull: true } },
+      }),
+  });
+
+  return {
+    props: { dehydratedState: dehydrate(queryClient) },
+  };
 }

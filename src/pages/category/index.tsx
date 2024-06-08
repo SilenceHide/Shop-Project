@@ -19,18 +19,16 @@ export default function Category() {
   });
 
   const { data: products } = useQuery<ApiResponseType<ProductType>>({
-    queryKey: [getAllProductsApiCall.name, "products"],
+    queryKey: [getAllProductsApiCall.name, "paginatedProducts", page],
     queryFn: () =>
       getAllProductsApiCall({
         populate: ["categories", "thumbnail"],
         pagination: {
-          page: 1,
+          page: page,
           pageSize: 9,
         },
       }),
   });
-
-  console.log(products);
 
   return (
     <>
@@ -267,7 +265,14 @@ export default function Category() {
         </div>
 
         <div className="flex flex-col mb-5">
-          {products && <PaginatedList data={products.data} currentPage={page} totalPage={3} />}
+          {products && (
+            <PaginatedList
+              data={products.data}
+              currentPage={page}
+              totalPage={products.meta.pagination.pageCount}
+              setPage={setPage}
+            />
+          )}
         </div>
       </section>
     </>

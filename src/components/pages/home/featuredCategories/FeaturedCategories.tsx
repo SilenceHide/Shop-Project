@@ -11,6 +11,8 @@ export function FeaturedCategories() {
     queryFn: () => getFeaturedCategoryApiCall(),
   });
 
+  console.log(featuredCategories?.data[0]);
+
   return (
     <>
       <h2 className="featured-categories_section-title text-3xl font-bold hidden lg:block">
@@ -22,7 +24,7 @@ export function FeaturedCategories() {
             return (
               <Link
                 key={index}
-                href={item.attributes.link ?? "#"}
+                href={item.attributes.link ?? "/category"}
                 style={{ backgroundColor: `${item.attributes.color}` }}
                 className={`featured-category flex flex-col items-center justify-center rounded-[10px] border-transparent border-2 py-2 px-1 transition-all hover:border-[#81B13D]`}
               >

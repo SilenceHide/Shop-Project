@@ -64,7 +64,7 @@ export function Menu({ isOrderListOpen }: Props) {
                   <Link
                     key={index}
                     className="category_link flex items-center gap-3"
-                    href="/category"
+                    href={`/category/${item.id}`}
                     target="_blank"
                   >
                     <IconBox

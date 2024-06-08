@@ -25,7 +25,7 @@ export function MiniProductCard({ data, className = "", titleHeight = "h-[72px]"
       </div>
       <div className="top-selling_content-wrapper">
         <Link
-          href={"/category"}
+          href={`/product/${data.id}`}
           target="_blank"
           className={`top-selling_content-title font-bold overflow-hidden text-ellipsis ${titleHeight}`}
         >
