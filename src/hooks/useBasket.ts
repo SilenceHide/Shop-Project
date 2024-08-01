@@ -34,6 +34,25 @@ export function useBasket() {
 
   const basketItems = basketData?.data.attributes.basket_items ?? [];
 
+  let price: Array<number> = [];
+  let totalPrice: number = 0;
+
+  basketItems.map((item) => {
+    if (item.product.data.attributes.sell_price) {
+      const totalItemPrice = item.quantity * item.product.data.attributes.sell_price;
+      price.push(totalItemPrice);
+    } else {
+      const totalItemPrice = item.quantity * item.product.data.attributes.price;
+      price.push(totalItemPrice);
+    }
+  });
+
+  if (price.length > 1) {
+    totalPrice = price.reduce((a, d) => a + d);
+  } else {
+    totalPrice = price[0];
+  }
+
   const clearBasketHandler = () => {
     basketItems.map((item) => {
       item.quantity = 0;
@@ -146,23 +165,6 @@ export function useBasket() {
       },
     });
   };
-
-  let price: Array<number> = [];
-  let totalPrice: number = 0;
-
-  basketItems.map((item) => {
-    if (item.product.data.attributes.sell_price) {
-      const totalItemPrice = item.quantity * item.product.data.attributes.sell_price;
-      price.push(totalItemPrice);
-    } else {
-      const totalItemPrice = item.quantity * item.product.data.attributes.price;
-      price.push(totalItemPrice);
-    }
-  });
-
-  if (price.length > 1) {
-    totalPrice = price.reduce((a, d) => a + d);
-  }
 
   const basketItemImageHandler = (productID: number) => {
     let basketItemImageUrl = "";
